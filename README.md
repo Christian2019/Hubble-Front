@@ -1,27 +1,36 @@
-# Hubble
+# Primeiros passos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+Para começar a contribuir com o Projeto Hubble, basta seguir os seguintes passos:
 
-## Development server
+## 1 - Instale o NodeJS e o npm
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+sudo apt-get update
+sudo apt-get install nodejs
+sudo apt-get install npm
+```
 
-## Code scaffolding
+## 1 - Clone o repositório em seu computador
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+http://seu_nome.seu_sobrenome@www.tools.ages.pucrs.br/Hublle/Front-angular.git
+```
 
-## Build
+## 2 - Entre na pasta gerada após o clone e instale o Angular e o pacote do Material Design
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+cd nome_da_pasta
+npm install --save @angular/material @angular/cdk @angular/animations
+```
 
-## Running unit tests
+## 3 - Instale as dependências do projeto
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+npm install
+```
 
-## Running end-to-end tests
+## 4 - Inicie o preview do projeto
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+npm start
+```
