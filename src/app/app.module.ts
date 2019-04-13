@@ -2,15 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './home/presenter/app.component';
-import { AppComponentController } from './home/controller/app.component.controller';
+import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './material-import';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponentController,
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +19,6 @@ import { MaterialImportsModule } from './material-import';
     MaterialImportsModule
   ],
   providers: [],
-  bootstrap: [AppComponentController]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
