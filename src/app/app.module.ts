@@ -5,18 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './material-import';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialImportsModule
+    MaterialImportsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
