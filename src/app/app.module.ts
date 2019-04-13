@@ -8,11 +8,13 @@ import { MaterialImportsModule } from './material-import';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { CreateEventComponent } from './pages/create-event/create-event.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
