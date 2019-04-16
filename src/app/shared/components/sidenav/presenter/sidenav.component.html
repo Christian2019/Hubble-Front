@@ -10,19 +10,48 @@
   >
     <mat-toolbar>
       <button
+        id="sidenav-toggle"
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="menuToggle()"
       >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon style="color: #FAFAFA;" aria-label="Side nav toggle icon"
+        >menu</mat-icon
+        >
       </button>
-      Menu
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <div>
+        <a class="menu-item" mat-list-item routerLink="/">
+          <mat-icon>star_border</mat-icon>
+          Em destaque
+        </a>
+      </div>
+      <div>
+        <a class="menu-item" mat-list-item href="#">
+          <mat-icon>search</mat-icon>
+          Pesquisar eventos
+        </a>
+      </div>
+      <div>
+        <a class="menu-item" mat-list-item href="#">
+          <mat-icon>calendar_today</mat-icon>
+          Meus eventos
+        </a>
+      </div>
+      <div>
+        <a class="menu-item" mat-list-item href="#">
+          <mat-icon>notifications</mat-icon>
+          Notificações
+        </a>
+      </div>
+      <div>
+        <a class="menu-item" mat-list-item href="#">
+          <mat-icon>person_outline</mat-icon>
+          Perfil
+        </a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -38,6 +67,6 @@
       </button>
       <span>Hubble</span>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
