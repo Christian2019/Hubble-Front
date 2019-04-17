@@ -10,13 +10,23 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { CreateEventComponent } from './pages/create-event/presenter/create-event.component';
 import { SidenavControllerComponent } from './shared/components/sidenav/controller/sidenav.controller.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 3
+};
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
     SidenavControllerComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +38,15 @@ import { SidenavControllerComponent } from './shared/components/sidenav/controll
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    SwiperModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

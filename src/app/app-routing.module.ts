@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateEventComponent } from './pages/create-event/presenter/create-event.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MatInputModule } from '@angular/material';
+
 
 const routes: Routes = [
-  {path: '', component: CreateEventComponent}
-  // {path: '/em-destaque', component:}
+  { path: '',      component: HomeComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), MatInputModule],
+  exports: [RouterModule, MatInputModule]
 })
 export class AppRoutingModule { }
