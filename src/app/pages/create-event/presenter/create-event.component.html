@@ -1,3 +1,68 @@
-<p>
-  create-event works!
-</p>
+<ng-template #general>
+  <form [formGroup]="generalForm">
+    <mat-form-field>
+      <input matInput placeholder="Título do evento" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Descrição" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Título do evento" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Título do evento" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Título do evento" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Título do evento" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Título do evento" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Título do evento" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Título do evento" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Título do evento" formControlName="title" required>
+      <mat-error *ngIf="generalForm.get('title').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+  </form>
+</ng-template>
+
+<ng-template #dateAndLocationForm> </ng-template>
+
+<h1>Cadastrar um novo evento</h1>
+<p>Coloque seu evento acadêmico na Hubble e expanda seus horizontes. Basta preencher com as informações pedidas e
+  chamar a galera para participar! </p>
+<mat-tab-group>
+  <mat-tab label="Dados gerais">
+    <ng-container *ngTemplateOutlet="general"></ng-container>
+  </mat-tab>
+  <mat-tab label="Data e local">
+    <ng-container *ngTemplateOutlet="dateAndLocationForm"></ng-container>
+  </mat-tab>
+</mat-tab-group>
