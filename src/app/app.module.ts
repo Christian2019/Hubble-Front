@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,8 +18,32 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
-  slidesPerView: 3
-};
+  slidesPerView: 5,
+  spaceBetween: 50,
+  keyboard: false,
+  mousewheel: false,
+  scrollbar: false,
+  navigation: true,
+  pagination: false,
+  breakpoints: {
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 40,
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    }
+  }
+}
 
 @NgModule({
   declarations: [
@@ -39,7 +64,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    SwiperModule
+    SwiperModule,
+    MatCardModule
   ],
   providers: [
     {
