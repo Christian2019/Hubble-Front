@@ -24,8 +24,6 @@ export class SidenavComponent {
    * Opens/closes the sidenav
    */
   menuToggle() {
-    console.log(this.isHandset$ ? 'TRUE' : 'FALSE');
-
     this.drawer.toggle();
     this.sidenavOpened = !this.sidenavOpened;
   }

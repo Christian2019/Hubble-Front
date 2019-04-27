@@ -1,3 +1,216 @@
-<p>
-  create-event works!
-</p>
+<ng-template #general>
+  <form
+    [formGroup]="generalForm"
+    [ngClass]="{ 'mobile-form-fields': (isHandset$ | async) || (isTablet$ | async) }"
+  >
+    <section>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Título do evento"
+          formControlName="title"
+          required
+        />
+        <mat-error *ngIf="generalForm.get('title').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field id="description">
+        <textarea
+          matInput
+          placeholder="Descrição"
+          formControlName="description"
+          required
+        ></textarea>
+        <mat-error *ngIf="generalForm.get('description').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          matInput
+          placeholder="Preço"
+          formControlName="price"
+          required
+        />
+        <mat-error *ngIf="generalForm.get('price').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Total de vagas"
+          formControlName="maxNumberOfSeats"
+          required
+          type="number"
+          min="0"
+        />
+        <mat-error *ngIf="generalForm.get('maxNumberOfSeats').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select required placeholder="Categoria" formControlName="category">
+          <mat-option value="categoria1">Categoria 1</mat-option>
+          <mat-option value="categoria2">Categoria 2</mat-option>
+          <mat-option value="categoria3">Categoria 3</mat-option>
+          <mat-option value="categoria4">Categoria 4</mat-option>
+        </mat-select>
+        <mat-error *ngIf="generalForm.get('category').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select required placeholder="Assuntos" formControlName="subjects">
+          <mat-option value="assunto1">Assunto 1</mat-option>
+          <mat-option value="assunto2">Assunto 2</mat-option>
+          <mat-option value="assunto3">Assunto 3</mat-option>
+          <mat-option value="assunto4">Assunto 4</mat-option>
+        </mat-select>
+        <mat-error *ngIf="generalForm.get('subjects').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Horas complementares"
+          formControlName="additionalHours"
+          required
+          type="time"
+          value="00:00"
+        />
+        <mat-error *ngIf="generalForm.get('additionalHours').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Link para inscrições"
+          formControlName="subscriptionLink"
+          required
+        />
+        <mat-error *ngIf="generalForm.get('subscriptionLink').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Imagem de capa"
+          formControlName="headerImage"
+          required
+        />
+        <mat-error *ngIf="generalForm.get('headerImage').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </section>
+  </form>
+</ng-template>
+
+<ng-template #dateAndLocationForm> </ng-template>
+
+<section class="page-main-header">
+  <h1>Cadastrar um novo evento</h1>
+  <p>
+      Coloque seu evento acadêmico na Hubble e expanda seus horizontes. Basta
+      preencher com as informações pedidas e chamar a galera para participar!
+  </p>
+</section>
+
+
+<mat-vertical-stepper linear="false" #stepper *ngIf="(isHandset$ | async)">
+  <mat-step [stepControl]="generalForm">
+    <ng-template matStepLabel>Informações gerais</ng-template>
+    <ng-container *ngTemplateOutlet="general"></ng-container>
+    <div>
+      <button mat-raised-button matStepperNext>Avançar</button>
+    </div>
+  </mat-step>
+
+  <mat-step [stepControl]="dateAndLocationForm">
+    <ng-template matStepLabel>Local e horário</ng-template>
+    <ng-container *ngTemplateOutlet="dateAndLocationForm"></ng-container>
+    <div>
+      <button mat-raised-button matStepperPrevious>Voltar</button>
+      <button mat-raised-button matStepperNext>Próximo</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Conferir</ng-template>
+    <ng-container *ngTemplateOutlet="general"></ng-container>
+    <div>
+      <button mat-raised-button matStepperPrevious>Voltar</button>
+      <button mat-raised-button matStepperNext>Próximo</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Pronto!</ng-template>
+    <ng-container *ngTemplateOutlet="general"></ng-container>
+    <div>
+      <button mat-raised-button matStepperPrevious>
+        Voltar para a página home
+      </button>
+      <button mat-raised-button matStepperNext>Cadastrar mais eventos</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+<mat-horizontal-stepper linear="true" #stepper *ngIf="!(isHandset$ | async)">
+  <mat-step [stepControl]="generalForm">
+    <ng-template matStepLabel>Informações gerais</ng-template>
+    <ng-container *ngTemplateOutlet="general"></ng-container>
+    <div class="nextPrevButtons">
+      <button id="next" mat-raised-button matStepperNext>Avançar</button>
+    </div>
+  </mat-step>
+
+  <mat-step [stepControl]="dateAndLocationForm">
+    <ng-template matStepLabel>Local e horário</ng-template>
+    <ng-container *ngTemplateOutlet="dateAndLocationForm"></ng-container>
+    <div class="nextPrevButtons">
+      <button id="prev" mat-raised-button matStepperPrevious>Voltar</button>
+      <button id="next" mat-raised-button matStepperNext>Próximo</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Conferir</ng-template>
+    <ng-container *ngTemplateOutlet="general"></ng-container>
+    <div class="nextPrevButtons">
+      <button id="prev" mat-raised-button matStepperPrevious>Voltar</button>
+      <button id="next" mat-raised-button matStepperNext>Próximo</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Pronto!</ng-template>
+    <ng-container *ngTemplateOutlet="general"></ng-container>
+    <div class="nextPrevButtons">
+      <button id="prev" mat-raised-button matStepperPrevious>
+        Voltar para a página home
+      </button>
+      <button id="next" mat-raised-button matStepperNext>Cadastrar mais eventos</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
