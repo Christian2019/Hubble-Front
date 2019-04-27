@@ -1,0 +1,48 @@
+form{
+  text-align: center;
+
+  section {
+    display: block;
+    width: 100%;
+
+    mat-form-field {
+      width: 30%;
+    }
+
+    mat-form-field:nth-child(even) {
+      padding: 0 24px 0 24px;
+    }
+  }
+}
+
+.nextPrevButtons{
+  text-align: center;
+
+  #next {
+    background: #212121;
+    color: white;
+    padding-left: 16px;
+  }
+
+  #prev {
+    background: transparent;
+    color: #212121;
+    border: #212121 solid 1.5px;
+    border-radius: 10%;
+
+  }
+}
+
+.page-main-header {
+  padding: 0 24px 0 24px;
+}
+
+.mobile-form-fields{
+  mat-form-field {
+    width: 100% !important;
+  }
+
+  mat-form-field:nth-child(even) {
+    padding: 0 !important;
+  }
+}

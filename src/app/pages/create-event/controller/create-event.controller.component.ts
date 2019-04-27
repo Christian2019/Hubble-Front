@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-event',
@@ -12,4 +14,7 @@ export class CreateEventControllerComponent implements OnInit {
   ngOnInit() {
   }
 
+  onFormSubmitted(){
+
+  }
 }

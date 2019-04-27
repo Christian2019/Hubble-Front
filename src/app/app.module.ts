@@ -43,7 +43,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatIconModule,
     MatListModule,
     SwiperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     {

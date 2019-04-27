@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Form, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatStepper, MatStep } from '@angular/material';
 
 
 @Component({
@@ -9,10 +13,23 @@ import { Form, FormGroup, FormControl, Validators, FormBuilder } from '@angular/
 })
 export class CreateEventComponent implements OnInit {
 
-  generalForm         : FormGroup;
-  dateAndLocationForm : FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  isLinear                                      = false;
+  generalForm                                   : FormGroup;
+  dateAndLocationForm                           : FormGroup;
+  @ViewChild('generalInfoStep') generalInfoStep : MatStep;
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches)
+  );
+
+  isTablet$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Tablet)
+  .pipe(
+    map(result => result.matches)
+  );
+
+  constructor(private formBuilder: FormBuilder, private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit() {
     this.generalForm = this.formBuilder.group({
@@ -22,8 +39,7 @@ export class CreateEventComponent implements OnInit {
       maxNumberOfSeats  : ['', Validators.required],
       category          : ['', Validators.required],
       subjects          : ['', Validators.required],
-      aditionalHours    : ['', Validators.required],
-      organizers        : ['', Validators.required],
+      additionalHours   : ['', Validators.required],
       subscriptionLink  : ['', Validators.required],
       headerImage       : ['', Validators.required],
     });
@@ -42,6 +58,11 @@ export class CreateEventComponent implements OnInit {
   }
 
   getErrorMessage(){
+
+  }
+
+  onFileSelected() {
+    console.log("ARQUIVO SENDO CAPTURADO");
 
   }
 
