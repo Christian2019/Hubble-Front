@@ -1,36 +1,53 @@
-form{
+form {
   text-align: center;
+}
 
-  section {
+.date-and-time{
+  div{
     display: block;
-    width: 100%;
+    text-align: center;
+  }
+  div mat-form-field:first-child{
 
-    mat-form-field {
-      width: 30%;
-    }
-
-    mat-form-field:nth-child(even) {
-      padding: 0 24px 0 24px;
-    }
   }
 }
 
-.nextPrevButtons{
+.three-columns{
   text-align: center;
 
-  #next {
-    background: #212121;
-    color: white;
-    padding-left: 16px;
-  }
+    section {
+      display: block;
+      width: 100%;
 
-  #prev {
-    background: transparent;
-    color: #212121;
-    border: #212121 solid 1.5px;
-    border-radius: 10%;
+      mat-form-field {
+        width: 30%;
+      }
 
-  }
+      mat-form-field:nth-child(even) {
+        padding: 0 24px 0 24px !important;
+      }
+    }
+}
+
+
+.nextPrevButtons{
+  text-align: center;
+  margin-top: 5%;
+}
+
+#next {
+  background: #212121;
+  color: white;
+  border: 1.5px solid #212121;
+  border-radius: 10px;
+}
+
+#prev {
+  background: transparent;
+  color: #212121;
+  border: 1.5px solid #212121;
+  border-radius: 10px;
+  margin-right: 48px;
 }
 
 .page-main-header {

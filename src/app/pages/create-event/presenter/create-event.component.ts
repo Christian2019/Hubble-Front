@@ -17,7 +17,6 @@ export class CreateEventComponent implements OnInit {
   isLinear                                      = false;
   generalForm                                   : FormGroup;
   dateAndLocationForm                           : FormGroup;
-  @ViewChild('generalInfoStep') generalInfoStep : MatStep;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -47,13 +46,15 @@ export class CreateEventComponent implements OnInit {
     this.dateAndLocationForm = this.formBuilder.group({
       street            : ['', Validators.required],
       number            : ['', Validators.required],
-      additionInfo      : ['', Validators.required],
+      additionalInfo    : ['', Validators.required],
       cep               : ['', [Validators.required, Validators.maxLength(8)]],
       city              : ['', Validators.required],
       state             : ['', Validators.required],
       observation       : ['', [Validators.required, Validators.maxLength(140)]],
-      initialDateTime   : ['', Validators.required],
-      finalDateTime     : ['', Validators.required],
+      startDate         : ['', Validators.required],
+      startHour         : ['', Validators.required],
+      endDate           : ['', Validators.required],
+      endHour           : ['', Validators.required]
     });
   }
 

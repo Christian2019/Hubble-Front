@@ -1,7 +1,10 @@
 <ng-template #general>
   <form
+    class="three-columns"
     [formGroup]="generalForm"
-    [ngClass]="{ 'mobile-form-fields': (isHandset$ | async) || (isTablet$ | async) }"
+    [ngClass]="{
+      'mobile-form-fields': (isHandset$ | async) || (isTablet$ | async)
+    }"
   >
     <section>
       <mat-form-field>
@@ -126,57 +129,191 @@
   </form>
 </ng-template>
 
-<ng-template #dateAndLocationForm> </ng-template>
+<!-- Formulário de data e localização do evento -->
+
+<ng-template #dateAndLocationInfo>
+  <form
+    class="three-columns"
+    [formGroup]="dateAndLocationForm"
+    [ngClass]="{
+      'mobile-form-fields': (isHandset$ | async) || (isTablet$ | async)
+    }"
+  >
+    <section>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Logradouro"
+          formControlName="street"
+          required
+        />
+        <mat-error *ngIf="dateAndLocationForm.get('street').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="number"
+          matInput
+          placeholder="Número"
+          formControlName="number"
+          required
+        />
+        <mat-error *ngIf="dateAndLocationForm.get('number').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea
+          type="text"
+          matInput
+          placeholder="Complemento"
+          formControlName="additionalInfo"
+          required
+        ></textarea>
+        <mat-error *ngIf="dateAndLocationForm.get('additionalInfo').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </section>
+
+    <section class="three-columns">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="CEP"
+          formControlName="cep"
+          required
+          type="number"
+        />
+        <mat-error *ngIf="dateAndLocationForm.get('cep').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Cidade"
+          formControlName="city"
+          required
+          type="text"
+          value="Porto Alegre"
+        />
+        <mat-error *ngIf="dateAndLocationForm.get('city').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Estado"
+          formControlName="state"
+          required
+          type="text"
+          value="RS"
+        />
+        <mat-error *ngIf="dateAndLocationForm.get('state').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </section>
+
+    <section class="date-and-time">
+      <h2>Data e horário</h2>
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="startPicker"
+            placeholder="Data de início"
+            required
+            formControlName="startDate"
+            (click)="startPickerToggle.datepicker.open()"
+          />
+          <mat-datepicker-toggle
+            #startPickerToggle
+            matSuffix
+            [for]="startPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Horário de início"
+            formControlName="startHour"
+            required
+            type="time"
+            value="00:00"
+          />
+          <mat-error *ngIf="dateAndLocationForm.get('startHour').invalid">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="endPicker"
+            placeholder="Data de término"
+            required
+            formControlName="endDate"
+            (click)="endPickerToggle.datepicker.open()"
+          />
+          <mat-datepicker-toggle
+            #endPickerToggle
+            matSuffix
+            [for]="endPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Horário de término"
+            formControlName="endHour"
+            required
+            type="time"
+            value="00:00"
+          />
+          <mat-error *ngIf="dateAndLocationForm.get('endHour').invalid">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <textarea
+          matInput
+          placeholder="Observações"
+          formControlName="observation"
+          required
+        ></textarea>
+        <mat-error *ngIf="dateAndLocationForm.get('observation').invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </section>
+  </form>
+</ng-template>
 
 <section class="page-main-header">
   <h1>Cadastrar um novo evento</h1>
   <p>
-      Coloque seu evento acadêmico na Hubble e expanda seus horizontes. Basta
-      preencher com as informações pedidas e chamar a galera para participar!
+    Coloque seu evento acadêmico na Hubble e expanda seus horizontes. Basta
+    preencher com as informações pedidas e chamar a galera para participar!
   </p>
 </section>
 
-
-<mat-vertical-stepper linear="false" #stepper *ngIf="(isHandset$ | async)">
-  <mat-step [stepControl]="generalForm">
-    <ng-template matStepLabel>Informações gerais</ng-template>
-    <ng-container *ngTemplateOutlet="general"></ng-container>
-    <div>
-      <button mat-raised-button matStepperNext>Avançar</button>
-    </div>
-  </mat-step>
-
-  <mat-step [stepControl]="dateAndLocationForm">
-    <ng-template matStepLabel>Local e horário</ng-template>
-    <ng-container *ngTemplateOutlet="dateAndLocationForm"></ng-container>
-    <div>
-      <button mat-raised-button matStepperPrevious>Voltar</button>
-      <button mat-raised-button matStepperNext>Próximo</button>
-    </div>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Conferir</ng-template>
-    <ng-container *ngTemplateOutlet="general"></ng-container>
-    <div>
-      <button mat-raised-button matStepperPrevious>Voltar</button>
-      <button mat-raised-button matStepperNext>Próximo</button>
-    </div>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Pronto!</ng-template>
-    <ng-container *ngTemplateOutlet="general"></ng-container>
-    <div>
-      <button mat-raised-button matStepperPrevious>
-        Voltar para a página home
-      </button>
-      <button mat-raised-button matStepperNext>Cadastrar mais eventos</button>
-    </div>
-  </mat-step>
-</mat-vertical-stepper>
-
-<mat-horizontal-stepper linear="true" #stepper *ngIf="!(isHandset$ | async)">
+<mat-vertical-stepper linear="false" #stepper *ngIf="isHandset$ | async">
   <mat-step [stepControl]="generalForm">
     <ng-template matStepLabel>Informações gerais</ng-template>
     <ng-container *ngTemplateOutlet="general"></ng-container>
@@ -186,17 +323,8 @@
   </mat-step>
 
   <mat-step [stepControl]="dateAndLocationForm">
-    <ng-template matStepLabel>Local e horário</ng-template>
-    <ng-container *ngTemplateOutlet="dateAndLocationForm"></ng-container>
-    <div class="nextPrevButtons">
-      <button id="prev" mat-raised-button matStepperPrevious>Voltar</button>
-      <button id="next" mat-raised-button matStepperNext>Próximo</button>
-    </div>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Conferir</ng-template>
-    <ng-container *ngTemplateOutlet="general"></ng-container>
+    <ng-template matStepLabel>Local e local</ng-template>
+    <ng-container *ngTemplateOutlet="dateAndLocationInfo"></ng-container>
     <div class="nextPrevButtons">
       <button id="prev" mat-raised-button matStepperPrevious>Voltar</button>
       <button id="next" mat-raised-button matStepperNext>Próximo</button>
@@ -210,7 +338,41 @@
       <button id="prev" mat-raised-button matStepperPrevious>
         Voltar para a página home
       </button>
-      <button id="next" mat-raised-button matStepperNext>Cadastrar mais eventos</button>
+      <button id="next" mat-raised-button matStepperNext>
+        Cadastrar mais eventos
+      </button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+<mat-horizontal-stepper linear="false" #stepper *ngIf="!(isHandset$ | async)">
+  <mat-step [stepControl]="generalForm">
+    <ng-template matStepLabel>Informações gerais</ng-template>
+    <ng-container *ngTemplateOutlet="general"></ng-container>
+    <div class="nextPrevButtons">
+      <button id="next" mat-raised-button matStepperNext>Avançar</button>
+    </div>
+  </mat-step>
+
+  <mat-step [stepControl]="dateAndLocationForm">
+    <ng-template matStepLabel>Local e horário</ng-template>
+    <ng-container *ngTemplateOutlet="dateAndLocationInfo"></ng-container>
+    <div class="nextPrevButtons">
+      <button id="prev" mat-raised-button matStepperPrevious>Voltar</button>
+      <button id="next" mat-raised-button matStepperNext>Próximo</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Pronto!</ng-template>
+    <ng-container *ngTemplateOutlet="general"></ng-container>
+    <div class="nextPrevButtons">
+      <button id="prev" mat-raised-button matStepperPrevious>
+        Voltar para a página home
+      </button>
+      <button id="next" mat-raised-button matStepperNext>
+        Cadastrar mais eventos
+      </button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
