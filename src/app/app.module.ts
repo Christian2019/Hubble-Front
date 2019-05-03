@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,8 +23,33 @@ import { DatePipe } from '@angular/common';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
-  slidesPerView: 3
-};
+  slidesPerView: 5,
+  spaceBetween: 50,
+  keyboard: false,
+  observer: true,
+  mousewheel: false,
+  scrollbar: false,
+  navigation: true,
+  pagination: false,
+  breakpoints: {
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 40,
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    }
+  }
+}
 
 @NgModule({
   declarations: [
@@ -45,6 +72,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatIconModule,
     MatListModule,
     SwiperModule,
+    MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule
