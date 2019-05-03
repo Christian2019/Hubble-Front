@@ -21,6 +21,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   slidesPerView: 5,
   spaceBetween: 50,
   keyboard: false,
+  observer: true,
   mousewheel: false,
   scrollbar: false,
   navigation: true,
