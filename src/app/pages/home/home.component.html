@@ -1,0 +1,18 @@
+<div fxLayout fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div  class="swiper-container" [swiper]="config" [(index)]="index">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">Slide 1</div>
+    <div class="swiper-slide">Slide 2</div>
+    <div class="swiper-slide">Slide 3</div>
+  </div>
+
+  <div class="swiper-pagination"></div>
+
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
