@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EventsService } from 'src/app/shared/services/events.service';
+import { print } from 'util';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +13,20 @@ export class HomeComponent implements OnInit {
   public all_items: any = [];
   public items: any = [];
 
-  constructor() {
-    this.all_items = [
-      {tag:"Curso", title: "Curso de Ionic", text:"descricao do curso" },
-      {tag:"Palestra", title: "Palestra em Ciencia de dados", text:"descricao do curso" },
-      {tag:"Curso", title: "Curso de Docker", text:"descricao do curso" },
-      {tag:"Curso", title: "Curso de React", text:"descricao do curso" },
-      {tag:"Curso", title: "five", text:"descricao do curso" }
-    ];
+  constructor(private eventService: EventsService) {
+    const response = this.eventService.fetch();
+    response.subscribe(
+      items => this.setAllFilters(items),
+      error => console.log(error)
+    )
+    console.log(this.all_items);
     this.items = this.all_items;
    }
+   setAllFilters(items) {
+    this.all_items = items;
+    this.items = this.all_items;
+   }
+
    setFilteredItems(searchTerm) {
     this.items = this.doFilter(searchTerm);
   }

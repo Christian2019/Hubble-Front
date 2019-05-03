@@ -19,7 +19,7 @@ export class EventsService {
   }
 
   fetch() {
-
+    return this.httpClient.get('http://localhost:4200/api/event');
   }
 
   private normalizePayload(rawPayload: FormGroup[]){
