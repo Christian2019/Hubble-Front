@@ -314,12 +314,12 @@
   </p>
 </section>
 
-<mat-vertical-stepper linear="false" #stepper *ngIf="isHandset$ | async">
+<mat-vertical-stepper linear="true" #stepper *ngIf="isHandset$ | async">
   <mat-step [stepControl]="generalForm">
     <ng-template matStepLabel>Informações gerais</ng-template>
     <ng-container *ngTemplateOutlet="general"></ng-container>
     <div class="nextPrevButtons">
-      <button id="next" (click)="onFormSubmit()" mat-raised-button matStepperNext>Avançar</button>
+      <button id="next" mat-raised-button matStepperNext>Avançar</button>
     </div>
   </mat-step>
 
@@ -333,7 +333,7 @@
   </mat-step>
 </mat-vertical-stepper>
 
-<mat-horizontal-stepper linear="false" #stepper *ngIf="!(isHandset$ | async)">
+<mat-horizontal-stepper linear="true" #stepper *ngIf="!(isHandset$ | async)">
   <mat-step [stepControl]="generalForm">
     <ng-template matStepLabel>Informações gerais</ng-template>
     <ng-container *ngTemplateOutlet="general"></ng-container>
