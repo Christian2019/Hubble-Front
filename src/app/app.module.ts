@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { EventsService } from './shared/services/events.service';
 import { DatePipe } from '@angular/common';
+import { SingUpComponent } from './pages/sing-up/sing-up.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -57,7 +58,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SidenavControllerComponent,
     CreateEventComponent,
     HomeComponent,
-    CreateEventControllerComponent
+    CreateEventControllerComponent,
+    SingUpComponent
   ],
   imports: [
     BrowserModule,
