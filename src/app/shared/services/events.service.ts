@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +11,17 @@ export class EventsService {
   endpoint: string;
 
   constructor(private httpClient: HttpClient) {
-    this.endpoint = 'http://localhost:4200/api/event';
+    this.endpoint = environment.apiUrl + 'api/event';
   }
 
   create(rawPayload: FormGroup[]) {
+    debugger
     const payload = this.normalizePayload(rawPayload);
-    return this.httpClient.post('http://localhost:4200/api/event', payload);
+    return this.httpClient.post(environment.apiUrl + 'api/event', payload);
   }
 
   fetch() {
-
+    return this.httpClient.get(environment.apiUrl + 'api/event');
   }
 
   private normalizePayload(rawPayload: FormGroup[]){
