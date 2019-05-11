@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormGroup, FormControl  } from '@angular/forms';
 
 @Component({
   selector: 'app-sing-up',
@@ -7,23 +7,32 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sing-up.component.scss']
 })
 export class SingUpComponent implements OnInit {
-  generalForm: FormGroup;
+  profileForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
+
+  @Output() emitFormData = new EventEmitter<FormGroup[]>();
 
   constructor(
-    private formBuilder: FormBuilder,
   ) { }
 
-  ngOnInit() {
-    this.generalForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      senha: ['', [Validators.required, Validators.minLength(6)]]
+  ngOnInit() {}
+
+
+  onSubmit() {
+    const formsData = [];
+    const FormControls = Object.keys(this.profileForm.controls);
+
+    FormControls.forEach(control => {
+      formsData.push({
+          controlName   : control,
+          controlValue  : this.profileForm.get(control).value
+      });
     });
 
+    this.emitFormData.emit([this.profileForm]);
   }
-
-  getErrorMessage() {
-
-  }
-
 }
