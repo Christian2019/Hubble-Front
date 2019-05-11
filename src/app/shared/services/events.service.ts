@@ -22,6 +22,10 @@ export class EventsService {
     return this.httpClient.get('http://localhost:4200/api/event');
   }
 
+  getById(id: string) {
+    return this.httpClient.get('http://localhost:3000/event/' + id);
+  }
+
   private normalizePayload(rawPayload: FormGroup[]){
     const generalForm         = rawPayload[0];
     const dateAndLocationForm = rawPayload[1];
