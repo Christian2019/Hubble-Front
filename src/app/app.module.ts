@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { EventsService } from './shared/services/events.service';
 import { DatePipe } from '@angular/common';
 
-const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 5,
   spaceBetween: 50,
