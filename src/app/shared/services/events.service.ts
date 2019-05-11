@@ -11,18 +11,18 @@ export class EventsService {
   endpoint: string;
 
   constructor(private httpClient: HttpClient) {
-    this.endpoint = environment.apiUrl + 'api/event';
+    this.endpoint = environment.apiUrl + 'event';
     console.log(environment.apiUrl)
   }
 
   create(rawPayload: FormGroup[]) {
     debugger
     const payload = this.normalizePayload(rawPayload);
-    return this.httpClient.post(environment.apiUrl + 'api/event', payload);
+    return this.httpClient.post(environment.apiUrl + 'event', payload);
   }
 
   fetch() {
-    return this.httpClient.get(environment.apiUrl + 'api/event');
+    return this.httpClient.get(environment.apiUrl + 'event');
   }
 
   private normalizePayload(rawPayload: FormGroup[]){
