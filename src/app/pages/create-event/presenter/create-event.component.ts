@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatStepper, MatStep, MatDatepickerInputEvent } from '@angular/material';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-ui-create-event',

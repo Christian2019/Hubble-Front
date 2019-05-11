@@ -92,6 +92,9 @@
           "configurations": {
             "production": {
               "browserTarget": "Hubble:build:production"
+            },
+            "hml": {
+              "browserTarget": "Hubble:build:hml"
             }
           }
         },
@@ -147,6 +150,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "Hubble:serve:production"
+            },
+            "hml": {
+              "devServerTarget": "Hubble:serve:hml"
             }
           }
         },

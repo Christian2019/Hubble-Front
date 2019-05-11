@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
-import { environment } from '../../../environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class EventsService {
 
   constructor(private httpClient: HttpClient) {
     this.endpoint = environment.apiUrl + 'api/event';
+    console.log(environment.apiUrl)
   }
 
   create(rawPayload: FormGroup[]) {
