@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,10 @@ export class EventsService {
     return this.httpClient.get('http://localhost:4200/api/event');
   }
 
-  getById(id: string) {
-    return this.httpClient.get('http://localhost:3000/event/' + id);
+  getById(id: string): Observable<Event> {
+    // console.log(this.httpClient.get("http://localhost:4200/api/event/5cc319e02f47619a17089bd5"));
+    return this.httpClient.get<Event>('http://localhost:4200/api/event/' + id)
+    //('http://localhost:3000/event/' + id)
   }
 
   private normalizePayload(rawPayload: FormGroup[]){
