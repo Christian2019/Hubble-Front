@@ -17,31 +17,7 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit() {
     this.eventService.getById(this.varr).subscribe((data: any) => this.jsonInf = data);
-  //   this.jsonInf = {
-  //     address: {
-  //         state: "SC",
-  //         city: "Turvo",
-  //         district: "sei la",
-  //         zipCode: 128973012,
-  //         complements: "complemento aqui",
-  //         street: "essa rua",
-  //         createdAt: "2019-04-26T14:46:56.248Z"
-  //     },
-  //     status: "Aprovado",
-  //     tag: [],
-  //     confirmedUsers: [],
-  //     _id: "5cc319e02f47619a17089bd5",
-  //     title: "evento puc",
-  //     description: "este e'um evento oferecido pela puc",
-  //     picture: "picture",
-  //     price: 30,
-  //     hours: "12",
-  //     startDate: "1556290016248",
-  //     endDate: "1556290016248",
-  //     createdAt: "2019-05-10T23:39:43.026Z",
-  //     updatedAt: "2019-05-10T23:39:43.026Z",
-  //     id: "5cc319e02f47619a17089bd5"
-  //  }
+    
   }
 
 }
