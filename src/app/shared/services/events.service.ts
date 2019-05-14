@@ -18,6 +18,11 @@ export class EventsService {
     return this.httpClient.post('http://localhost:4200/api/event', payload);
   }
 
+  create_user(rawPayload: FormGroup[]) {
+    const payload = this.normalizeUserPayload(rawPayload);
+    return this.httpClient.post('http://localhost:4200/api/user', payload);
+  }
+
   fetch() {
     return this.httpClient.get('http://localhost:4200/api/event');
   }
@@ -43,6 +48,20 @@ export class EventsService {
     };
     console.log('Normalized: '+normalizedPayload);
 
+    return normalizedPayload;
+  }
+
+
+  private normalizeUserPayload(rawPayload: FormGroup[]){
+    const generalForm         = rawPayload[0];
+    const normalizedPayload   = {
+      firstName         : generalForm.get('firstName').value,
+      lastName          : generalForm.get('lastName').value,
+      email             : generalForm.get('email').value,
+      password          : generalForm.get('password').value
+    };
+    
+    console.log(normalizedPayload);
     return normalizedPayload;
   }
 

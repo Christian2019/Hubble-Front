@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormControl  } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators  } from '@angular/forms';
+import { EventsService } from 'src/app/shared/services/events.service';
 
 @Component({
   selector: 'app-sing-up',
@@ -7,22 +8,31 @@ import { FormGroup, FormControl  } from '@angular/forms';
   styleUrls: ['./sing-up.component.scss']
 })
 export class SingUpComponent implements OnInit {
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
+  profileForm: FormGroup;
 
-  @Output() emitFormData = new EventEmitter<FormGroup[]>();
 
   constructor(
+    private eventService: EventsService,
+    private formBuilder: FormBuilder,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.profileForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+  });
+  
+  }
 
 
   onSubmit() {
+
+    if (this.profileForm.invalid) {
+      return;
+  }
+
     const formsData = [];
     const FormControls = Object.keys(this.profileForm.controls);
 
@@ -33,6 +43,9 @@ export class SingUpComponent implements OnInit {
       });
     });
 
-    this.emitFormData.emit([this.profileForm]);
+    var $event = []
+    $event[0] = this.profileForm;
+    const response = this.eventService.create_user($event);
+    response.subscribe(obj => console.log(obj));
   }
 }
