@@ -37,3 +37,10 @@
 .events {
     margin-top: 4.8rem;
 }
+
+.image_object {
+    max-height: 20rem;
+    width:100%;
+    object-fit: cover;
+    object-position: 100% 50%;
+}
