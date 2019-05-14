@@ -1,3 +1,64 @@
 <div>
-  {{ jsonInf | json }}
+
+  <!-- {{ jsonInf | json }} -->
+
+  <img style="width:100%;" src="https://rockcontent.com/wp-content/uploads/2015/11/banco-de-imagem-9.png"/>
+  <!-- mudar o de cima depois para: <img style="width:100%;" [src]="jsonInf.{{jsonInf.picture}}"/> -->
+
+  <div class="row">
+
+      <div class="column">
+        <div class="left-margin">
+          <div>
+            <h1> {{ jsonInf.title }} </h1>
+          </div>
+          <div class="createdBy">
+            <p> Created by Johny Test Snow Bravo</p>
+          </div>
+          <div class="description">
+            <p> {{ jsonInf.description }} </p>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <img class="column" style="margin-left:2rem;" src="/Luiz/Ages/Front-angular/src/app/pages/event-detail/presenter/image-component/Compartilhar.png" alt="Nope!"/>
+          <img class="column" src="image-component/Gerar folder.png" alt="Nope!"/>
+        </div> -->
+
+      </div>
+
+      <div class="column">
+
+        <button class="button_confirm">Confirmar presença</button>
+
+        <div class="events left-margin">
+          <div class="createdBy">
+            <!-- mudar isso pra data correta (a data no banco tá incorreta?) -->
+            <!-- inserir imagem aqui -->
+            <p> {{ jsonInf.createdAt }} </p>
+          </div>
+          <div>
+            <!-- inserir imagem aqui -->
+            <p> Que horas começa e qual hora termina NÃO TEM no banco de dados </p>
+          </div>
+          <!-- rua, numero, bairro, cidade, estado -->
+          <div >
+            <!-- inserir imagem aqui -->
+              {{ jsonInf.address.street }}, {{ jsonInf.address.complements }}, {{ jsonInf.address.district }} - 
+              {{ jsonInf.address.city }} - {{ jsonInf.address.state }}.
+          </div>
+        </div>
+        
+      </div>
+
+
+  </div>
+  
+
+
+  <!-- {{ jsonInf._id | json }} -->
 </div>
+
+<!-- a parte interior do cérebro é a massa branca
+
+a massa cinzenta faz parte exterior do cérebro, que tem um monte de sulcos, o que aumenta a superficie 
+do mesmo por razoes biológicas-->

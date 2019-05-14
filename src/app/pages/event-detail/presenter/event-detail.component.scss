@@ -1,0 +1,39 @@
+.column {
+    float: left;
+    width: 50%;
+}
+
+.left-margin {
+    margin-left: 32px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.createdBy {
+    margin-top: 1rem;
+    font-weight: lighter;
+}
+
+.description {
+    margin-top: 3rem;
+}
+
+.button_confirm {
+    padding:10pt 20pt;
+    border-radius: 2em;
+    color:#fff;
+    background-color:#272727;
+    font-size:1em;
+    border:0;
+    cursor:pointer;
+    margin-top: 1.5rem;
+    margin-left: 32px;
+}
+
+.events {
+    margin-top: 4.8rem;
+}
