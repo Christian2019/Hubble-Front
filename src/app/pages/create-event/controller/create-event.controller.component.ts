@@ -23,16 +23,11 @@ export class CreateEventControllerComponent implements OnInit {
     const response = this.eventService.create($event)
       .subscribe(
         (success: HttpResponse<JSON>) => {
-          this.snackBar.open('Evento cadastrado com sucesso!', 'Ok', {duration: 5000})
+          this.snackBar.open('Evento cadastrado com sucesso!', 'Ok', {duration: 5000});
         },
         (error: HttpErrorResponse) => {
-          this.snackBar.open('Não foi possível cadastrar o evento. (Erro: '+error.message+')', 'Ok', {duration: 5000})
+          this.snackBar.open('Não foi possível cadastrar o evento. (Erro: '+error.message+')', 'Ok', {duration: 5000});
         }
-      )
-
-
-
-
-
+      );
   }
 }
