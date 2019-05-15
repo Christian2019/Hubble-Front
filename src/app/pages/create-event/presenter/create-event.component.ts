@@ -3,7 +3,7 @@ import { Form, FormGroup, FormControl, Validators, FormBuilder } from '@angular/
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatStepper, MatStep, MatDatepickerInputEvent } from '@angular/material';
+import { MatStepper, MatStep, MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment.prod';
 
@@ -15,17 +15,23 @@ import { environment } from 'src/environments/environment.prod';
 export class CreateEventComponent implements OnInit {
 
 
-  isLinear = false;
-  generalForm: FormGroup;
-  dateAndLocationForm: FormGroup;
-  today: Date = new Date();
-  minDate: Date = new Date();
-  currentHourAndMinutes: string =
+  isLinear                = false;
+  base64HeaderImage       : any;
+  imageHeaderDefaultValue : string = '';
+  generalForm             : FormGroup;
+  dateAndLocationForm     : FormGroup;
+  today                   : Date = new Date();
+  minDate                 : Date = new Date();
+  currentHourAndMinutes   : string =
     this.today.getHours().toString() + ':' + this.today.getMinutes().toString();
 
   @Output() emitFormData = new EventEmitter<FormGroup[]>();
   @ViewChild('startDatePicker') startDatePicker;
 
+  /**
+   * @TODO Refatorar para receber a chamada do get de categorias
+   *
+   */
   categories = [
     { name: 'Palestra' },
     { name: 'Seminário' },
@@ -37,6 +43,10 @@ export class CreateEventComponent implements OnInit {
     { name: 'Encontro' }
   ];
 
+   /**
+   * @TODO Refatorar para receber a chamada do get de assuntos
+   *
+   */
   subjects = [
     {name: 'Economia'},
     {name: 'Direito'},
@@ -158,46 +168,90 @@ export class CreateEventComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(private datePipe: DatePipe, private formBuilder: FormBuilder, private breakpointObserver: BreakpointObserver) { }
+  constructor(
+    private formBuilder         : FormBuilder,
+    private breakpointObserver  : BreakpointObserver,
+    private snackbar            : MatSnackBar
+  ) { }
 
   ngOnInit() {
     this.generalForm = this.formBuilder.group({
-      title             : ['', Validators.required],
-      description       : ['', Validators.required],
+      title             : [null, Validators.required],
+      description       : [null, Validators.required],
       price             : ['0.00', Validators.required],
-      maxNumberOfSeats  : ['', Validators.required],
-      category          : ['', Validators.required],
-      subjects          : ['', Validators.required],
+      maxNumberOfSeats  : [null, Validators.required],
+      category          : [null, Validators.required],
+      subjects          : [null, Validators.required],
       additionalHours   : ['00:00', Validators.required],
-      subscriptionLink  : ['', Validators.required],
-      headerImage       : ['', Validators.required],
+      subscriptionLink  : [null, Validators.required],
+      headerImage       : [null, Validators.required],
     });
 
 
     this.dateAndLocationForm = this.formBuilder.group({
-      street            : ['', Validators.required],
-      number            : ['', Validators.required],
-      additionalInfo    : ['', Validators.required],
-      cep               : ['', [Validators.required, Validators.maxLength(8)]],
-      city              : ['Porto Alegre', Validators.required],
-      state             : ['RS', Validators.required],
-      observation       : ['', [Validators.maxLength(140)]],
-      startDate         : ['', Validators.required],
+      street            : [null, Validators.required],
+      number            : [null, Validators.required],
+      additionalInfo    : [null, Validators.required],
+      neighborhood      : [null, Validators.required],
+      cep               : [null, [Validators.required, Validators.maxLength(8)]],
+      city              : {value: 'Porto Alegre', disabled: true},
+      state             : {value: 'RS', disabled: true},
+      observation       : [null, [Validators.maxLength(140)]],
+      startDate         : [null, Validators.required],
       startHour         : ['00:00', Validators.required],
-      endDate           : ['', Validators.required],
+      endDate           : [null, Validators.required],
       endHour           : ['00:00', Validators.required]
     });
-
-    console.log('HORA E MINUTO: '+this.currentHourAndMinutes);
-
   }
 
   getErrorMessage() {
 
   }
 
-  onFileSelected() {
-    console.log("ARQUIVO SENDO CAPTURADO");
+  async onFileInput(event: any) {
+    const file: File = event.target.files[0];
+    const isImage = this.validateImage(file);
+    if (!isImage){
+      this.snackbar.open('A imagem de capa precisa ter um formato de imagem '+
+       'válido. Verifique a extensão do arquivo e tente novamente.', 'Ok',
+       {duration: 5000})
+      return;
+    }
+    try {
+      const base64image      = await this.toBase64(file);
+      this.base64HeaderImage = this.sanitizeBase64(base64image);
+    } catch (error) {
+      this.snackbar.open('Não foi possível converter o arquivo escolhido para base64.'+
+      ' Verifique se o arquivo não está corrompido e tente novamente.', 'Ok',
+       {duration: 5000});
+    }
+    this.imageHeaderDefaultValue = file.name;
+  }
+
+  private validateImage(file: File): Boolean {
+    return file.type.startsWith('image/');
+  }
+
+  private toBase64(file: File) {
+    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+      reader.onerror = (error) => {
+        reader.abort();
+        reject(new DOMException('Não foi possível fazer o parse do arquivo. Mensagem: ' + error));
+      };
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(file);
+    });
+ }
+
+  private sanitizeBase64(base64file) {
+    return base64file.substring(base64file.indexOf(',') + 1);
+  }
+
+  onFileSelected($image: Event) {
+
 
   }
 
