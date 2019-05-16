@@ -22,7 +22,7 @@ import { DatePipe } from '@angular/common';
 import { DetailEventComponent } from './pages/detail-event/detail-event.component';
 import { LoginComponent } from './pages/login/login.component';
 
-const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 5,
   spaceBetween: 50,
@@ -90,7 +90,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
       provide: LOCALE_ID,
       useValue: 'pt-BR'
     },
-    DatePipe
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

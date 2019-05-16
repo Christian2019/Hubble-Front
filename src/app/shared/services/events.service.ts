@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +13,18 @@ export class EventsService {
   endpoint: string;
 
   constructor(private httpClient: HttpClient) {
-    this.endpoint = 'http://localhost:4200/api/event';
+    this.endpoint = environment.apiUrl + 'event';
+    console.log(environment.apiUrl)
   }
 
   create(rawPayload: FormGroup[]) {
+    debugger
     const payload = this.normalizePayload(rawPayload);
-    return this.httpClient.post('http://localhost:4200/api/event', payload);
+    return this.httpClient.post(environment.apiUrl + 'event', payload);
   }
 
   fetch() {
-    return this.httpClient.get('http://localhost:4200/api/event');
+    return this.httpClient.get(environment.apiUrl + 'event');
   }
 
   private normalizePayload(rawPayload: FormGroup[]){
@@ -37,7 +40,7 @@ export class EventsService {
       address           : {
         state           : dateAndLocationForm.get('state').value,
         city            : dateAndLocationForm.get('city').value,
-        district        : 'Bairro de teste',
+        district        : dateAndLocationForm.get('district').value,
         zipCode         : dateAndLocationForm.get('cep').value,
         complements     : dateAndLocationForm.get('additionalInfo').value,
         street          : dateAndLocationForm.get('street').value,
