@@ -1,18 +1,28 @@
-<div fxLayout fxLayoutAlign="center center">
-  <mat-form-field fxFlex="40%">
-    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+<div class="home-header" fxLayout fxLayoutAlign="center center">
+
+  <p class="home_title">Encontre um universo de eventos acadêmios com a Hubble</p>
+  <mat-form-field fxFlex="40%" class="home_filter">
+    <input matInput type="text" (keyup)="setFilteredItems($event.target.value)"
+    placeholder="Pesquise por nome, tipo  ou assunto do evento">
   </mat-form-field>
 </div>
 
+<p class="home_subtitle">Sugestões para você</p>
 <div  class="swiper-container" [swiper]="config" [(index)]="index">
   <div class="swiper-wrapper">
-    <div class="swiper-slide">Slide 1</div>
-    <div class="swiper-slide">Slide 2</div>
-    <div class="swiper-slide">Slide 3</div>
+    <div class="swiper-slide" *ngFor="let item of items">
+      <mat-card>
+          <img mat-card-lg-image src="http://placehold.it/400x300"
+          class="md-card-image"
+          alt="image caption"
+          (click)="selectEvent(item.id)"
+          [routerLink]="['/event', item.id]"
+          />
+          <mat-card-title>{{item.title}}</mat-card-title>
+      </mat-card>
+    </div>
   </div>
 
   <div class="swiper-pagination"></div>
 
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
 </div>

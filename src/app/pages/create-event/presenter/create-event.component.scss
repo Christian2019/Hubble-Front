@@ -1,38 +1,54 @@
 form {
+  margin: 0 5%;
   text-align: center;
 }
-
-.date-and-time{
-  div{
-    display: block;
-    text-align: center;
-  }
-  div mat-form-field:first-child{
-
-  }
+.title-success{
+   text-align: center;
+   margin-top: 60px;
 }
+.date-and-time {
+  mat-form-field:first-child{
+    margin-right: 24px !important;
+  }
 
-.three-columns{
-  text-align: center;
+  .date-hour-forms {
+    justify-content: center;
+    display: inline-flex !important;
+    width: 100%;
 
-    section {
-      display: block;
-      width: 100%;
-
-      mat-form-field {
-        width: 30%;
-      }
-
-      mat-form-field:nth-child(even) {
-        padding: 0 24px 0 24px !important;
-      }
+    mat-form-field {
+      padding: 0 !important;
+      width: 45%;
     }
+  }
+
+  .additional-info {
+    justify-content: center;
+    width: 100%;
+    mat-form-field {
+      width: 90%;
+    }
+  }
+
+}
+.three-columns {
+  section {
+    display: block;
+    width: 100%;
+
+    mat-form-field {
+      width: 30%;
+    }
+    mat-form-field:nth-child(even) {
+      padding: 0 12px 0 12px !important;
+    }
+  }
 }
 
-
-.nextPrevButtons{
+.nextPrevButtons {
   text-align: center;
   margin-top: 5%;
+
 }
 
 #next {
@@ -47,14 +63,19 @@ form {
   color: #212121;
   border: 1.5px solid #212121;
   border-radius: 10px;
-  margin-right: 48px;
+  margin-right: 24px;
 }
 
 .page-main-header {
   padding: 0 24px 0 24px;
 }
 
-.mobile-form-fields{
+.mobile-form-fields {
+
+  .date-hour-forms {
+    display: block !important;
+  }
+
   mat-form-field {
     width: 100% !important;
   }
@@ -62,4 +83,7 @@ form {
   mat-form-field:nth-child(even) {
     padding: 0 !important;
   }
+
+
+
 }
