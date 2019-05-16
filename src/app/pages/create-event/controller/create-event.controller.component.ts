@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from 'selenium-webdriver/http';
-import { HttpClientModule, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { EventsService } from 'src/app/shared/services/events.service';
-import { FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-event',
@@ -12,27 +9,12 @@ import { MatSnackBar } from '@angular/material';
 })
 export class CreateEventControllerComponent implements OnInit {
 
-  constructor(private eventService: EventsService, private snackBar: MatSnackBar) { }
+  constructor() { }
 
   ngOnInit() {
-
   }
 
-
-  onFormSubmitted($event: FormGroup[]){
-    const response = this.eventService.create($event)
-      .subscribe(
-        (success: HttpResponse<JSON>) => {
-          this.snackBar.open('Evento cadastrado com sucesso!', 'Ok', {duration: 5000})
-        },
-        (error: HttpErrorResponse) => {
-          this.snackBar.open('Não foi possível cadastrar o evento. (Erro: '+error.message+')', 'Ok', {duration: 5000})
-        }
-      )
-
-
-
-
+  onFormSubmitted(){
 
   }
 }

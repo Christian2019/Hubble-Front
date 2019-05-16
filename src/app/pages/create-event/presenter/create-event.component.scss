@@ -1,51 +1,38 @@
 form {
-  margin: 0 5%;
   text-align: center;
 }
 
-.date-and-time {
-  mat-form-field:first-child{
-    margin-right: 24px !important;
-  }
-
-  .date-hour-forms {
-    justify-content: center;
-    display: inline-flex !important;
-    width: 100%;
-
-    mat-form-field {
-      padding: 0 !important;
-      width: 45%;
-    }
-  }
-
-  .additional-info {
-    justify-content: center;
-    width: 100%;
-    mat-form-field {
-      width: 90%;
-    }
-  }
-
-}
-.three-columns {
-  section {
+.date-and-time{
+  div{
     display: block;
-    width: 100%;
+    text-align: center;
+  }
+  div mat-form-field:first-child{
 
-    mat-form-field {
-      width: 30%;
-    }
-    mat-form-field:nth-child(even) {
-      padding: 0 12px 0 12px !important;
-    }
   }
 }
 
-.nextPrevButtons {
+.three-columns{
+  text-align: center;
+
+    section {
+      display: block;
+      width: 100%;
+
+      mat-form-field {
+        width: 30%;
+      }
+
+      mat-form-field:nth-child(even) {
+        padding: 0 24px 0 24px !important;
+      }
+    }
+}
+
+
+.nextPrevButtons{
   text-align: center;
   margin-top: 5%;
-
 }
 
 #next {
@@ -60,19 +47,14 @@ form {
   color: #212121;
   border: 1.5px solid #212121;
   border-radius: 10px;
-  margin-right: 24px;
+  margin-right: 48px;
 }
 
 .page-main-header {
   padding: 0 24px 0 24px;
 }
 
-.mobile-form-fields {
-
-  .date-hour-forms {
-    display: block !important;
-  }
-
+.mobile-form-fields{
   mat-form-field {
     width: 100% !important;
   }
@@ -80,7 +62,4 @@ form {
   mat-form-field:nth-child(even) {
     padding: 0 !important;
   }
-
-
-
 }

@@ -10,29 +10,22 @@ import { map } from 'rxjs/operators';
 })
 export class SidenavComponent {
 
+  sidenavOpened: boolean = true;
   @ViewChild('drawer') drawer;
-  @Input() opened: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
     map(result => result.matches)
   );
 
-  isTablet$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Tablet)
-  .pipe(
-    map(result => result.matches)
-  );
-
-  constructor(private breakpointObserver: BreakpointObserver) {
-
-
-  }
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   /**
    * Opens/closes the sidenav
    */
   menuToggle() {
     this.drawer.toggle();
+    this.sidenavOpened = !this.sidenavOpened;
   }
 
 }

@@ -5,7 +5,8 @@
     fixedInViewport="true"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async) && !(isTablet$ | async)"
+    [opened]="!(isHandset$ | async)"
+    sidenavOpened="[opened]"
   >
     <mat-toolbar>
       <button
@@ -60,7 +61,7 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="menuToggle()"
-        *ngIf="!drawer.opened"
+        *ngIf="!sidenavOpened || (isHandset$ | async)"
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
