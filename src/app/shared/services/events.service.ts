@@ -35,7 +35,7 @@ export class EventsService {
       address           : {
         state           : dateAndLocationForm.get('state').value,
         city            : dateAndLocationForm.get('city').value,
-        district        : 'Bairro de teste',
+        district        : dateAndLocationForm.get('district').value,
         zipCode         : dateAndLocationForm.get('cep').value,
         complements     : dateAndLocationForm.get('additionalInfo').value,
         street          : dateAndLocationForm.get('street').value,
