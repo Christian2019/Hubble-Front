@@ -86,7 +86,7 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
       provide: LOCALE_ID,
       useValue: 'pt-BR'
     },
-    DatePipe
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

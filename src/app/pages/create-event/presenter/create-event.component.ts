@@ -192,7 +192,7 @@ export class CreateEventComponent implements OnInit {
       street            : [null, Validators.required],
       number            : [null, Validators.required],
       additionalInfo    : [null, Validators.required],
-      neighborhood      : [null, Validators.required],
+      district          : [null, Validators.required],
       cep               : [null, [Validators.required, Validators.maxLength(8)]],
       city              : {value: 'Porto Alegre', disabled: true},
       state             : {value: 'RS', disabled: true},
@@ -211,16 +211,19 @@ export class CreateEventComponent implements OnInit {
   async onFileInput(event: any) {
     const file: File = event.target.files[0];
     const isImage = this.validateImage(file);
+
     if (!isImage){
       this.snackbar.open('A imagem de capa precisa ter um formato de imagem '+
        'válido. Verifique a extensão do arquivo e tente novamente.', 'Ok',
        {duration: 5000})
       return;
     }
+
     try {
       const base64image      = await this.toBase64(file);
       this.base64HeaderImage = this.sanitizeBase64(base64image);
-    } catch (error) {
+    }
+    catch (error) {
       this.snackbar.open('Não foi possível converter o arquivo escolhido para base64.'+
       ' Verifique se o arquivo não está corrompido e tente novamente.', 'Ok',
        {duration: 5000});

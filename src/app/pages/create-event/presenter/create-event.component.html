@@ -145,13 +145,6 @@
           required
         />
       </mat-form-field>
-
-      <!-- <mat-form-field>
-
-        <mat-error *ngIf="generalForm.get('headerImage').invalid">
-          {{ getErrorMessage() }}
-        </mat-error>
-      </mat-form-field> -->
     </section>
   </form>
 </ng-template>
@@ -165,12 +158,11 @@
       'mobile-form-fields': (isHandset$ | async) || (isTablet$ | async)
     }"
   >
-    <div
-      [ngClass]="{
-        'three-columns': !(isHandset$ | async) && !(isTablet$ | async)
-      }"
-    >
-      <section>
+      <section
+        [ngClass]="{
+          'three-columns': !(isHandset$ | async) && !(isTablet$ | async)
+        }"
+      >
         <mat-form-field>
           <input
             matInput
@@ -212,7 +204,7 @@
 
       <section
         [ngClass]="{
-          'three-columns': !(isHandset$ | async) && !(isTablet$ | async)
+          'two-columns': !(isHandset$ | async) && !(isTablet$ | async)
         }"
       >
         <mat-form-field>
@@ -224,6 +216,19 @@
             type="number"
           />
           <mat-error *ngIf="dateAndLocationForm.get('cep').invalid">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Bairro"
+            formControlName="district"
+            required
+            type="text"
+          />
+          <mat-error *ngIf="dateAndLocationForm.get('district').invalid">{{
             getErrorMessage()
           }}</mat-error>
         </mat-form-field>
@@ -256,7 +261,6 @@
           }}</mat-error>
         </mat-form-field>
       </section>
-    </div>
     <section
       class="date-and-time"
       [ngClass]="{
@@ -361,7 +365,7 @@
   </p>
 </section>
 
-<mat-vertical-stepper linear="false" #stepper *ngIf="isHandset$ | async">
+<mat-vertical-stepper linear="true" #stepper *ngIf="isHandset$ | async">
   <mat-step [stepControl]="generalForm">
     <ng-template matStepLabel>Informações gerais</ng-template>
     <ng-container *ngTemplateOutlet="general"></ng-container>
@@ -391,7 +395,7 @@
   </mat-step>
 </mat-vertical-stepper>
 
-<mat-horizontal-stepper linear="false" #stepper *ngIf="!(isHandset$ | async)">
+<mat-horizontal-stepper linear="true" #stepper *ngIf="!(isHandset$ | async)">
   <mat-step [stepControl]="generalForm">
     <ng-template matStepLabel>Informações gerais</ng-template>
     <ng-container *ngTemplateOutlet="general"></ng-container>
