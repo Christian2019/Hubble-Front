@@ -18,9 +18,14 @@ import { CreateEventControllerComponent } from './pages/create-event/controller/
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { EventsService } from './shared/services/events.service';
+import { AuthService } from './shared/services/Authentication/auth.service';
 import { DatePipe } from '@angular/common';
+<<<<<<< src/app/app.module.ts
 import { DetailEventComponent } from './pages/detail-event/detail-event.component';
 import { LoginComponent } from './pages/login/login.component';
+=======
+import { SignUpComponent } from './pages/sign-up/presenter/sign-up.component';
+>>>>>>> src/app/app.module.ts
 
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -62,6 +67,7 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CreateEventControllerComponent,
     DetailEventComponent,
     LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +88,11 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   ],
   providers: [
     EventsService,
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    },
+    AuthService,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
