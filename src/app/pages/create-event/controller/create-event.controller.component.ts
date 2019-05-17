@@ -11,13 +11,11 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./create-event.controller.component.scss']
 })
 export class CreateEventControllerComponent implements OnInit {
-
   constructor(private eventService: EventsService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
   }
-
 
   onFormSubmitted($event: FormGroup[]){
     const response = this.eventService.create($event)

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatStepper, MatStep, MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -171,7 +172,9 @@ export class CreateEventComponent implements OnInit {
   constructor(
     private formBuilder         : FormBuilder,
     private breakpointObserver  : BreakpointObserver,
-    private snackbar            : MatSnackBar
+    private snackbar            : MatSnackBar,
+    private datePipe: DatePipe,
+    private navigation: Router
   ) { }
 
   ngOnInit() {
@@ -279,6 +282,10 @@ export class CreateEventComponent implements OnInit {
     });
 
     this.emitFormData.emit([this.generalForm, this.dateAndLocationForm]);
+  }
+
+  public meusEventos(): void {
+    // this.navegacao.navigate(['/pagina-cadastro-usuario']);
   }
 
 

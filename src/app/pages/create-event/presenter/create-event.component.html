@@ -1,65 +1,34 @@
 <ng-template #general>
-  <form
-    [formGroup]="generalForm"
-    [ngClass]="{
+  <form [formGroup]="generalForm" [ngClass]="{
       'mobile-form-fields': (isHandset$ | async) || (isTablet$ | async),
       'three-columns': !(isHandset$ | async) && !(isTablet$ | async)
     }"
   >
     <section>
       <mat-form-field>
-        <input
-          matInput
-          placeholder="Título do evento"
-          formControlName="title"
-          required
-        />
-        <mat-error *ngIf="generalForm.get('title').invalid">{{
-          getErrorMessage()
-        }}</mat-error>
+        <input matInput placeholder="Título do evento" formControlName="title" required />
+        <mat-error *ngIf="generalForm.get('title').invalid">{{ getErrorMessage() }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field id="description">
-        <textarea
-          matInput
-          placeholder="Descrição"
-          formControlName="description"
-          required
-        ></textarea>
-        <mat-error *ngIf="generalForm.get('description').invalid">{{
-          getErrorMessage()
-        }}</mat-error>
+        <textarea matInput placeholder="Descrição" formControlName="description" required></textarea>
+        <mat-error *ngIf="generalForm.get('description').invalid">{{ getErrorMessage() }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input
-          type="number"
-          min="0"
-          step="0.01"
-          matInput
-          placeholder="Preço"
-          formControlName="price"
-          required
-        />
-        <mat-error *ngIf="generalForm.get('price').invalid">{{
-          getErrorMessage()
-        }}</mat-error>
+        <input type="number" min="0" step="0.01" matInput placeholder="Preço" formControlName="price" required />
+        <mat-error *ngIf="generalForm.get('price').invalid">{{ getErrorMessage() }}
+        </mat-error>
       </mat-form-field>
     </section>
 
     <section>
       <mat-form-field>
-        <input
-          matInput
-          placeholder="Total de vagas"
-          formControlName="maxNumberOfSeats"
-          required
-          type="number"
-          min="0"
-        />
-        <mat-error *ngIf="generalForm.get('maxNumberOfSeats').invalid">{{
-          getErrorMessage()
-        }}</mat-error>
+        <input matInput placeholder="Total de vagas" formControlName="maxNumberOfSeats" required type="number" min="0" />
+        <mat-error *ngIf="generalForm.get('maxNumberOfSeats').invalid">{{ getErrorMessage() }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -70,9 +39,8 @@
             >{{ category.name }}</mat-option
           >
         </mat-select>
-        <mat-error *ngIf="generalForm.get('category').invalid">{{
-          getErrorMessage()
-        }}</mat-error>
+        <mat-error *ngIf="generalForm.get('category').invalid">{{ getErrorMessage() }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -88,37 +56,22 @@
             >{{ subject.name }}</mat-option
           >
         </mat-select>
-        <mat-error *ngIf="generalForm.get('subjects').invalid">{{
-          getErrorMessage()
-        }}</mat-error>
+        <mat-error *ngIf="generalForm.get('subjects').invalid">{{ getErrorMessage() }}
+        </mat-error>
       </mat-form-field>
     </section>
 
     <section>
       <mat-form-field>
-        <input
-          matInput
-          placeholder="Horas complementares"
-          formControlName="additionalHours"
-          required
-          type="time"
-          value="00:00"
-        />
-        <mat-error *ngIf="generalForm.get('additionalHours').invalid">{{
-          getErrorMessage()
-        }}</mat-error>
+        <input matInput placeholder="Horas complementares" formControlName="additionalHours" required type="time" value="00:00" />
+        <mat-error *ngIf="generalForm.get('additionalHours').invalid">{{ getErrorMessage() }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input
-          matInput
-          placeholder="Link para inscrições"
-          formControlName="subscriptionLink"
-          required
-        />
-        <mat-error *ngIf="generalForm.get('subscriptionLink').invalid">{{
-          getErrorMessage()
-        }}</mat-error>
+        <input matInput placeholder="Link para inscrições" formControlName="subscriptionLink" required />
+        <mat-error *ngIf="generalForm.get('subscriptionLink').invalid">{{ getErrorMessage() }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field
@@ -152,9 +105,7 @@
 <!-- Formulário de data e localização do evento -->
 
 <ng-template #dateAndLocationInfo>
-  <form
-    [formGroup]="dateAndLocationForm"
-    [ngClass]="{
+  <form [formGroup]="dateAndLocationForm" [ngClass]="{
       'mobile-form-fields': (isHandset$ | async) || (isTablet$ | async)
     }"
   >
@@ -291,16 +242,9 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            placeholder="Horário de início"
-            formControlName="startHour"
-            required
-            type="time"
-          />
-          <mat-error *ngIf="dateAndLocationForm.get('startDate').invalid">{{
-            getErrorMessage()
-          }}</mat-error>
+          <input matInput placeholder="Horário de início" formControlName="startHour" required type="time" />
+          <mat-error *ngIf="dateAndLocationForm.get('startDate').invalid">{{ getErrorMessage() }}
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -325,16 +269,9 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            placeholder="Horário de término"
-            formControlName="endHour"
-            required
-            type="time"
-          />
-          <mat-error *ngIf="dateAndLocationForm.get('endHour').invalid">{{
-            getErrorMessage()
-          }}</mat-error>
+          <input matInput placeholder="Horário de término" formControlName="endHour" required type="time" />
+          <mat-error *ngIf="dateAndLocationForm.get('endHour').invalid">{{ getErrorMessage() }}
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -342,26 +279,28 @@
 
       <div class="additional-info">
         <mat-form-field>
-          <textarea
-            maxlength="140"
-            matInput
-            placeholder="Observações"
-            formControlName="observation"
-          ></textarea>
-          <mat-error *ngIf="dateAndLocationForm.get('observation').invalid">{{
-            getErrorMessage()
-          }}</mat-error>
+          <textarea maxlength="140" matInput placeholder="Observações" formControlName="observation"></textarea>
+          <mat-error *ngIf="dateAndLocationForm.get('observation').invalid">{{ getErrorMessage() }}
+          </mat-error>
         </mat-form-field>
       </div>
     </section>
   </form>
 </ng-template>
 
+<!---->
+<ng-template #success>
+  <div class="title-success">
+    <h1>Cadastro realizado com sucesso</h1>
+    <h4>Seu evento está em analise pela nossa equipe</h4>
+  </div>
+</ng-template>
+
 <section class="page-main-header">
   <h1>Cadastrar um novo evento</h1>
   <p>
-    Coloque seu evento acadêmico na Hubble e expanda seus horizontes. Basta
-    preencher com as informações pedidas e chamar a galera para participar!
+    Coloque seu evento acadêmico na Hubble e expanda seus horizontes. Basta preencher com as informações pedidas e chamar a galera
+    para participar!
   </p>
 </section>
 
@@ -390,8 +329,13 @@
     </div>
   </mat-step>
 
-  <mat-step [stepControl]="dateAndLocationForm">
+  <mat-step>
     <ng-template matStepLabel>Pronto</ng-template>
+    <ng-container *ngTemplateOutlet="success"></ng-container>
+    <div class="title-success">
+        <button routerLink="/">Meus eventos</button>
+        <button  >Cadastrar novo evento</button>
+      </div>
   </mat-step>
 </mat-vertical-stepper>
 
@@ -419,8 +363,17 @@
       </button>
     </div>
   </mat-step>
-
-  <mat-step [stepControl]="dateAndLocationForm">
+  <mat-step>
+      <ng-template matStepLabel>Pronto</ng-template>
+      <ng-container *ngTemplateOutlet="success"></ng-container>
+      <div class="title-success">
+          <button id="prev" mat-raised-button routerLink="/">Meus eventos</button>
+          <button id="next" mat-raised-button (click)="stepper.reset()">Cadastrar novo evento</button>
+        </div>
+    </mat-step>
+<!--
+  <mat-step>
     <ng-template matStepLabel>Pronto</ng-template>
-  </mat-step>
+    <ng-container *ngTemplateOutlet="success"></ng-container>
+  </mat-step> -->
 </mat-horizontal-stepper>

@@ -1,0 +1,60 @@
+   <main class="main columns">
+    <section class="column main-column">
+      <div class="columns">
+        <div class="column nested-column">
+          <div class="article" href="#">
+            <figure class="article-image is-16by9">
+              <img  src="http://placehold.it/400x300" alt="">
+            </figure>
+            <div class="article-body">
+              <h2 class="article-title">
+                {{event?.title}}
+                  <i class="material-icons">
+                      star_border
+                  </i>
+              </h2>
+              <p class="article-content">
+                {{event?.description}}
+                <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis. -->
+              </p>
+              <footer class="article-info">
+                <span>Criado por: Rodrigo Encine</span>
+              </footer>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+           <div class="article" href="#">
+            <div class="article-body">
+              <ul class="article-content">
+                <li>
+                  <i class="material-icons">date_range</i>
+                  {{event?.startDate}}
+                </li>
+                <li>
+                  <i class="material-icons">alarm</i>
+                  {{event?.hours}}
+                </li>
+                <li>
+                  <i class="material-icons">location_on</i>
+                  {{event?.address.street}}, {{event?.address.district}}, {{event?.address.city}}
+                </li>
+              </ul>
+              <div class="btn-confirm">
+                <a href="#">
+                  Confirmar presença
+                </a>
+              </div>
+              <footer class="article-info">
+                <span>Compartilhar</span>
+                <span>Gerar folder</span>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+

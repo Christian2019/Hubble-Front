@@ -2,7 +2,10 @@ form {
   margin: 0 5%;
   text-align: center;
 }
-
+.title-success{
+   text-align: center;
+   margin-top: 60px;
+}
 .date-and-time {
   mat-form-field:first-child {
     margin-right: 24px !important;

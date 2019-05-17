@@ -1,12 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { EventsService } from 'src/app/shared/services/events.service';
-import { print } from 'util';
+import { AppComponent } from 'src/app/app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { SwiperModule } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    SwiperModule
+  ],
+  providers: [],
+  bootstrap: []
+})
+
 export class HomeComponent implements OnInit {
 
   public searchTerm: string = "";
@@ -40,4 +55,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  selectEvent(id) {
+    console.log('funcionaou', id);
+  }
 }

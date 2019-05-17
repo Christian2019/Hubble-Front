@@ -1,5 +1,7 @@
+import { Event } from './../components/event';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 
@@ -7,7 +9,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class EventsService {
-
+  teste: any;
   endpoint: string;
 
   constructor(private httpClient: HttpClient) {
@@ -44,8 +46,12 @@ export class EventsService {
       },
     };
     console.log('Normalized: '+normalizedPayload);
-
     return normalizedPayload;
   }
+
+
+getById(id: string): Observable<Event> {
+  return this.httpClient.get<Event>('http://localhost:4200/api/event/' + id);
+}
 
 }
