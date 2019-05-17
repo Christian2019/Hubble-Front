@@ -13,15 +13,20 @@
   <swiper>
     <div class="swiper-slide" *ngFor="let item of items">
       <mat-card>
-          <img mat-card-lg-image src="http://placehold.it/400x300" class="md-card-image" alt="image caption"/>
+          <img src="http://placehold.it/400x300"
+          class="md-card-image mat-card-lg-image"
+          alt="image caption"
+          (click)="selectEvent(item.id)"
+          [routerLink]="['/event', item.id]"
+          />
           <div class="card-text">
             <mat-card-title>{{item.title}}</mat-card-title>
             <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
           </div>
       </mat-card>
+      <a href="#"></a>
     </div>
-  </div>
-
+  </swiper>
   <div class="swiper-pagination"></div>
-
-</div> -->
+  
+</div>

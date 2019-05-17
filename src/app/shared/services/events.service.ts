@@ -55,11 +55,9 @@ export class EventsService {
   }
 
 
-<<<<<<< HEAD
 getById(id: string): Observable<Event> {
   return this.httpClient.get<Event>('http://localhost:4200/api/event/' + id);
 }
-=======
   private normalizeUserPayload(rawPayload: FormGroup[]){
     const generalForm         = rawPayload[0];
     const normalizedPayload   = {
@@ -72,6 +70,5 @@ getById(id: string): Observable<Event> {
     console.log(normalizedPayload);
     return normalizedPayload;
   }
->>>>>>> cadastrar-se
 
 }

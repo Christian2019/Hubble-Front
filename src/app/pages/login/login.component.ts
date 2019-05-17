@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-=======
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
->>>>>>> cadastrar-se
 
 @Component({
   selector: 'app-login',
@@ -13,14 +10,8 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-<<<<<<< HEAD
   hide = true;
-  constructor() { }
 
-  ngOnInit() {
-  }
-
-=======
   loginForm: FormGroup;
   loading = false;
   submitted = false;
@@ -65,5 +56,4 @@ export class LoginComponent implements OnInit {
             });
 }
 
->>>>>>> cadastrar-se
 }

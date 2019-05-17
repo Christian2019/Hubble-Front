@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators  } from '@angular/forms';
 import { EventsService } from 'src/app/shared/services/events.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-sing-up',
@@ -14,6 +15,7 @@ export class SingUpComponent implements OnInit {
   constructor(
     private eventService: EventsService,
     private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -31,7 +33,7 @@ export class SingUpComponent implements OnInit {
 
     if (this.profileForm.invalid) {
       return;
-  }
+    }
 
     const formsData = [];
     const FormControls = Object.keys(this.profileForm.controls);
@@ -46,6 +48,6 @@ export class SingUpComponent implements OnInit {
     var $event = []
     $event[0] = this.profileForm;
     const response = this.eventService.create_user($event);
-    response.subscribe(obj => console.log(obj));
+    response.subscribe(obj => this.snackBar.open("Cadastrado com sucesso","Ok",{duration:5000}));
   }
 }
