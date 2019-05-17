@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'event/:id', component: DetailEventComponent},
   {path: 'login', component: LoginComponent},
   {path: 'novo-usuario',  component  : SignUpComponent}
-
+]
 @NgModule({
   imports: [RouterModule.forRoot(routes), MatInputModule],
   exports: [RouterModule, MatInputModule]

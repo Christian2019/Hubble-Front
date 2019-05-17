@@ -20,12 +20,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { EventsService } from './shared/services/events.service';
 import { AuthService } from './shared/services/Authentication/auth.service';
 import { DatePipe } from '@angular/common';
-<<<<<<< src/app/app.module.ts
+import { SignUpComponent } from './pages/sign-up/presenter/sign-up.component';
 import { DetailEventComponent } from './pages/detail-event/detail-event.component';
 import { LoginComponent } from './pages/login/login.component';
-=======
-import { SignUpComponent } from './pages/sign-up/presenter/sign-up.component';
->>>>>>> src/app/app.module.ts
 
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
