@@ -16,7 +16,6 @@ export class EventsService {
   }
 
   create(rawPayload: FormGroup[]) {
-    debugger
     const payload = this.normalizePayload(rawPayload);
     return this.httpClient.post(environment.apiUrl + 'event', payload);
   }
