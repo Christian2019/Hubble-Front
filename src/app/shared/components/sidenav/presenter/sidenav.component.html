@@ -1,23 +1,9 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async) && !(isTablet$ | async)"
-  >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async) && !(isTablet$ | async)">
     <mat-toolbar>
-      <button
-        id="sidenav-toggle"
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="menuToggle()"
-      >
-        <mat-icon style="color: #FAFAFA;" aria-label="Side nav toggle icon"
-        >menu</mat-icon
-        >
+      <button id="sidenav-toggle" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="menuToggle()">
+        <mat-icon style="color: #FAFAFA;" aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </mat-toolbar>
     <mat-nav-list>
@@ -55,24 +41,19 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="menuToggle()"
-        *ngIf="!drawer.opened"
-      >
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="menuToggle()" *ngIf="!drawer.opened">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Hubble</span>
+      <span class="fill-space"></span>
       <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-            <li>
-              <a class="md-form my-0" *ngIf="!authenticated" href="/login"> Login </a>    
-              <a class="md-form my-0" *ngIf="authenticated" (click)="logout()"> Logout </a>
-            </li>
+          <li>
+            <a class="md-form my-0" *ngIf="!authenticated" href="/login"> Login </a>
+            <a class="md-form my-0" *ngIf="authenticated" (click)="logout()"> Logout </a>
+          </li>
         </ul>
-    </div>
+      </div>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
