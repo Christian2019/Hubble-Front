@@ -2,6 +2,9 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { User } from 'src/app/pages/_models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ui-sidenav',
@@ -10,6 +13,7 @@ import { map } from 'rxjs/operators';
 })
 export class SidenavComponent {
 
+  currentUser: User;
   @ViewChild('drawer') drawer;
   @Input() opened: boolean;
 
@@ -23,8 +27,14 @@ export class SidenavComponent {
     map(result => result.matches)
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private authenticationService: AuthenticationService,
+    private router: Router,
+    ) {
+      this.authenticationService.currentUser.subscribe(user => {
+        this.currentUser = user;
+    });
 
   }
 
@@ -34,5 +44,15 @@ export class SidenavComponent {
   menuToggle() {
     this.drawer.toggle();
   }
+
+  logout(){
+    this.authenticationService.logout()
+    this.router.navigate(['/']);
+  }
+
+  public get authenticated(): boolean {
+    return this.currentUser !== null;
+}
+
 
 }
