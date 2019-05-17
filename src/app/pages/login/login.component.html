@@ -1,0 +1,16 @@
+
+<mat-card class="page-main-header">
+  <div class="example-container">
+        <mat-form-field>
+            <input matInput placeholder="User">
+          </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+      </div>
+      <div>
+      </div>
+</mat-card>
+

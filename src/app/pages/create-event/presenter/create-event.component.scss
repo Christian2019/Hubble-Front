@@ -2,9 +2,12 @@ form {
   margin: 0 5%;
   text-align: center;
 }
-
+.title-success{
+   text-align: center;
+   margin-top: 60px;
+}
 .date-and-time {
-  mat-form-field:first-child{
+  mat-form-field:first-child {
     margin-right: 24px !important;
   }
 
@@ -26,26 +29,35 @@ form {
       width: 90%;
     }
   }
-
 }
 .three-columns {
-  section {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 
-    mat-form-field {
-      width: 30%;
-    }
-    mat-form-field:nth-child(even) {
-      padding: 0 12px 0 12px !important;
-    }
+  mat-form-field {
+    width: 30%;
+  }
+  mat-form-field:nth-child(even) {
+    padding: 0 12px 0 12px !important;
+  }
+}
+
+.two-columns {
+  display: block;
+  width: 100%;
+
+  mat-form-field {
+    width: 22%;
+  }
+
+  mat-form-field:not(:last-child) {
+    padding-inline-end: 12px !important;
   }
 }
 
 .nextPrevButtons {
   text-align: center;
   margin-top: 5%;
-
 }
 
 #next {
@@ -68,7 +80,6 @@ form {
 }
 
 .mobile-form-fields {
-
   .date-hour-forms {
     display: block !important;
   }
@@ -80,7 +91,4 @@ form {
   mat-form-field:nth-child(even) {
     padding: 0 !important;
   }
-
-
-
 }
