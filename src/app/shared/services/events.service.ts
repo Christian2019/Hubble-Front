@@ -22,6 +22,11 @@ export class EventsService {
     return this.httpClient.post(environment.apiUrl + 'event', payload);
   }
 
+  create_user(rawPayload: FormGroup[]) {
+    const payload = this.normalizeUserPayload(rawPayload);
+    return this.httpClient.post('http://localhost:4200/api/user', payload);
+  }
+
   fetch() {
     return this.httpClient.get(environment.apiUrl + 'event');
   }
@@ -53,5 +58,17 @@ export class EventsService {
 getById(id: string): Observable<Event> {
   return this.httpClient.get<Event>('http://localhost:4200/api/event/' + id);
 }
+  private normalizeUserPayload(rawPayload: FormGroup[]){
+    const generalForm         = rawPayload[0];
+    const normalizedPayload   = {
+      firstName         : generalForm.get('firstName').value,
+      lastName          : generalForm.get('lastName').value,
+      email             : generalForm.get('email').value,
+      password          : generalForm.get('password').value
+    };
+    
+    console.log(normalizedPayload);
+    return normalizedPayload;
+  }
 
 }
