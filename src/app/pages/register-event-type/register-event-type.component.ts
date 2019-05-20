@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './register-event-type.component.html',
   styleUrls: ['./register-event-type.component.scss']
 })
+
 export class RegisterEventTypeComponent implements OnInit {
 
   constructor() { }
