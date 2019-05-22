@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
+
+export interface tabCategorias {
+  name: string;
+}
+
+const CATEGORIES_DATA: tabCategorias[] = [
+  {name: 'Teste'},
+  {name: 'teste2'},
+];
+
 
 @Component({
   selector: 'app-register-event-type',
@@ -7,8 +17,15 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class RegisterEventTypeComponent implements OnInit {
+  columnsToDisplay: string="Categorias";
+  
+  dataSource = CATEGORIES_DATA;
 
-  constructor() { }
+  // constructor(
+  //   public categories: any = []
+  // ) { }
+
+
 
   ngOnInit() {
   }
