@@ -11,7 +11,12 @@
 
   <section class="tabs">
     <mat-tab-group>
-      <mat-tab label="Eu vou"> Conteúdo  </mat-tab>
+      <!-- <mat-tab *ngFor="let tab of pageData.tabs" label="tab.title">
+        <event-card
+          *ngFor="let event of tab.events"
+          (actionButtonClicked)="cardActionHandler($event)">
+        </event-card>
+      </mat-tab> -->
       <mat-tab label="Eu fui"> Conteúdo </mat-tab>
       <mat-tab label="Favoritos"> Conteúdo </mat-tab>
       <mat-tab label="Criados por mim"> Conteúdo </mat-tab>

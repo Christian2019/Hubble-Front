@@ -7,12 +7,23 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class EventListingComponent implements OnInit {
 
-  @Input('pageContent') pageData: JSON;
-  @Input('cardContent') cardData: JSON[];
+  @Input('data') pageData: JSON;
+
+
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  cardActionHandler($event: FormData){
+    // this.processAction(eventoInterno.actionType)
+  }
+
+  processAction(action: string){
+    // switch(action){
+    //   case 'teste': break;
+    // }
   }
 
 }
