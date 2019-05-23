@@ -16,18 +16,17 @@ const CATEGORIES_DATA: tabCategorias[] = [
   styleUrls: ['./register-event-type.component.scss']
 })
 
+
+
 export class RegisterEventTypeComponent implements OnInit {
-  columnsToDisplay: string="Categorias";
   
+  ngOnInit(): void {
+    
+  }
+  
+  displayedColumns: string = "Categorias";
   dataSource = CATEGORIES_DATA;
 
-  // constructor(
-  //   public categories: any = []
-  // ) { }
-
-
-
-  ngOnInit() {
-  }
-
+  
 }
+
