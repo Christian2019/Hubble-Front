@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    // text-decoration: none;
+}
+
+.event_span {
+    float: left;
+    margin-top: 3px;
+    font-size: 22px;
+}
+
+.button_thing {
+    // perdao cassio
+    float: right;
+    margin-left: 8px;
+}
+
+.aprove_button {
+    position: relative;
+    background-color: #212121;
+    color: white;
+    height: 30px;
+    width: 80px;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 15px;
+}
+
+.reprove_button {
+    position: relative;
+    background-color: white;
+    border-color: #212121;
+    color: #212121;
+    height: 30px;
+    width: 80px;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 15px;
+}
+
+.content_box {
+    padding: 32px 32px 0px 32px;
+}
+
+.detail_box {
+    padding: 18px 32px 18px 32px;
+    border-style: solid;
+    border-color: #E5E5E5;
+    border-width: 2px;
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.description_box {
+    padding: 18px 8px 18px 8px;
+    border-style: solid;
+    border-color: #E5E5E5;
+    border-width: 2px;
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+@media only screen and (min-width:769px) {
+
+    .wrapper1 {
+        grid: 10fr 1fr 1fr;
+    }
+
+    .w1b1 {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
+    .w1b3 {
+        grid-column: 11/12; grid-row: 1/2;
+    }
+
+    .w1b4 {
+        grid-column: 12/13; grid-row: 1/2;
+    }
+
+    .detail_box {
+        padding-left: 16px;
+        text-align: left;
+    }
+
+    .description_box {
+        padding-left: 8px;
+        text-align: left;
+    }
+
+}
