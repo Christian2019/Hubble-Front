@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material';
 import { CreateEventControllerComponent } from './pages/create-event/controller/create-event.controller.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
+import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'event/:id', component: DetailEventComponent},
   { path: 'cadastrar', component: SingUpComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'admin/detalhe-evento', component: AdminEventDetailComponent},
 ];
 
 @NgModule({

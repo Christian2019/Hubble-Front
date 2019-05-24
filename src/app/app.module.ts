@@ -23,6 +23,7 @@ import { DatePipe } from '@angular/common';
 import { DetailEventComponent } from './pages/detail-event/detail-event.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -65,7 +66,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     DetailEventComponent,
     LoginComponent,
     SingUpComponent,
-    LoginComponent
+    LoginComponent,
+    AdminEventDetailComponent
   ],
   imports: [
     BrowserModule,
