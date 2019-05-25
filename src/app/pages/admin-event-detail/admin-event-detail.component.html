@@ -1,15 +1,15 @@
 <div class="content_box">
-
+  
   <div style="vertical-align: middle;">
-
     <div class="event_span">
       <span>Eventos</span>
     </div>
     <div class="button_thing">
       <button class="reprove_button">Recusar</button>
+      <!-- usar ng-click pra fazer a ação de mudar o status! -->
     </div>
     <div class="button_thing">
-      <button style="color: white;" class="aprove_button">Aprovar</button>
+      <button  style="color: white;" class="aprove_button">Aprovar</button>
     </div>
   </div>
 
@@ -17,22 +17,22 @@
   
   <p>Título</p>
   <div class="detail_box">
-    <p>Workshop de coach</p>
+    <p>{{event?.title}}</p>
   </div>
 
   <div>
     <div style="margin-top: 32px;"></div>
-    <p>Data do evento</p>
+    <p>Data</p>
     <div class="detail_box">
-      11/06/2019
+      {{event?.createdAt | date: 'dd/MM/yyyy'}}
     </div>
   </div>
 
   <div>
     <div style="margin-top: 32px;"></div>
-    <p>Descrição do evento</p>
+    <p>Descrição</p>
     <div class="description_box">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere voluptate inventore deleniti voluptatum. Excepturi ratione recusandae, possimus quod assumenda rerum suscipit totam fugiat, ex sint tempore deserunt autem libero dolores et cumque soluta ad nisi. Nulla esse dolor quidem temporibus sequi vero optio numquam! Dolorem, amet enim. Eum, officiis voluptatem.
+      {{event?.description}}
     </div>
   </div>
 

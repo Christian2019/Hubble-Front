@@ -25,6 +25,11 @@ import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
+
+
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 5,
