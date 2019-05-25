@@ -31,6 +31,10 @@ export class EventsService {
     return this.httpClient.get(environment.apiUrl + 'event');
   }
 
+  get_categories() {
+    return this.httpClient.get(environment.apiUrl + 'category');
+  }
+
   private normalizePayload(rawPayload: FormGroup[]){
     const generalForm         = rawPayload[0];
     const dateAndLocationForm = rawPayload[1];
