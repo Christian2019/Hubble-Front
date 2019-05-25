@@ -67,23 +67,6 @@
 
 @media only screen and (min-width:769px) {
 
-    .wrapper1 {
-        grid: 10fr 1fr 1fr;
-    }
-
-    .w1b1 {
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
-
-    .w1b3 {
-        grid-column: 11/12; grid-row: 1/2;
-    }
-
-    .w1b4 {
-        grid-column: 12/13; grid-row: 1/2;
-    }
-
     .detail_box {
         padding-left: 16px;
         text-align: left;

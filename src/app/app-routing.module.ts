@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'event/:id', component: DetailEventComponent},
   { path: 'cadastrar', component: SingUpComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'admin/detalhe-evento', component: AdminEventDetailComponent},
+  { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent},
 ];
 
 @NgModule({
