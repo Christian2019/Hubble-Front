@@ -1,25 +1,18 @@
 <section class="content-wrapper">
   <section class="header">
-    <h1>Meus eventos</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel leo
-      eleifend, maximus risus vitae, venenatis ligula. Aliquam porttitor
-      fringilla turpis eu congue. Curabitur quis leo ac metus condimentum
-      faucibus.
-    </p>
+    <h1>{{pageData.header}}</h1>
+    <p>{{pageData.subHeader}}</p>
   </section>
 
   <section class="tabs">
     <mat-tab-group>
-      <!-- <mat-tab *ngFor="let tab of pageData.tabs" label="tab.title">
-        <event-card
-          *ngFor="let event of tab.events"
-          (actionButtonClicked)="cardActionHandler($event)">
-        </event-card>
-      </mat-tab> -->
-      <mat-tab label="Eu fui"> Conteúdo </mat-tab>
-      <mat-tab label="Favoritos"> Conteúdo </mat-tab>
-      <mat-tab label="Criados por mim"> Conteúdo </mat-tab>
+      <mat-tab *ngFor="let tab of pageData.tabs" label="{{tab.title}}">
+        <app-event-card
+          *ngFor="let event of tab.cards.events"
+          (actionButtonClicked)="cardActionHandler($event)"
+          [data]="tab.cards">
+        </app-event-card>
+      </mat-tab>
     </mat-tab-group>
   </section>
 </section>

@@ -71,7 +71,7 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     LoginComponent,
     EventListingComponent,
     TesteComponent,
-    EventCardComponent
+    EventCardComponent,
   ],
   imports: [
     BrowserModule,

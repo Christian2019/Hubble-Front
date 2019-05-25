@@ -7,6 +7,7 @@ import { CreateEventControllerComponent } from './pages/create-event/controller/
 import { LoginComponent } from './pages/login/login.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
+import { TesteComponent } from './shared/teste/teste.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'event/:id', component: DetailEventComponent},
   { path: 'cadastrar', component: SingUpComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'meus-eventos', component: EventListingComponent}
+  { path: 'meus-eventos', component: EventListingComponent},
+  { path: 'teste', component: TesteComponent}
 ];
 
 @NgModule({
