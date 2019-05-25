@@ -8,7 +8,17 @@
     <div>
       <div class="event_title">
         <span>{{ event?.title }} </span>
-        <a href=""><i style="vertical-align: -4.5px;" class="material-icons favorite_class"> star_border </i></a>
+        <!-- <div > -->
+            <small (click)="favoritar();" *ngIf="favorito === false">
+                <i style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons favorite_class" >star_border</i>
+            </small>
+            <small (click)="favoritar();" *ngIf="favorito === true">
+                <i style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons favorite_class" >star</i>
+
+            </small>
+            <!-- <p *ngIf="favorito === false" style="font-size: 15px;">Deseja adicionar a ista de favoritos ?</p>
+            <p *ngIf="favorito === true" style="font-size: 15px;">Adicionado a lista de favoritos</p> -->
+        <!-- </div> -->
       </div>
       <div class="created_by">
         <span class="created_by_default">Criado por </span> <span class="created_by_name">John Doe</span>
@@ -66,5 +76,5 @@
 </div>
 
 
-  
+
 <div style="margin-bottom: 8rem;"></div>
