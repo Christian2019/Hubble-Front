@@ -7,6 +7,7 @@ import { CreateEventControllerComponent } from './pages/create-event/controller/
 import { LoginComponent } from './pages/login/login.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
+import { ProfileViewComponent } from './pages/profile/profile.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'cadastrar', component: SingUpComponent},
   { path: 'login', component: LoginComponent},
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent},
+  { path: 'profile', component: ProfileViewComponent}
 ];
 
 @NgModule({

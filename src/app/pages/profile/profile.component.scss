@@ -5,6 +5,11 @@
   color:#212121;
 }
 
+mat-form-field {
+  margin-top: 3%;
+  width: 25% !important;
+}
+
 .cel_image {
   margin: 0;
   width: 100%;
@@ -19,17 +24,16 @@
   font-size: 20px;
 }
 
-.created_by {
-  margin-left: 32px;
-  margin-top: 8px;
+.email {
+  margin-top: 14px;
   font-size: 14px;
 }
 
-.created_by_default{
+.email{
   color: #757575;
 }
 
-.created_by_name {
+.email_value {
   color: #212121;
 }
 
@@ -79,6 +83,12 @@ nav ul li a {
   font-size: 16px;
 }
 
+mat-card {
+  margin-top: 32px;
+  margin-left: 32px;
+  margin-right: 32px;
+}
+
 @media only screen and (min-width:769px) {
 
   .wrapper {
@@ -89,11 +99,11 @@ nav ul li a {
     justify-content: center;
   }
 
-  .event_title{
+  .user_name{
     font-size: 36px;
   }
 
-  .created_by {
+  .email {
     font-size: 18px;
   }
 

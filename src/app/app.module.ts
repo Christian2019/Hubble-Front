@@ -23,6 +23,7 @@ import { DatePipe } from '@angular/common';
 import { DetailEventComponent } from './pages/detail-event/detail-event.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProfileViewComponent } from './pages/profile/profile.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 
 import { registerLocaleData } from '@angular/common';
@@ -72,7 +73,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     LoginComponent,
     SingUpComponent,
     LoginComponent,
-    AdminEventDetailComponent
+    AdminEventDetailComponent,
+    ProfileViewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,34 @@
-<mat-card>{{user.email}}</mat-card>
+<mat-card>
+  <div class="user_name">
+    <span>{{ user.firstName }} {{ user.lastName }} </span>
+  </div>
+  <div class="name">
+      <mat-form-field>
+          <input
+            matInput
+            placeholder="FirstName"
+            readonly="true"
+            type="text"
+            value="{{ user.firstName }}"
+          >
+        </mat-form-field>
+        <mat-form-field>
+            <input
+              matInput
+              placeholder="LastName"
+              readonly="true"
+              type="text"
+              value="{{ user.lastName }}"
+            >
+          </mat-form-field>
+    </div>
+  <mat-form-field>
+      <input
+        matInput
+        placeholder="Email"
+        readonly="true"
+        type="text"
+        value="{{ user.email }}"
+      >
+    </mat-form-field>
+</mat-card>
