@@ -35,6 +35,22 @@ export class EventsService {
     return this.httpClient.get(environment.apiUrl + 'category');
   }
 
+  createCategory(Payload: FormGroup){
+    const payload = this.normPayload(Payload);
+    return this.httpClient.post('http://localhost:4200/api/category', payload)
+  }
+
+  private normPayload(Payload: FormGroup){
+    const genForm = Payload;
+
+    const normzPayload = {
+      title : genForm.get('catName').value
+    };
+    console.log('Normalized: ' + normzPayload);
+    return normzPayload;
+
+  }
+
   private normalizePayload(rawPayload: FormGroup[]){
     const generalForm         = rawPayload[0];
     const dateAndLocationForm = rawPayload[1];

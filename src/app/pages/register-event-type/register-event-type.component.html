@@ -2,9 +2,12 @@
   
   <div class="fields">
     <p class="tittle">Registrar Nova Categoria de Evento</p>
-        <mat-form-field class="eventType">
-          <input matInput placeholder="Nome da Categoria">
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="eventType-input">
+          <input matInput type="text" placeholder="Nome da Categoria" formControlName="catName">
         </mat-form-field>
+        <button mat-raised-button type="submit">Submit</button>
+    </form>
   </div>
 
   <div class="fields">

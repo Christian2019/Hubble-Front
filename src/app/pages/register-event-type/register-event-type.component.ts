@@ -1,6 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { EventsService } from 'src/app/shared/services/events.service';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
  
 export interface Categories {
   name: string;
@@ -28,19 +29,48 @@ export interface Categories {
 
 
 export class RegisterEventTypeComponent implements OnInit{
+  categoryForm: FormGroup;
 
   public ELEMENT_DATA: any = [];
 
-  constructor (private eventService: EventsService){
-    const response = this.eventService.get_categories();
-    response.subscribe(
-      items =>this.ELEMENT_DATA = items
-    )
-  }
+  constructor (
+    private eventService: EventsService,
+    private snackBar: MatSnackBar,
+    private formBuilder: FormBuilder
+    ){
+        const response = this.eventService.get_categories();
+        response.subscribe(
+          items =>this.ELEMENT_DATA = items
+        )
+      }
+
+
   columnsToDisplay: string[] = ['position', 'name'];
   dataSource = this.ELEMENT_DATA;
 
 
   ngOnInit() {
+    this.categoryForm = this.formBuilder.group({
+      catName: ['', Validators.required]
+    })
+  }
+
+  onSubmit(){
+    if(this.categoryForm.invalid){
+      return;
+    }
+    
+    const formsData = [];
+    const FormControls = Object.keys(this.categoryForm.controls);
+    
+    FormControls.forEach(control => {
+      formsData.push({
+        controlName: control,
+        controlValue: this.categoryForm.get(control).value
+      })
+    })
+    const response = this.eventService.createCategory(this.categoryForm);
+    // console.log('chegou')
+    response.subscribe(obj => this.snackBar.open("Cadastrado com sucesso","Ok",{duration:5000}));
   }
 }
