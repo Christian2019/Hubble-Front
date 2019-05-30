@@ -1,7 +1,7 @@
 <div class="eventType">
   
   <div class="fields">
-    <p class="tittle">Registrar Nova Categoria de Evento</p>
+    <p class="title">Registrar Nova Categoria de Evento</p>
     <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="eventType-input">
           <input matInput type="text" placeholder="Nome da Categoria" formControlName="catName">
@@ -14,14 +14,14 @@
     <p class="title">Tipos de Eventos Cadastrados</p>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="position">
+      <!-- <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="name">
+      </ng-container> -->
+      
+      <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element" > {{element.titlex}} </td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>

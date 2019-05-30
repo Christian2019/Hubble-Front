@@ -2,12 +2,10 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { EventsService } from 'src/app/shared/services/events.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
- 
-export interface Categories {
-  name: string;
-  position: number;
-  
-}
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { AppComponent } from 'src/app/app.component';
+
+
 
 // const ELEMENT_DATA: Categories[] = [
 //   {position: 1, name: 'categoria1'},
@@ -18,7 +16,10 @@ export interface Categories {
 //   {position: 6, name: 'categoria6'},
 //   {position: 7, name: 'categoria7'},
 // ];
-
+export interface Categories {
+  name: string;
+  
+}
 
 @Component({
   selector: 'app-register-event-type',
@@ -26,12 +27,25 @@ export interface Categories {
   styleUrls: ['./register-event-type.component.scss']
 })
 
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  
+  imports: [
+    SwiperModule
+  ],
+  providers: [],
+  bootstrap: []
+})
 
 
 export class RegisterEventTypeComponent implements OnInit{
   categoryForm: FormGroup;
+  public all_items: any = [];
+  public items: any = [];
 
-  public ELEMENT_DATA: any = [];
+  public ELEMENT_DATA: Categories[];
 
   constructor (
     private eventService: EventsService,
@@ -39,14 +53,31 @@ export class RegisterEventTypeComponent implements OnInit{
     private formBuilder: FormBuilder
     ){
         const response = this.eventService.get_categories();
-        response.subscribe(
-          items =>this.ELEMENT_DATA = items
+        response.subscribe(  
+          items =>this.setAllFilters(items),
+          error => console.log(error),
         )
-      }
+
+        console.log('chegou1');
+        console.log(this.all_items);
+        this.items = this.all_items;
+        console.log(this.items);
+        
+     }
+
+     setAllFilters(items) {
+      console.log('chegou2');
+      this.all_items = items;
+      this.items = this.all_items;
+      console.log(this.all_items);
+     }
 
 
-  columnsToDisplay: string[] = ['position', 'name'];
+  columnsToDisplay: string[] = ['title'];
   dataSource = this.ELEMENT_DATA;
+  
+  
+    
 
 
   ngOnInit() {
@@ -56,6 +87,7 @@ export class RegisterEventTypeComponent implements OnInit{
   }
 
   onSubmit(){
+
     if(this.categoryForm.invalid){
       return;
     }
