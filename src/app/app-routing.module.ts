@@ -12,7 +12,7 @@ import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-even
 const routes: Routes = [
   { path: '',             component: HomeComponent },
   { path: 'novo-evento', component: CreateEventControllerComponent },
-  {path: 'event/:id', component: DetailEventComponent},
+  { path: 'event/:id', component: DetailEventComponent},
   { path: 'cadastrar', component: SingUpComponent},
   { path: 'login', component: LoginComponent},
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent},
