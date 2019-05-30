@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { AppComponent } from 'src/app/app.component';
+import { MatTableDataSource } from '@angular/material';
 
 
 
@@ -17,7 +18,7 @@ import { AppComponent } from 'src/app/app.component';
 //   {position: 7, name: 'categoria7'},
 // ];
 export interface Categories {
-  name: string;
+  title: string;
   
 }
 
@@ -84,7 +85,11 @@ export class RegisterEventTypeComponent implements OnInit{
     this.categoryForm = this.formBuilder.group({
       catName: ['', Validators.required]
     })
-  }
+
+    this.eventService.get_categories()
+      .subscribe((response) => this.dataSource = this.all_items);
+  };
+  
 
   onSubmit(){
 
