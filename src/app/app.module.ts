@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './material-import';
 import { SidenavComponent } from './shared/components/sidenav/presenter/sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSnackBarModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSnackBarModule, MatChipsModule } from '@angular/material';
 import { CreateEventComponent } from './pages/create-event/presenter/create-event.component';
 import { SidenavControllerComponent } from './shared/components/sidenav/controller/sidenav.controller.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -91,7 +91,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule
   ],
   providers: [
     EventsService,

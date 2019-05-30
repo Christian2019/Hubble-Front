@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { Category } from '../components/category';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class EventsService {
 
   create_user(rawPayload: FormGroup[]) {
     const payload = this.normalizeUserPayload(rawPayload);
-    return this.httpClient.post('http://localhost:4200/api/user', payload);
+    return this.httpClient.post(environment.apiUrl + 'user', payload);
   }
 
   fetch() {
@@ -54,10 +55,14 @@ export class EventsService {
     return normalizedPayload;
   }
 
-
 getById(id: string): Observable<Event> {
-  return this.httpClient.get<Event>('http://localhost:4200/api/event/' + id);
+  return this.httpClient.get<Event>(environment.apiUrl + 'event/' + id);
 }
+
+getCategories(): Observable<Category[]> {
+  return this.httpClient.get<Category[]>(environment.apiUrl + 'category');
+}
+
   private normalizeUserPayload(rawPayload: FormGroup[]){
     const generalForm         = rawPayload[0];
     const normalizedPayload   = {
@@ -66,7 +71,7 @@ getById(id: string): Observable<Event> {
       email             : generalForm.get('email').value,
       password          : generalForm.get('password').value
     };
-    
+
     console.log(normalizedPayload);
     return normalizedPayload;
   }

@@ -31,4 +31,7 @@
         value="{{ user.email }}"
       >
     </mat-form-field>
+  <mat-chip-list >
+    <mat-chip *ngFor="let item of categories">{{item.title}}</mat-chip>
+  </mat-chip-list>
 </mat-card>
