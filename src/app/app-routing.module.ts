@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
 import { TesteComponent } from './shared/teste/teste.component';
+import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'cadastrar', component: SingUpComponent},
   { path: 'login', component: LoginComponent},
   { path: 'meus-eventos', component: EventListingComponent},
-  { path: 'teste', component: TesteComponent}
+  { path: 'teste', component: TesteComponent},
+  { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent}
 ];
 
 @NgModule({

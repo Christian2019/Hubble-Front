@@ -26,6 +26,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
 import { TesteComponent } from './shared/teste/teste.component';
 import { EventCardComponent } from './shared/components/event-card/event-card.component';
+import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -72,6 +76,7 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EventListingComponent,
     TesteComponent,
     EventCardComponent,
+    AdminEventDetailComponent
   ],
   imports: [
     BrowserModule,
