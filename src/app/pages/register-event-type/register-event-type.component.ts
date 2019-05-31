@@ -45,6 +45,7 @@ export class RegisterEventTypeComponent implements OnInit{
   categoryForm: FormGroup;
   public all_items: any = [];
   public items: any = [];
+  public newItem: Categories[];
 
   public ELEMENT_DATA: Categories[];
 
@@ -55,7 +56,7 @@ export class RegisterEventTypeComponent implements OnInit{
     ){
         const response = this.eventService.get_categories();
         response.subscribe(  
-          items =>this.setAllFilters(items),
+          items =>this.setAll(items),
           error => console.log(error),
         )
 
@@ -66,7 +67,7 @@ export class RegisterEventTypeComponent implements OnInit{
         
      }
 
-     setAllFilters(items) {
+     setAll(items) {
       console.log('chegou2');
       this.all_items = items;
       this.items = this.all_items;
@@ -96,18 +97,13 @@ export class RegisterEventTypeComponent implements OnInit{
     if(this.categoryForm.invalid){
       return;
     }
-    
-    const formsData = [];
-    const FormControls = Object.keys(this.categoryForm.controls);
-    
-    FormControls.forEach(control => {
-      formsData.push({
-        controlName: control,
-        controlValue: this.categoryForm.get(control).value
-      })
-    })
+    const categoryName = this.categoryForm.get('catName').value;
+    this.newItem = [{title: categoryName}];
+    const newCategories = this.dataSource.concat(this.newItem);
+    this.dataSource = newCategories;
     const response = this.eventService.createCategory(this.categoryForm);
-    // console.log('chegou')
+    
     response.subscribe(obj => this.snackBar.open("Cadastrado com sucesso","Ok",{duration:5000}));
+    
   }
 }
