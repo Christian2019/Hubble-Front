@@ -1,12 +1,16 @@
-<section>
-  <h2>Título do evento</h2>
-  <h3>Rua Frei Germano, nº 170, Partenon - Porto Alegre - RS </h3>
-  <h3>De 14/04 a 15/04</h3>
-  <h3>09h - 16h30</h3>
-  <h3>Entrada franca</h3>
-  <button
-    (click)="onActionClicked()"
-    mat-raised-button>
+<div
+  class="card-wrapper"
+  [ngClass]="{'m-card-wrapper': (isOnMobile$ | async)}">
+  <div class="card-content">
+    <h2>Título do evento</h2>
+    <h3>Rua Frei Germano, nº 170, Partenon - Porto Alegre - RS</h3>
+    <h3>De 14/04 a 15/04</h3>
+    <h3>09h - 16h30</h3>
+    <h3>Entrada franca</h3>
+  </div>
+  <div class="card-action">
+    <button (click)="onActionClicked()" mat-raised-button>
       Cancelar presença
-  </button>
-</section>
+    </button>
+  </div>
+</div>

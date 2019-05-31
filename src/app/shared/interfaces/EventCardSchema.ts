@@ -1,11 +1,12 @@
 import { ActionTypesEnum } from "../enums/ActionTypesEnum";
 import { ActionButtonTextEnum } from "../enums/ActionButtonTextEnum";
 
-export interface EventCardObject {
+interface EventCardObject {
   actionType: ActionTypesEnum,
   buttonText: ActionButtonTextEnum,
   events: [
     {
+      id:string,
       title: string,
       description: string,
       tag: string,
@@ -32,3 +33,4 @@ export interface EventCardObject {
     }
   ]
 }
+export {EventCardObject}

@@ -1,55 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActionTypesEnum } from 'src/app/shared/enums/ActionTypesEnum';
 import { ActionButtonTextEnum } from 'src/app/shared/enums/ActionButtonTextEnum';
+import { EventListingObject } from 'src/app/shared/interfaces/EventListingSchema';
+import { EventCardObject } from 'src/app/shared/interfaces/EventCardSchema';
 
-/**
- * @TODO Mover esta interface para um arquivo separado
- */
-export interface EventListingObject {
-  header: string,
-  subHeader: string,
-  tabs: [
-    {
-      title: string,
-      cards: EventCardObject
-    }
-  ]
-}
-
-/**
- * @TODO Mover esta interface para um arquivo separado
- */
-export interface EventCardObject {
-  actionType: ActionTypesEnum,
-  buttonText: ActionButtonTextEnum,
-  events: [
-    {
-      title: string,
-      description: string,
-      tag: string,
-      category: string,
-      status: string,
-      confirmedUsers: string,
-      picture: string,
-      startDate: string,
-      endDate: string,
-      price: string,
-      hours: string,
-      address: {
-        street: string,
-        complements: string,
-        zipCode: string,
-        district: string,
-        city: string,
-        state: string
-      },
-      createdBy: string,
-      approvedBy: string,
-      createdAt: string,
-      updatedAt: string
-    }
-  ]
-}
 
 @Component({
   selector: 'app-event-listing',
@@ -60,21 +14,17 @@ export interface EventCardObject {
 export class EventListingComponent implements OnInit {
 
   @Input('data') pageData: EventListingObject;
+  @Output() selectedEventCard: EventEmitter<EventCardObject>;
 
-  constructor() { }
-
-  ngOnInit() {
-    console.log(this.pageData);
+  constructor() {
+    this.selectedEventCard = new EventEmitter<EventCardObject>();
   }
 
-  cardActionHandler($event: FormData){
-    // this.processAction(eventoInterno.actionType)
-  }
+  ngOnInit() {}
 
-  processAction(action: string){
-    // switch(action){
-    //   case 'teste': break;
-    // }
+  cardActionHandler($event: EventCardObject){
+    console.log($event);
+    this.selectedEventCard.emit($event);
   }
 
 }
