@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventListingObject } from '../components/event-listing/presenter/event-listing.component';
 import { ActionButtonTextEnum } from '../enums/ActionButtonTextEnum';
 import { ActionTypesEnum } from '../enums/ActionTypesEnum';
+import { EventCardObject } from '../interfaces/EventCardSchema';
 
 @Component({
   selector: 'app-teste',
@@ -21,6 +22,7 @@ export class TesteComponent implements OnInit {
           buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
           events: [
             {
+              id: "a23123ljur8kladkiknfjaksndj3",
               title: "Seminário de UX",
               description: "Esta é uma descrição de um evento",
               tag: "UX",
@@ -55,6 +57,11 @@ export class TesteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onEventCardSelected($eventCard: EventCardObject){
+    console.log('Card que chegou: ',$eventCard);
+
   }
 
 }
