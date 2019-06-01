@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { EventCardObject } from '../../interfaces/EventCardSchema';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { EventCard } from '../../interfaces/EventCard';
 
 @Component({
   selector: 'app-event-card',
@@ -11,8 +11,8 @@ import { map } from 'rxjs/operators';
 })
 export class EventCardComponent implements OnInit {
 
-  @Input('data') cardData: EventCardObject;
-  @Output() actionButtonClicked = new EventEmitter<EventCardObject>();
+  @Input('data') cardData: EventCard;
+  @Output() actionButtonClicked = new EventEmitter<EventCard>();
   isOnTablet$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Tablet)
   .pipe(
     map(result => result.matches)

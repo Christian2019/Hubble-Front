@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EventListingObject } from '../components/event-listing/presenter/event-listing.component';
 import { ActionButtonTextEnum } from '../enums/ActionButtonTextEnum';
 import { ActionTypesEnum } from '../enums/ActionTypesEnum';
 import { EventCardObject } from '../interfaces/EventCardSchema';
+import { EventListingObject } from '../interfaces/EventListingSchema';
 
 @Component({
   selector: 'app-teste',
@@ -18,10 +18,10 @@ export class TesteComponent implements OnInit {
       {
         title: "Eu vou",
         cards: {
-          actionType: ActionTypesEnum.CANCEL_SUBSCRIPTION,
-          buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
           events: [
             {
+              actionType: ActionTypesEnum.CANCEL_SUBSCRIPTION,
+              buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
               id: "a23123ljur8kladkiknfjaksndj3",
               title: "Seminário de UX",
               description: "Esta é uma descrição de um evento",
@@ -36,6 +36,36 @@ export class TesteComponent implements OnInit {
               hours: "0",
               address: {
                 street: "Rua 123",
+                number: 43,
+                complements: "Um complemento",
+                zipCode: "94321980",
+                district: "Bairro de teste",
+                city: "Porto Alegre",
+                state: "RS"
+              },
+              createdBy: "d923jo54lo1223l093",
+              approvedBy: "k834120lk94240kk432",
+              createdAt: "14/04/2019",
+              updatedAt: ""
+            },
+            {
+              actionType: ActionTypesEnum.CANCEL_SUBSCRIPTION,
+              buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
+              id: "a23123ljur8kladkiknfjaksndj3",
+              title: "Palestra sobre Coach Quântico",
+              description: "Esta é uma descrição de um evento",
+              tag: "UX",
+              category: "Seminário",
+              status: "Aprovado",
+              confirmedUsers: "lalala",
+              picture: "lalala",
+              startDate: "13/04/2020",
+              endDate: "13/04/2020",
+              price: "34",
+              hours: "0",
+              address: {
+                street: "Rua 123",
+                number: 71,
                 complements: "Um complemento",
                 zipCode: "94321980",
                 district: "Bairro de teste",
@@ -50,7 +80,6 @@ export class TesteComponent implements OnInit {
           ]
         }
       }
-
     ]
   };
 
