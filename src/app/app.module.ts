@@ -1,3 +1,4 @@
+import { MatDialogModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -65,7 +66,7 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     DetailEventComponent,
     LoginComponent,
     SingUpComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +83,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [
     EventsService,

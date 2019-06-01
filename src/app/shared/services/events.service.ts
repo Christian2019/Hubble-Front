@@ -11,7 +11,8 @@ import { environment } from '../../../environments/environment';
 export class EventsService {
   teste: any;
   endpoint: string;
-
+  idEvento: string;
+  user: any;
   constructor(private httpClient: HttpClient) {
     this.endpoint = environment.apiUrl + 'event';
     console.log(environment.apiUrl)
@@ -69,22 +70,25 @@ getById(id: string): Observable<Event> {
     console.log(normalizedPayload);
     return normalizedPayload;
   }
-  getFavoriteEvent(idUser: string, event: string): Promise<any> {
-    //console.log('Id user', idUser);
-    //console.log('Id event', event)
+
+   getFavoriteEvent(idUser: string, event: string): Promise<any> {
     return this.httpClient.post<any>('http://localhost:4200/api/user/favoritado/' + idUser, {idEvent: event})
-   .toPromise()
-    .then((resposta: Response) => resposta.json());
-   //return null;
- }
-
-
-  favoriteEvent(idUser: string, event: string): Promise<any> {
-     console.log('Id user', idUser);
-     console.log('Id event', event)
-     return this.httpClient.post<any>('http://localhost:4200/api/user/favoritar/' + idUser, {idEvent: event})
     .toPromise()
-     .then((resposta: Response) => resposta.json());
-    //return null;
+    .then((resposta: any) => resposta);
   }
+
+
+   favoriteEvent(idUser: string, event: string): Promise<any> {
+       return this.httpClient.put<any>('http://localhost:4200/api/user/favoritar/' + idUser, {idEvent: event})
+      .toPromise()
+       .then((resposta: Response) => resposta);
+
+   }
+
+// delete(id: string): Promise<any> {
+//   return this.httpClient.delete('http://localhost:4200/api/event/' + id)
+//   .toPromise()
+//   .then(() => null )
+//   .catch();
+// }
 }
