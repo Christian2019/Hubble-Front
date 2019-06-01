@@ -25,6 +25,10 @@ export class ProfileViewComponent implements OnInit {
       .subscribe(category => this.categories = category);
   }
 
+  deleteCategory($event: Category){
+    this.eventService.removeCategory($event._id, this.authService.currentUserValue.id+"");
+  }
+
   ngOnInit() {
   }
 }

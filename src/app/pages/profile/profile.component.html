@@ -31,7 +31,13 @@
         value="{{ user.email }}"
       >
     </mat-form-field>
+</mat-card>
+<mat-card>
+    <div class="categorias">
+        <span>Categorias Favoritas </span>
+      </div>
   <mat-chip-list >
-    <mat-chip *ngFor="let item of categories">{{item.title}}</mat-chip>
+    <mat-chip *ngFor="let item of categories" (click)="deleteCategory(item)">{{item.title}}
+    </mat-chip>
   </mat-chip-list>
 </mat-card>

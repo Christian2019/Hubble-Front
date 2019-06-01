@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { Category } from '../components/category';
+import { User } from 'src/app/pages/_models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,16 @@ getById(id: string): Observable<Event> {
 
 getCategories(): Observable<Category[]> {
   return this.httpClient.get<Category[]>(environment.apiUrl + 'category');
+}
+
+getCategoriesFromUser(id: String): Observable<Category[]> {
+  return this.httpClient.get<Category[]>(environment.apiUrl + 'category');
+}
+
+removeCategory(idCategory: string, idUser: string): any {
+  console.log(JSON.stringify({"idCategoria":idCategory}))
+  console.log(environment.apiUrl + "user/updateCategoria/" + idUser)
+  return this.httpClient.post<User>(environment.apiUrl + "user/updateCategoria/" + idUser, {"idCategoria" : idCategory});
 }
 
   private normalizeUserPayload(rawPayload: FormGroup[]){
