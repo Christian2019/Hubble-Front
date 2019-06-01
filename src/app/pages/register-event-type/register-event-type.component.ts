@@ -22,6 +22,8 @@ export interface Categories {
   
 }
 
+
+
 @Component({
   selector: 'app-register-event-type',
   templateUrl: './register-event-type.component.html',
@@ -53,59 +55,74 @@ export class RegisterEventTypeComponent implements OnInit{
     private eventService: EventsService,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder
-    ){
-        const response = this.eventService.get_categories();
-        response.subscribe(  
-          items =>this.setAll(items),
-          error => console.log(error),
-        )
+    ) {
+        // const response = this.eventService.get_categories();
+        // response.subscribe(  
+        //   items =>this.setAll(items),
+        //   error => console.log(error))
 
-        console.log('chegou1');
-        console.log(this.all_items);
+        // this.items = this.all_items; 
+      }
+
+      setAll(items) {
+        this.all_items = items;
         this.items = this.all_items;
-        console.log(this.items);
+        this.dataSource = this.all_items;
+        console.log(this.dataSource);
+      }
+
+      columnsToDisplay: string[] = ['title'];
+      dataSource = this.ELEMENT_DATA;
+  
+      ngOnInit() {
+        this.categoryForm = this.formBuilder.group({
+          catName: ['', Validators.required]
+        })
+
+        // get all categgories
+        // this.eventService.get_categories()
+        // .subscribe(() => this.dataSource = this.all_items);
         
-     }
-
-     setAll(items) {
-      console.log('chegou2');
-      this.all_items = items;
-      this.items = this.all_items;
-      console.log(this.all_items);
-     }
-
-
-  columnsToDisplay: string[] = ['title'];
-  dataSource = this.ELEMENT_DATA;
-  
-  
-    
-
-
-  ngOnInit() {
-    this.categoryForm = this.formBuilder.group({
-      catName: ['', Validators.required]
-    })
-
-    this.eventService.get_categories()
-      .subscribe((response) => this.dataSource = this.all_items);
-  };
+        this.loadCategoryList();
+      };
   
 
-  onSubmit(){
+      categoryDelete(id : string){
+        console.log(id);
+        this.eventService.delete_category(id).subscribe(_ => {
+          this.loadCategoryList();
+        });
+        
+      }
 
-    if(this.categoryForm.invalid){
-      return;
-    }
-    const categoryName = this.categoryForm.get('catName').value;
-    // const categoryID = this.categoryForm.get('id').value;
-    // console.log(categoryID);
-    this.newItem = [{title: categoryName}];
-    const newCategories = this.dataSource.concat(this.newItem);
-    this.dataSource = newCategories;
-    const response = this.eventService.createCategory(this.categoryForm);
-    
-    response.subscribe(obj => this.snackBar.open("Cadastrado com sucesso","Ok",{duration:5000}));
-    
-  }
+      loadCategoryList(){
+        // const content = this.eventService.get_categories();
+        // content.subscribe (
+        //   items => this.setAll(items),
+        //   error => console.log(error))
+
+        //   this.items = this.all_items;
+        this.eventService.get_categories().subscribe(
+          itens => this.setAll(itens),
+
+        );
+      }
+
+      onSubmit(){
+
+        if(this.categoryForm.invalid){
+          return;
+        }
+
+        // const categoryName = this.categoryForm.get('catName').value;
+        
+        // this.newItem = [{title: categoryName}];
+        // const newCategories = this.dataSource.concat(this.newItem);
+        // this.dataSource = newCategories;
+
+        this.eventService.createCategory(this.categoryForm).subscribe(obj => {
+          this.snackBar.open("Cadastrado com sucesso","Ok",{duration:5000});
+          this.loadCategoryList()
+        })
+      }
 }

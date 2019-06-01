@@ -35,6 +35,10 @@ export class EventsService {
     return this.httpClient.get(environment.apiUrl + 'category');
   }
 
+  delete_category(id : string) {
+    return this.httpClient.delete(environment.apiUrl + 'category/' + id);
+  }
+
   createCategory(Payload: FormGroup){
     const payload = this.normPayload(Payload);
     return this.httpClient.post('http://localhost:4200/api/category', payload)
