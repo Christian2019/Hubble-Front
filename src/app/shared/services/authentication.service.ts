@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { LoginComponent } from './../../pages/login/login.component';
+import { Router, Params } from '@angular/router';
+import { Injectable, LOCALE_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,8 +11,7 @@ import { User } from 'src/app/pages/_models/user';
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    
-
+    idUser: string;
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
@@ -30,7 +31,7 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
-
+                this.idUser = user.id;
                 return user;
             }));
     }

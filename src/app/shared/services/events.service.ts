@@ -11,7 +11,8 @@ import { environment } from '../../../environments/environment';
 export class EventsService {
   teste: any;
   endpoint: string;
-
+  idEvento: string;
+  user: any;
   constructor(private httpClient: HttpClient) {
     this.endpoint = environment.apiUrl + 'event';
     console.log(environment.apiUrl)
@@ -26,7 +27,6 @@ export class EventsService {
     const payload = this.normalizeUserPayload(rawPayload);
     return this.httpClient.post('http://localhost:4200/api/user', payload);
   }
-
   fetch() {
     return this.httpClient.get(environment.apiUrl + 'event');
   }
@@ -66,9 +66,29 @@ getById(id: string): Observable<Event> {
       email             : generalForm.get('email').value,
       password          : generalForm.get('password').value
     };
-    
+
     console.log(normalizedPayload);
     return normalizedPayload;
   }
 
+   getFavoriteEvent(idUser: string, event: string): Promise<any> {
+    return this.httpClient.post<any>('http://localhost:4200/api/user/favoritado/' + idUser, {idEvent: event})
+    .toPromise()
+    .then((resposta: any) => resposta);
+  }
+
+
+   favoriteEvent(idUser: string, event: string): Promise<any> {
+       return this.httpClient.put<any>('http://localhost:4200/api/user/favoritar/' + idUser, {idEvent: event})
+      .toPromise()
+       .then((resposta: Response) => resposta);
+
+   }
+
+// delete(id: string): Promise<any> {
+//   return this.httpClient.delete('http://localhost:4200/api/event/' + id)
+//   .toPromise()
+//   .then(() => null )
+//   .catch();
+// }
 }
