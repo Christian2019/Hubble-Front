@@ -10,7 +10,7 @@
         <app-event-card
           *ngFor="let event of tab.cards.events"
           (actionButtonClicked)="cardActionHandler($event)"
-          [data]="tab.cards">
+          [data]="event">
         </app-event-card>
       </mat-tab>
     </mat-tab-group>

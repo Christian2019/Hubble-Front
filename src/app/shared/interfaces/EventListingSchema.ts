@@ -1,6 +1,12 @@
 import { ActionTypesEnum } from "../enums/ActionTypesEnum";
 import { ActionButtonTextEnum } from "../enums/ActionButtonTextEnum";
-import { EventCardObject } from '../components/event-listing/presenter/event-listing.component';
+import { EventCard } from './EventCard';
+
+
+interface EventCardObject {
+  events: EventCard[]
+}
+
 
 interface EventListingObject {
   header: string,
