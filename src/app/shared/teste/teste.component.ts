@@ -90,7 +90,6 @@ export class TesteComponent implements OnInit {
 
   onEventCardSelected($eventCard: EventCardObject){
     console.log('Card que chegou: ',$eventCard);
-
   }
 
 }

@@ -9,6 +9,7 @@ import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
 import { TesteComponent } from './shared/teste/teste.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
+import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
 
 
 const routes: Routes = [
@@ -17,8 +18,7 @@ const routes: Routes = [
   { path: 'event/:id', component: DetailEventComponent},
   { path: 'cadastrar', component: SingUpComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'meus-eventos', component: EventListingComponent},
-  { path: 'teste', component: TesteComponent},
+  { path: 'meus-eventos', component: MyEventsComponent},
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent}
 ];
 
