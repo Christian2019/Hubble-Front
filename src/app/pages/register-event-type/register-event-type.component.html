@@ -25,7 +25,6 @@
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef > Name </th>
         <td mat-cell *matCellDef="let element" > {{element.title}}
-          {{element.id}} 
           <button type="button" class="deleteButton" mat-icon-button (click)="categoryDelete(element.id)">
             <mat-icon style="color: #212121">delete</mat-icon>
           </button>
