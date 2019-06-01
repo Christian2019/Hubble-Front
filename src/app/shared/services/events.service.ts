@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { EventCard } from '../interfaces/EventCard';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class EventsService {
 
   fetch() {
     return this.httpClient.get(environment.apiUrl + 'event');
+  }
+
+  fetch_pending() : Observable<EventCard[]> {
+    return this.httpClient.get<EventCard[]>(environment.apiUrl + 'Event/status/Pendente');
   }
 
   private normalizePayload(rawPayload: FormGroup[]){
