@@ -19,7 +19,7 @@ import { MatTableDataSource } from '@angular/material';
 // ];
 export interface Categories {
   title: string;
-  
+
 }
 
 
@@ -34,7 +34,7 @@ export interface Categories {
   declarations: [
     AppComponent
   ],
-  
+
   imports: [
     SwiperModule
   ],
@@ -43,86 +43,99 @@ export interface Categories {
 })
 
 
-export class RegisterEventTypeComponent implements OnInit{
+export class RegisterEventTypeComponent implements OnInit {
   categoryForm: FormGroup;
-  public all_items: any = [];
-  public items: any = [];
+  public all_items: Categories[] = [];
+  public items: Categories[] = [];
   public newItem: Categories[];
 
   public ELEMENT_DATA: Categories[];
 
-  constructor (
+  constructor(
     private eventService: EventsService,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder
-    ) {
-        // const response = this.eventService.get_categories();
-        // response.subscribe(  
-        //   items =>this.setAll(items),
-        //   error => console.log(error))
+  ) {
+    // const response = this.eventService.get_categories();
+    // response.subscribe(  
+    //   items =>this.setAll(items),
+    //   error => console.log(error))
 
-        // this.items = this.all_items; 
-      }
+    // this.items = this.all_items; 
+  }
 
-      setAll(items) {
-        this.all_items = items;
-        this.items = this.all_items;
-        this.dataSource = this.all_items;
-        console.log(this.dataSource);
-      }
+  setAll(items) {
+    this.all_items = items;
+    this.items = this.all_items;
+    this.dataSource = this.all_items;
+    console.log(this.dataSource);
+  }
 
-      columnsToDisplay: string[] = ['title'];
-      dataSource = this.ELEMENT_DATA;
-  
-      ngOnInit() {
-        this.categoryForm = this.formBuilder.group({
-          catName: ['', Validators.required]
-        })
+  columnsToDisplay: string[] = ['title'];
+  dataSource = this.ELEMENT_DATA;
 
-        // get all categgories
-        // this.eventService.get_categories()
-        // .subscribe(() => this.dataSource = this.all_items);
-        
-        this.loadCategoryList();
-      };
-  
+  ngOnInit() {
+    this.categoryForm = this.formBuilder.group({
+      catName: ['', Validators.required]
+    })
 
-      categoryDelete(id : string){
-        console.log(id);
-        this.eventService.delete_category(id).subscribe(_ => {
-          this.loadCategoryList();
-        });
-        
-      }
+    // get all categgories
+    // this.eventService.get_categories()
+    // .subscribe(() => this.dataSource = this.all_items);
 
-      loadCategoryList(){
-        // const content = this.eventService.get_categories();
-        // content.subscribe (
-        //   items => this.setAll(items),
-        //   error => console.log(error))
+    this.loadCategoryList();
+  };
 
-        //   this.items = this.all_items;
-        this.eventService.get_categories().subscribe(
-          itens => this.setAll(itens),
 
-        );
-      }
+  categoryDelete(id: string) {
+    console.log(id);
+    this.eventService.delete_category(id).subscribe(_ => {
+      this.loadCategoryList();
+    });
 
-      onSubmit(){
+  }
 
-        if(this.categoryForm.invalid){
-          return;
-        }
+  loadCategoryList() {
+    // const content = this.eventService.get_categories();
+    // content.subscribe (
+    //   items => this.setAll(items),
+    //   error => console.log(error))
 
-        // const categoryName = this.categoryForm.get('catName').value;
-        
-        // this.newItem = [{title: categoryName}];
-        // const newCategories = this.dataSource.concat(this.newItem);
-        // this.dataSource = newCategories;
+    //   this.items = this.all_items;
+    this.eventService.get_categories().subscribe(
+      (itens: Categories) => this.setAll(itens),
 
-        this.eventService.createCategory(this.categoryForm).subscribe(obj => {
-          this.snackBar.open("Cadastrado com sucesso","Ok",{duration:5000});
-          this.loadCategoryList()
-        })
-      }
+    );
+  }
+
+  onSubmit() {
+
+    if (this.categoryForm.invalid) {
+      return;
+    }
+    const categoryName = this.categoryForm.get('catName').value;
+   
+    if (this.all_items.some(e => e.title.toLowerCase() == categoryName.toLowerCase())) {
+      this.snackBar.open("Categoria já cadastrada.", "Ok", { duration: 5000 });
+      return;
+    }
+
+    // if (this.checkAlreadyExist() == -1) {
+    //   console.log('funcionou')
+    // } else { 
+    //   console.log('n funcionou')
+    // }
+
+
+    // const categoryName = this.categoryForm.get('catName').value;
+    // this.newItem = [{title: categoryName}];
+    // const newCategories = this.dataSource.concat(this.newItem);
+    // this.dataSource = newCategories;
+
+    this.eventService.createCategory(this.categoryForm).subscribe(obj => {
+      this.snackBar.open("Cadastrado com sucesso", "Ok", { duration: 5000 });
+      this.loadCategoryList()
+    })
+  }
+
 }
