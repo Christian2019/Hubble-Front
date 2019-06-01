@@ -98,8 +98,8 @@ export class RegisterEventTypeComponent implements OnInit{
       return;
     }
     const categoryName = this.categoryForm.get('catName').value;
-    const categoryID = this.categoryForm.get('id').value;
-    console.log(categoryID);
+    // const categoryID = this.categoryForm.get('id').value;
+    // console.log(categoryID);
     this.newItem = [{title: categoryName}];
     const newCategories = this.dataSource.concat(this.newItem);
     this.dataSource = newCategories;
