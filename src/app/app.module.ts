@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './material-import';
 import { SidenavComponent } from './shared/components/sidenav/presenter/sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSnackBarModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSnackBarModule, MatTableModule } from '@angular/material';
 import { CreateEventComponent } from './pages/create-event/presenter/create-event.component';
 import { SidenavControllerComponent } from './shared/components/sidenav/controller/sidenav.controller.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -30,6 +30,7 @@ import { EventCardComponent } from './shared/components/event-card/event-card.co
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
 registerLocaleData(localePt);
 
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -77,7 +78,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EventListingComponent,
     TesteComponent,
     EventCardComponent,
-    AdminEventDetailComponent
+    AdminEventDetailComponent,
+    RegisterEventTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +97,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [
     EventsService,
