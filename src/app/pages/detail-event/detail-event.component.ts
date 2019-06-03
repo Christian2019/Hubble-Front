@@ -25,9 +25,8 @@ export class DetailEventComponent implements OnInit {
   ngOnInit() {
     this.eventService.getById(this.route.snapshot.params['id'])
    .subscribe(teste => this.event = teste);
-   
-    if(this.serviceUser.idUser !== null && this.serviceUser.idUser !== undefined && this.serviceUser.idUser !== ''){
-      console.log('id do usuarioo: ' + this.serviceUser.idUser);
+
+    if(!this.serviceUser.idUser){
       this.logado = true;
 
       this.eventService.getFavoriteEvent(this.serviceUser.idUser, this.route.snapshot.params['id'])
