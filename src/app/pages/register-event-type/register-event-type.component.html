@@ -5,9 +5,10 @@
     <form [formGroup]="eventTypeForm">
 
         <mat-form-field class="eventType">
-          <input matInput placeholder="Nome da Categoria">
+          <input  id="name" matInput placeholder="Nome da Categoria" [(ngModel)]="model.name" name="name">
+          Teste = {{model.name}}
         </mat-form-field>
-      
+        
     </form>
   </div>
 
