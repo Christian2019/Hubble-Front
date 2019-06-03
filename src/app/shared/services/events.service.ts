@@ -4,17 +4,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { AuthenticationService } from './authentication.service';
+import { User } from 'src/app/pages/_models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
-  teste: any;
-  endpoint: string;
 
-  constructor(private httpClient: HttpClient) {
-    this.endpoint = environment.apiUrl + 'event';
-    console.log(environment.apiUrl)
+  currentUser  : User;
+  endpoint     : string;
+
+  constructor(private httpClient: HttpClient, private authService: AuthenticationService) {
+    this.endpoint     = environment.apiUrl + 'event';
+    this.currentUser  = authService.currentUserValue;
+
   }
 
   create(rawPayload: FormGroup[]) {
@@ -58,17 +62,41 @@ export class EventsService {
 getById(id: string): Observable<Event> {
   return this.httpClient.get<Event>('http://localhost:4200/api/event/' + id);
 }
-  private normalizeUserPayload(rawPayload: FormGroup[]){
-    const generalForm         = rawPayload[0];
-    const normalizedPayload   = {
-      firstName         : generalForm.get('firstName').value,
-      lastName          : generalForm.get('lastName').value,
-      email             : generalForm.get('email').value,
-      password          : generalForm.get('password').value
-    };
-    
-    console.log(normalizedPayload);
-    return normalizedPayload;
-  }
+
+getConfirmedEvents(){
+
+}
+
+getPastEvents(){
+
+}
+
+getFavoriteEvents(){
+
+}
+
+getCreatedEvents(){
+  if (!this.currentUser) return null;
+
+  const endpoint = "http://localhost:3000/user/events/createdEvents/"+this.currentUser.id;
+  console.log(endpoint);
+  this.httpClient.get(endpoint).subscribe((success: HttpResponse<Object>) => {
+    console.log('Success: ',success);
+
+  })
+}
+
+private normalizeUserPayload(rawPayload: FormGroup[]){
+  const generalForm         = rawPayload[0];
+  const normalizedPayload   = {
+    firstName         : generalForm.get('firstName').value,
+    lastName          : generalForm.get('lastName').value,
+    email             : generalForm.get('email').value,
+    password          : generalForm.get('password').value
+  };
+
+  console.log(normalizedPayload);
+  return normalizedPayload;
+}
 
 }
