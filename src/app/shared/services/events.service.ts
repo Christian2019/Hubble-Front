@@ -63,6 +63,14 @@ getById(id: string): Observable<Event> {
   return this.httpClient.get<Event>('http://localhost:4200/api/event/' + id);
 }
 
+cancelSubscription(eventId: string) {
+
+}
+
+removeFromFavorites(eventId: string){
+
+}
+
 getConfirmedEvents(){
 
 }
