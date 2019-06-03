@@ -87,11 +87,16 @@ export class MyEventsComponent implements OnInit {
     ]
   };
 
+  pageData: EventListingObject;
+
   constructor(private eventService: EventsService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  buildListingComponent(){
+
+  }
 
 
   onEventCardSelected($eventCard: EventCard){
@@ -120,11 +125,8 @@ export class MyEventsComponent implements OnInit {
 
   private removeFromFavorites(eventId: string){
     // this.eventService.removeFromFavorites(eventId)
-    //   .then(
-    //     (success: HttpResponse<Object>) => {
-
-    //     }
-    //   );
+    //   .then((success: HttpResponse<Object>) => {}
+    //
   }
 
   private viewEvent(eventId: string){
