@@ -10,6 +10,7 @@ import { EventListingComponent } from './shared/components/event-listing/present
 import { TesteComponent } from './shared/teste/teste.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
+import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
 
 
 const routes: Routes = [
@@ -18,10 +19,10 @@ const routes: Routes = [
   { path: 'event/:id', component: DetailEventComponent},
   { path: 'cadastrar', component: SingUpComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'meus-eventos', component: EventListingComponent},
-  { path: 'teste', component: TesteComponent},
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent},
-  { path: 'categorias-evento', component: RegisterEventTypeComponent}
+  { path: 'categorias-evento', component: RegisterEventTypeComponent},
+  { path: 'meus-eventos', component: MyEventsComponent},
+  { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent}
 ];
 
 @NgModule({

@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionButtonTextEnum } from '../enums/ActionButtonTextEnum';
-import { ActionTypesEnum } from '../enums/ActionTypesEnum';
-import { EventCardObject } from '../interfaces/EventCardSchema';
-import { EventListingObject } from '../interfaces/EventListingSchema';
+import { EventListingObject } from 'src/app/shared/interfaces/EventListingSchema';
+import { ActionTypesEnum } from 'src/app/shared/enums/ActionTypesEnum';
+import { ActionButtonTextEnum } from 'src/app/shared/enums/ActionButtonTextEnum';
+import { EventCardObject } from 'src/app/shared/interfaces/EventCardSchema';
+import { EventCard } from 'src/app/shared/interfaces/EventCard';
+import { EventsService } from 'src/app/shared/services/events.service';
+import { HttpResponse } from '@angular/common/http';
+import { RouterOutlet, OutletContext, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-teste',
-  templateUrl: './teste.component.html',
-  styleUrls: ['./teste.component.scss']
+  selector: 'app-my-events',
+  templateUrl: './my-events.component.html',
+  styleUrls: ['./my-events.component.scss']
 })
-export class TesteComponent implements OnInit {
+export class MyEventsComponent implements OnInit {
 
   meuJson: EventListingObject = {
     header: "Meus eventos",
@@ -22,7 +26,7 @@ export class TesteComponent implements OnInit {
             {
               actionType: ActionTypesEnum.CANCEL_SUBSCRIPTION,
               buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
-              id: "a23123ljur8kladkiknfjaksndj3",
+              id: "5ccbf4b5d582532357d9e436",
               title: "Seminário de UX",
               description: "Esta é uma descrição de um evento",
               tag: "UX",
@@ -49,9 +53,9 @@ export class TesteComponent implements OnInit {
               updatedAt: ""
             },
             {
-              actionType: ActionTypesEnum.CANCEL_SUBSCRIPTION,
-              buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
-              id: "a23123ljur8kladkiknfjaksndj3",
+              actionType: ActionTypesEnum.VIEW_EVENT,
+              buttonText: ActionButtonTextEnum.CREATED_BY_ME,
+              id: "5ccbf4b5d582532357d9e436",
               title: "Palestra sobre Coach Quântico",
               description: "Esta é uma descrição de um evento",
               tag: "UX",
@@ -83,13 +87,50 @@ export class TesteComponent implements OnInit {
     ]
   };
 
-  constructor() { }
+  pageData: EventListingObject;
+
+  constructor(private eventService: EventsService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  onEventCardSelected($eventCard: EventCardObject){
+  buildListingComponent(){
+
+  }
+
+
+  onEventCardSelected($eventCard: EventCard){
     console.log('Card que chegou: ',$eventCard);
+    switch($eventCard.actionType) {
+      case 'cancel-subscription':
+        this.cancelSubscription($eventCard.id);
+        break;
+      case 'remove-fav-event':
+        this.removeFromFavorites($eventCard.id);
+        break;
+      default:
+        this.viewEvent($eventCard.id);
+        break;
+    }
+
+  }
+
+  private cancelSubscription(eventId: string){
+    // this.eventService.cancelSubscription(eventId)
+    //   .then(
+    //     (success: HttpResponse<Object>)=> {
+
+    //     });
+  }
+
+  private removeFromFavorites(eventId: string){
+    // this.eventService.removeFromFavorites(eventId)
+    //   .then((success: HttpResponse<Object>) => {}
+    //
+  }
+
+  private viewEvent(eventId: string){
+    this.router.navigateByUrl('/event/'+eventId);
   }
 
 }
