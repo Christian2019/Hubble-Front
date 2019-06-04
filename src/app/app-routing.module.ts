@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'cadastrar', component: SingUpComponent},
   { path: 'login', component: LoginComponent},
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent},
-  { path: 'categorias-evento', component: RegisterEventTypeComponent}
+  { path: 'categorias-evento', component: RegisterEventTypeComponent},
   { path: 'meus-eventos', component: MyEventsComponent},
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent}
 ];
