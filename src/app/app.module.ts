@@ -81,7 +81,7 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     TesteComponent,
     EventCardComponent,
     AdminEventDetailComponent,
-    EventAproveListComponent
+    EventAproveListComponent,
     RegisterEventTypeComponent,
     MyEventsComponent
   ],
