@@ -30,6 +30,7 @@ import { EventCardComponent } from './shared/components/event-card/event-card.co
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { EventAproveListComponent } from './pages/event-aprove-list/event-aprove-list.component';
 import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
 import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
 registerLocaleData(localePt);
@@ -80,6 +81,7 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     TesteComponent,
     EventCardComponent,
     AdminEventDetailComponent,
+    EventAproveListComponent,
     RegisterEventTypeComponent,
     MyEventsComponent
   ],

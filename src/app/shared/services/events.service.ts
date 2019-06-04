@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { EventCard } from '../interfaces/EventCard';
 import { AuthenticationService } from './authentication.service';
 import { User } from 'src/app/pages/_models/user';
 
@@ -33,6 +34,12 @@ export class EventsService {
     return this.httpClient.get(environment.apiUrl + 'event');
   }
 
+
+  fetch_pending() : Observable<EventCard[]> {
+    return this.httpClient.get<EventCard[]>(environment.apiUrl + 'Event/status/Pendente');
+  }
+
+  
   get_categories() {
     return this.httpClient.get(environment.apiUrl + 'category');
   }
