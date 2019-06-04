@@ -9,10 +9,10 @@
       <div class="event_title">
         <span>{{ event?.title }} </span>
         <!-- <div > -->
-            <small (click)="favoritar();" *ngIf="favorito === false">
+            <small (click)="favoritar();" *ngIf="favorito === false  && logado === true">
                 <i style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons favorite_class" >star_border</i>
             </small>
-            <small (click)="favoritar();" *ngIf="favorito === true">
+            <small (click)="favoritar();" *ngIf="favorito === true  && logado === true">
                 <i style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons favorite_class" >star</i>
 
             </small>
@@ -29,7 +29,8 @@
 
   <div class="block2">
     <div>
-      <button class="confirm_event_button">Confirmar presença</button>
+      <button (click)="confirmar();" class="confirm_event_button" *ngIf="presenca === false && logado === true">Confirmar presença</button>
+      <button (click)="confirmar();" class="confirm_event_button" *ngIf="presenca === true && logado === true" style="background-color: #af031d;">Cancelar presença</button>
     </div>
   </div>
 

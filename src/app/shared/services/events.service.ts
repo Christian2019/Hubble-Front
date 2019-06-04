@@ -149,10 +149,24 @@ export class EventsService {
 
   }
 
-  // delete(id: string): Promise<any> {
-  //   return this.httpClient.delete('http://localhost:4200/api/event/' + id)
-  //   .toPromise()
-  //   .then(() => null )
-  //   .catch();
-  // }
+   getConfirmedEvent(idUser: string, event: string): Promise<any> {
+    return this.httpClient.post<any>('http://localhost:4200/api/user/confirmado/' + idUser, {idEvent: event})
+    .toPromise()
+    .then((resposta: any) => resposta);
+  }
+
+
+   confirmEvent(idUser: string, event: string): Promise<any> {
+       return this.httpClient.post<any>('http://localhost:4200/api/user/confirmar/' + idUser, {idEvent: event})
+      .toPromise()
+       .then((resposta: Response) => resposta);
+
+   }
+
+// delete(id: string): Promise<any> {
+//   return this.httpClient.delete('http://localhost:4200/api/event/' + id)
+//   .toPromise()
+//   .then(() => null )
+//   .catch();
+// }
 }
