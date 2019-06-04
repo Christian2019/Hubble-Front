@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private snackbar            : MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -52,8 +54,9 @@ export class LoginComponent implements OnInit {
               this.router.navigate([this.returnUrl]);
             },
             error => {
-                this.loading = false;
+              this.snackbar.open('Login ou senhas inválidos', 'Ok',
+              {duration: 5000})
             });
-}
+  }
 
 }

@@ -19,7 +19,7 @@
           Pesquisar eventos
         </a>
       </div>
-      <div>
+      <div *ngIf="authenticated">
         <a class="menu-item" mat-list-item href="#">
           <mat-icon>calendar_today</mat-icon>
           Meus eventos
@@ -31,16 +31,22 @@
           Notificações
         </a>
       </div>
-      <div>
+      <div *ngIf="authenticated">
         <a class="menu-item" mat-list-item href="#">
           <mat-icon>person_outline</mat-icon>
           Perfil
         </a>
       </div>
-      <div>
+      <div *ngIf="!authenticated">
           <a class="menu-item" mat-list-item routerLink="/login">
             <mat-icon>person_outline</mat-icon>
             Login
+          </a>
+        </div>
+        <div *ngIf="adminAuthenticated">
+          <a class="menu-item" mat-list-item href="/admin/lista-eventos">
+            <mat-icon>calendar_today</mat-icon>
+            Eventos para validar
           </a>
         </div>
     </mat-nav-list>

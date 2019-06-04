@@ -3,6 +3,7 @@ import { ActionTypesEnum } from 'src/app/shared/enums/ActionTypesEnum';
 import { ActionButtonTextEnum } from 'src/app/shared/enums/ActionButtonTextEnum';
 import { EventListingObject } from 'src/app/shared/interfaces/EventListingSchema';
 import { EventCardObject } from 'src/app/shared/interfaces/EventCardSchema';
+import { EventCard } from 'src/app/shared/interfaces/EventCard';
 
 
 @Component({
@@ -14,16 +15,15 @@ import { EventCardObject } from 'src/app/shared/interfaces/EventCardSchema';
 export class EventListingComponent implements OnInit {
 
   @Input('data') pageData: EventListingObject;
-  @Output() selectedEventCard: EventEmitter<EventCardObject>;
+  @Output() selectedEventCard: EventEmitter<EventCard>;
 
   constructor() {
-    this.selectedEventCard = new EventEmitter<EventCardObject>();
+    this.selectedEventCard = new EventEmitter<EventCard>();
   }
 
   ngOnInit() {}
 
-  cardActionHandler($event: EventCardObject){
-    console.log($event);
+  cardActionHandler($event: EventCard){
     this.selectedEventCard.emit($event);
   }
 
