@@ -16,7 +16,6 @@
           <img src="http://placehold.it/400x300"
           class="md-card-image mat-card-lg-image"
           alt="image caption"
-          (click)="selectEvent(item.id)"
           [routerLink]="['/event', item.id]"
           />
           <div class="card-text">
@@ -28,5 +27,5 @@
     </div>
   </swiper>
   <div class="swiper-pagination"></div>
-  
+
 </div>

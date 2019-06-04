@@ -1,39 +1,90 @@
 <div class="content_box">
-  
-  <div style="vertical-align: middle;">
+
+  <div style="vertical-align: middle; display: block;">
+
     <div class="event_span">
-      <span>Eventos</span>
+      <span>Evento</span>
     </div>
-    <div class="button_thing">
+
+    <div class="button_place">
       <button class="reprove_button">Recusar</button>
       <!-- usar ng-click pra fazer a ação de mudar o status! -->
     </div>
-    <div class="button_thing">
+
+    <div class="button_place">
       <button  style="color: white;" class="aprove_button">Aprovar</button>
     </div>
-  </div>
 
-  <div style="margin-top: 48px;"></div>
-  
-  <p>Título</p>
-  <div class="detail_box">
-    <p>{{event?.title}}</p>
-  </div>
-
-  <div>
-    <div style="margin-top: 32px;"></div>
-    <p>Data</p>
-    <div class="detail_box">
-      {{event?.createdAt | date: 'dd/MM/yyyy'}}
-    </div>
-  </div>
-
-  <div>
-    <div style="margin-top: 32px;"></div>
-    <p>Descrição</p>
-    <div class="description_box">
-      {{event?.description}}
-    </div>
   </div>
 
 </div>
+
+<br>
+
+<div class="wrapper">
+
+  <div style="padding-top: 24px" class="box1">
+    <img class="event_image" src="http://placehold.it/400x300" alt="Imagem do Evento" title="Imagem do Evento">
+  </div>
+  
+  <div class="content_box box2">
+    
+    <div>
+      <div>
+        <span class="content_title">Título</span>
+      </div>
+      <div style="margin-top: 8px">
+        <p class="bordered-box">{{event?.title}}</p>
+      </div>
+    </div>
+  
+    <div>
+      <div>
+        <span class="content_title content_title_plus_padding">Data</span>
+      </div>
+      <div style="margin-top: 8px">
+        <p style="text-align: center" class="bordered-box">{{event?.createdAt | date: 'dd/MM/yyyy'}} &nbsp; &nbsp; {{event?.createdAt | date:'shortTime'}} </p>
+      </div>
+    </div>
+  
+    <div>
+      <div>
+        <span class="content_title content_title_plus_padding">Endereço</span>
+      </div>
+      <div style="margin-top: 8px">
+        <div class="bordered-box">
+          <p >{{ event?.address.street}}, {{event?.address.complements}} - {{event?.address.district}}, {{event?.address.city}} - {{event?.address.state}}</p>
+          <p>CEP: {{event?.address.zipCode}}</p>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+  <div class="description_box box3">
+    <div>
+      <div>
+        <span class="content_title">Descrição</span>
+      </div>
+      <div style="margin-top: 8px">
+        <p class="bordered-box">{{event?.description}}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="content_box">
+    <div class="button_wrapper">
+      <div class="b1">
+        <button class="second_aprove_button">Aprovar</button>
+      </div>
+      <!-- <div class="b2">a</div> -->
+      <div class="b3">
+        <button class="second_reprove_button">Recusar</button>
+      </div>
+    </div>
+  
+  </div>
+
+</div>
+
+<div style="margin-bottom: 24px;"></div>
