@@ -1,22 +1,13 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 import { EventsService } from 'src/app/shared/services/events.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { AppComponent } from 'src/app/app.component';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
 
 
-
-// const ELEMENT_DATA: Categories[] = [
-//   {position: 1, name: 'categoria1'},
-//   {position: 2, name: 'categoria2'},
-//   {position: 3, name: 'categoria3'},
-//   {position: 4, name: 'categoria4'},
-//   {position: 5, name: 'categoria5'},
-//   {position: 6, name: 'categoria6'},
-//   {position: 7, name: 'categoria7'},
-// ];
 export interface Categories {
   title: string;
 
@@ -44,37 +35,36 @@ export interface Categories {
 
 
 export class RegisterEventTypeComponent implements OnInit {
+
   categoryForm: FormGroup;
   public all_items: Categories[] = [];
   public items: Categories[] = [];
   public newItem: Categories[];
 
   public ELEMENT_DATA: Categories[];
+  
+  // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(
     private eventService: EventsService,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder
-  ) {
-    // const response = this.eventService.get_categories();
-    // response.subscribe(  
-    //   items =>this.setAll(items),
-    //   error => console.log(error))
+  ) {  }
 
-    // this.items = this.all_items; 
-  }
-
-  setAll(items) {
-    this.all_items = items;
-    this.items = this.all_items;
-    this.dataSource = this.all_items;
-    console.log(this.dataSource);
-  }
+    setAll(items) {
+      this.all_items = items;
+      this.items = this.all_items;
+      this.dataSource = this.all_items;
+      console.log(this.dataSource);
+    }
 
   columnsToDisplay: string[] = ['title'];
   dataSource = this.ELEMENT_DATA;
 
+  pageEvent: PageEvent;
+
   ngOnInit() {
+
     this.categoryForm = this.formBuilder.group({
       catName: ['', Validators.required]
     })

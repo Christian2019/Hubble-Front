@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatPaginatorModule } from '@angular/material';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -87,7 +87,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HttpClientModule,
     MatSnackBarModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [
     EventsService,
