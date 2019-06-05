@@ -65,10 +65,11 @@ getCategories(): Observable<Category[]> {
 }
 
 getCategoriesFromUser(id: String): Observable<Category[]> {
-  return this.httpClient.get<Category[]>(environment.apiUrl + 'category');
+  return this.httpClient.get<Category[]>
+    (environment.apiUrl + 'user/categories/interestCategories/' + id);
 }
 
-removeCategory(idCategory: string, idUser: string): any {
+updateCategory(idCategory: string, idUser: string): any {
   console.log(JSON.stringify({"idCategoria":idCategory}))
   console.log(environment.apiUrl + "user/updateCategoria/" + idUser)
   return this.httpClient.post<User>(environment.apiUrl + "user/updateCategoria/" + idUser, {"idCategoria" : idCategory});

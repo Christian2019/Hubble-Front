@@ -16,6 +16,7 @@ import { Category } from 'src/app/shared/components/category';
 export class ProfileViewComponent implements OnInit {
  user: any;
  categories: any;
+ userCategories: any;
  teste: string;
 
  private route: ActivatedRoute;
@@ -23,12 +24,15 @@ export class ProfileViewComponent implements OnInit {
     this.user = this.authService.currentUserValue;
     this.categories = this.eventService.getCategories()
       .subscribe(category => this.categories = category);
+    this.userCategories = this.eventService.getCategoriesFromUser(this.user.id)
+      .subscribe(category => this.userCategories = category);
   }
 
-  deleteCategory($event: Category){
-    this.eventService.removeCategory($event._id, this.authService.currentUserValue.id+"");
+  updateCategory($event: Category){
+    this.eventService.updateCategory($event._id, this.user.id + '');
   }
 
   ngOnInit() {
+    console.log(this.userCategories)
   }
 }

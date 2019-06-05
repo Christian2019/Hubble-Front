@@ -15,7 +15,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { CreateEventControllerComponent } from './pages/create-event/controller/create-event.controller.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { EventsService } from './shared/services/events.service';
 import { AuthService } from './shared/services/Authentication/auth.service';
@@ -92,7 +92,10 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatChipsModule
+    MatChipsModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     EventsService,
