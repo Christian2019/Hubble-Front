@@ -13,6 +13,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class DetailEventComponent implements OnInit {
  event: any;
  favorito: boolean = false;
+ presenca: boolean = false;
+ logado: boolean = false;
 
  constructor(
     private eventService: EventsService,
@@ -24,9 +26,15 @@ export class DetailEventComponent implements OnInit {
     this.eventService.getById(this.route.snapshot.params['id'])
    .subscribe(teste => this.event = teste);
 
+    if(this.serviceUser.idUser){
+      this.logado = true;
 
-    this.eventService.getFavoriteEvent(this.serviceUser.idUser, this.route.snapshot.params['id'])
+      this.eventService.getFavoriteEvent(this.serviceUser.idUser, this.route.snapshot.params['id'])
     .then(teste => this.favorito = teste);
+
+      this.eventService.getConfirmedEvent(this.serviceUser.idUser, this.route.snapshot.params['id'])
+    .then(teste => this.presenca = teste);
+    }
 }
 
  favoritar() {
@@ -36,6 +44,15 @@ export class DetailEventComponent implements OnInit {
     this.favorito = false;
   }
    this.eventService.favoriteEvent(this.serviceUser.idUser, this.event.id);
+ }
+
+ confirmar() {
+  if (this.presenca === false) {
+    this.presenca = true;
+  } else {
+    this.presenca = false;
+  }
+   this.eventService.confirmEvent(this.serviceUser.idUser, this.event.id);
  }
 //  deletar(id: string) {
 //    this.eventService.delete(this.event.id)
