@@ -5,7 +5,7 @@ import { ActionButtonTextEnum } from 'src/app/shared/enums/ActionButtonTextEnum'
 import { EventCardObject } from 'src/app/shared/interfaces/EventCardSchema';
 import { EventCard } from 'src/app/shared/interfaces/EventCard';
 import { EventsService } from 'src/app/shared/services/events.service';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { RouterOutlet, OutletContext, Router } from '@angular/router';
 
 @Component({
@@ -28,16 +28,11 @@ export class MyEventsComponent implements OnInit {
               buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
               id: "5ccbf4b5d582532357d9e436",
               title: "Seminário de UX",
-              description: "Esta é uma descrição de um evento",
-              tag: "UX",
-              category: "Seminário",
-              status: "Aprovado",
-              confirmedUsers: "lalala",
-              picture: "lalala",
               startDate: "13/04/2020",
               endDate: "13/04/2020",
+              startHour: "16:00",
+              endHour: "20:00",
               price: "34",
-              hours: "0",
               address: {
                 street: "Rua 123",
                 number: 43,
@@ -46,27 +41,18 @@ export class MyEventsComponent implements OnInit {
                 district: "Bairro de teste",
                 city: "Porto Alegre",
                 state: "RS"
-              },
-              createdBy: "d923jo54lo1223l093",
-              approvedBy: "k834120lk94240kk432",
-              createdAt: "14/04/2019",
-              updatedAt: ""
+              }
             },
             {
               actionType: ActionTypesEnum.VIEW_EVENT,
               buttonText: ActionButtonTextEnum.CREATED_BY_ME,
               id: "5ccbf4b5d582532357d9e436",
               title: "Palestra sobre Coach Quântico",
-              description: "Esta é uma descrição de um evento",
-              tag: "UX",
-              category: "Seminário",
-              status: "Aprovado",
-              confirmedUsers: "lalala",
-              picture: "lalala",
               startDate: "13/04/2020",
               endDate: "13/04/2020",
+              startHour: "16:00",
+              endHour: "20:00",
               price: "34",
-              hours: "0",
               address: {
                 street: "Rua 123",
                 number: 71,
@@ -75,11 +61,7 @@ export class MyEventsComponent implements OnInit {
                 district: "Bairro de teste",
                 city: "Porto Alegre",
                 state: "RS"
-              },
-              createdBy: "d923jo54lo1223l093",
-              approvedBy: "k834120lk94240kk432",
-              createdAt: "14/04/2019",
-              updatedAt: ""
+              }
             }
           ]
         }
@@ -92,10 +74,98 @@ export class MyEventsComponent implements OnInit {
   constructor(private eventService: EventsService, private router: Router) { }
 
   ngOnInit() {
+    this.buildListingComponent();
   }
 
-  buildListingComponent(){
+  async buildListingComponent(){
+    const data = {
+      header: 'Meus eventos',
+      subHeader:
+        'Mantenha os eventos que você mais gosta sempre por perto. Gerencie eventos em que você '+
+        'marcou presença, relembre daqueles em que você já foi, acesse seus eventos favoritos e monitore '+
+        'aqueles criados por você.',
+      tabs: [
+        {
+          title: 'Eu vou',
+          cards: {}
+        },
+        {
+          title: 'Eu fui',
+          cards: {}
+        },
+        {
+          title: 'Favoritos',
+          cards: {}
+        },
+        {
+          title: 'Criados por mim',
+          cards: {}
+        }
+      ]
+    }
+    data.tabs[0].cards['events'] = await this.getConfirmedEvents();
+    data.tabs[1].cards['events'] = await this.getPastEvents();
+    data.tabs[2].cards['events'] = await this.getFavoriteEvents();
+    data.tabs[3].cards['events'] = await this.getEventsCreatedByMe();
 
+    console.log(data);
+
+  }
+
+  getConfirmedEvents(){
+    return [];
+  }
+
+  getPastEvents(){
+    return [];
+  }
+
+  async getFavoriteEvents(){
+    let favoriteEvents;
+    this.eventService.getFavoriteEvents()
+      .then(
+         async (success: any) => {
+           favoriteEvents = await this.formatEvent(success, ActionTypesEnum.REMOVE_FAV_EVENT, ActionButtonTextEnum.FAV_EVENTS);
+           console.log('fav: ',favoriteEvents);
+
+        },
+        (rejected: HttpErrorResponse) => {
+          console.log('Deu erro');
+        }
+      );
+    return favoriteEvents;
+  }
+
+  private formatEvent(events: any, actionType: ActionTypesEnum, actionButtonText: ActionButtonTextEnum) {
+    const formattedEvents: EventCard[] = [];
+    events.forEach(element => {
+      formattedEvents.push(
+        {
+          id          : element._id,
+          actionType  : actionType,
+          buttonText  : actionButtonText,
+          title       : element.title,
+          startDate   : element.startDate,
+          endDate     : element.endDate,
+          startHour   : element.startHour,
+          endHour     : element.endHour,
+          price       : element.price,
+          address     : {
+            street      : element.address.street,
+            number      : element.address.number,
+            complements : element.address.complements,
+            zipCode     : element.address.zipCode,
+            district    : element.address.district,
+            city        : element.address.city,
+            state       : element.address.state
+          }
+        });
+      return formattedEvents;
+    });
+  }
+
+  getEventsCreatedByMe(){
+    return [];
   }
 
 

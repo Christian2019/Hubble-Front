@@ -7,7 +7,6 @@ import { CreateEventControllerComponent } from './pages/create-event/controller/
 import { LoginComponent } from './pages/login/login.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
-import { TesteComponent } from './shared/teste/teste.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
 import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
