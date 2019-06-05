@@ -6,10 +6,6 @@
       <span>Evento</span>
     </div>
 
-    <div class="event_span">
-      <p style="text-align: center" class="">&nbsp; &nbsp;{{event?.createdAt | date: 'dd/MM/yyyy'}} {{event?.createdAt | date:'shortTime'}} </p>
-    </div>
-
     <div class="button_place">
       <button class="reprove_button">Recusar</button>
       <!-- usar ng-click pra fazer a ação de mudar o status! -->
@@ -24,6 +20,20 @@
 </div>
 
 <br>
+
+<div class="first_info">
+  <div>
+    <span>Status: </span>
+    <span style="color: #5C3993; font-weight: normal;">aguardando.</span>
+  </div>
+  <br>
+  <p>Criado dia dd/mm/aaaa</p>
+</div>
+
+
+<!-- <div class="event_span">
+  <p style="text-align: center" class="">&nbsp; &nbsp;{{event?.createdAt | date: 'dd/MM/yyyy'}} {{event?.createdAt | date:'shortTime'}} </p>
+</div> -->
 
 <div class="wrapper">
 
@@ -41,6 +51,33 @@
         <p class="bordered-box">{{event?.title}}</p>
       </div>
     </div>
+
+    <div>
+      <div>
+        <span class="content_title content_title_plus_padding">Criado por</span>
+      </div>
+      <div style="margin-top: 8px">
+        <p class="bordered-box">John Snow e Mary Poppins</p>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <span class="content_title content_title_plus_padding">Horas totais</span>
+      </div>
+      <div style="margin-top: 8px">
+        <p class="bordered-box centralize_text">12h</p>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <span class="content_title content_title_plus_padding">Preço</span>
+      </div>
+      <div style="margin-top: 8px">
+        <p class="bordered-box centralize_text">120 reais</p>
+      </div>
+    </div>
   
     <!-- <div>
       <div>
@@ -53,7 +90,7 @@
   
     <div>
       <div>
-        <span class="content_title content_title_plus_padding">Data para início</span>
+        <span class="content_title content_title_plus_padding">Data de início</span>
       </div>
       <div style="margin-top: 8px">
         <p style="text-align: center" class="bordered-box"> {{event?.startDate | date: 'dd/MM/yyyy'}} &nbsp; &nbsp; {{event?.startDate | date:'shortTime'}} </p>
@@ -62,7 +99,7 @@
   
     <div>
       <div>
-        <span class="content_title content_title_plus_padding">Data para final</span>
+        <span class="content_title content_title_plus_padding">Data de término</span>
       </div>
       <div style="margin-top: 8px">
         <p style="text-align: center" class="bordered-box"> {{event?.endDate | date: 'dd/MM/yyyy'}} &nbsp; &nbsp; {{event?.endDate | date:'shortTime'}} </p>
@@ -86,13 +123,33 @@
   <div class="description_box box3">
     <div>
       <div>
-        <span class="content_title">Descrição</span>
+        <span class="content_title content_title_plus_padding">Descrição</span>
       </div>
       <div style="margin-top: 8px">
         <p class="bordered-box">{{event?.description}}</p>
       </div>
     </div>
   </div>
+
+  <div class="content_box">
+      <div>
+        <span class="content_title content_title_plus_padding">Categoria</span>
+      </div>
+      <div style="margin-top: 8px">
+        <p style="text-align: center" class="bordered-box"> Lorem ipsum dolor sit. </p>
+      </div>
+    </div>
+
+    <div class="content_box">
+      <div>
+        <span class="content_title content_title_plus_padding">Tags</span>
+      </div>
+      <div style="margin-top: 8px">
+        <div class="bordered-box">
+          <p>Lorem; ipsum; dolor; sit amet; consectetur; adipiscing; elit; sed do eiusmod; tempor; incididunt; ut labore; et dolore; magna; aliqua;</p>
+        </div>
+      </div>
+    </div>
   
   <div class="content_box">
     <div class="button_wrapper">
@@ -104,7 +161,6 @@
         <button class="second_reprove_button">Recusar</button>
       </div>
     </div>
-  
   </div>
 
 </div>
