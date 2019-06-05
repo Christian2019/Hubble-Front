@@ -74,7 +74,12 @@ export class EventsService {
       description: generalForm.get('description').value,
       price: generalForm.get('price').value,
       hours: parseInt(generalForm.get('additionalHours').value),
+      startDate: dateAndLocationForm.get('startDate').value,
+      endDate: dateAndLocationForm.get('endDate').value,
+      endHour: dateAndLocationForm.get('endHour').value,
+      startHour: dateAndLocationForm.get('startHour').value,
       address: {
+        number: dateAndLocationForm.get('number').value,
         state: dateAndLocationForm.get('state').value,
         city: dateAndLocationForm.get('city').value,
         district: dateAndLocationForm.get('district').value,
