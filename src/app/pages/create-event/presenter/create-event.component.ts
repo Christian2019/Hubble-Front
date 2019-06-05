@@ -275,7 +275,6 @@ export class CreateEventComponent implements OnInit {
     });
 
     dateAndLocationFormControls.forEach(control => {
-      console.log(control);
       formsData.push({
         controlName   : control,
         controlValue  : this.dateAndLocationForm.get(control).value
