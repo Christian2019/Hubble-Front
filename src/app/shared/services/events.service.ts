@@ -31,7 +31,7 @@ export class EventsService {
     return this.httpClient.post('http://localhost:4200/api/user', payload);
   }
   fetch() {
-    return this.httpClient.get(environment.apiUrl + 'event');
+    return this.httpClient.get(environment.apiUrl + 'event/status/Aprovado');
   }
 
 

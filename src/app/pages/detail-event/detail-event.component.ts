@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { EventsService } from './../../shared/services/events.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-detail-event',
@@ -15,24 +16,29 @@ export class DetailEventComponent implements OnInit {
  favorito: boolean = false;
  presenca: boolean = false;
  logado: boolean = false;
+ currentUser: User;
 
  constructor(
     private eventService: EventsService,
     private route: ActivatedRoute,
-    private serviceUser: AuthenticationService,
+    private authenticationService: AuthenticationService,
   ) { }
 
   ngOnInit() {
     this.eventService.getById(this.route.snapshot.params['id'])
    .subscribe(teste => this.event = teste);
+   this.authenticationService.currentUser.subscribe(user => {
+    this.currentUser = user;
+});
 
-    if(this.serviceUser.idUser){
+
+    if(this.currentUser !== null){
       this.logado = true;
 
-      this.eventService.getFavoriteEvent(this.serviceUser.idUser, this.route.snapshot.params['id'])
+      this.eventService.getFavoriteEvent(""+this.currentUser.id, this.route.snapshot.params['id'])
     .then(teste => this.favorito = teste);
 
-      this.eventService.getConfirmedEvent(this.serviceUser.idUser, this.route.snapshot.params['id'])
+      this.eventService.getConfirmedEvent(""+this.currentUser.id, this.route.snapshot.params['id'])
     .then(teste => this.presenca = teste);
     }
 }
@@ -43,7 +49,7 @@ export class DetailEventComponent implements OnInit {
   } else {
     this.favorito = false;
   }
-   this.eventService.favoriteEvent(this.serviceUser.idUser, this.event.id);
+   this.eventService.favoriteEvent(""+this.currentUser.id, this.event.id);
  }
 
  confirmar() {
@@ -52,10 +58,8 @@ export class DetailEventComponent implements OnInit {
   } else {
     this.presenca = false;
   }
-   this.eventService.confirmEvent(this.serviceUser.idUser, this.event.id);
+   this.eventService.confirmEvent(""+this.currentUser.id, this.event.id);
  }
-//  deletar(id: string) {
-//    this.eventService.delete(this.event.id)
-//    .then(msg => console.log(msg));
-//  }
+
+
 }
