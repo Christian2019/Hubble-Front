@@ -39,7 +39,7 @@ export class EventsService {
     return this.httpClient.get<EventCard[]>(environment.apiUrl + 'Event/status/Pendente');
   }
 
-  
+
   get_categories() {
     return this.httpClient.get(environment.apiUrl + 'category');
   }
