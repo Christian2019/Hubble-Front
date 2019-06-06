@@ -30,6 +30,7 @@ export class ProfileViewComponent implements OnInit {
 
   updateCategory($event: Category){
     this.eventService.updateCategory($event._id + '', this.user.id + '');
+    window.location.reload();
   }
 
   ngOnInit() {
