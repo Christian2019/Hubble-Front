@@ -7,6 +7,7 @@ import { EventCard } from 'src/app/shared/interfaces/EventCard';
 import { EventsService } from 'src/app/shared/services/events.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { RouterOutlet, OutletContext, Router } from '@angular/router';
+import { CreateEventComponent } from '../../create-event/presenter/create-event.component';
 
 @Component({
   selector: 'app-my-events',
@@ -15,66 +16,66 @@ import { RouterOutlet, OutletContext, Router } from '@angular/router';
 })
 export class MyEventsComponent implements OnInit {
 
-  meuJson: EventListingObject = {
-    header: "Meus eventos",
-    subHeader: "Uma descrição para a página de meus eventos",
-    tabs: [
-      {
-        title: "Eu vou",
-        cards: {
-          events: [
-            {
-              actionType: ActionTypesEnum.CANCEL_SUBSCRIPTION,
-              buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
-              id: "5ccbf4b5d582532357d9e436",
-              title: "Seminário de UX",
-              startDate: "13/04/2020",
-              endDate: "13/04/2020",
-              startHour: "16:00",
-              endHour: "20:00",
-              price: "34",
-              address: {
-                street: "Rua 123",
-                number: 43,
-                complements: "Um complemento",
-                zipCode: "94321980",
-                district: "Bairro de teste",
-                city: "Porto Alegre",
-                state: "RS"
-              }
-            },
-            {
-              actionType: ActionTypesEnum.VIEW_EVENT,
-              buttonText: ActionButtonTextEnum.CREATED_BY_ME,
-              id: "5ccbf4b5d582532357d9e436",
-              title: "Palestra sobre Coach Quântico",
-              startDate: "13/04/2020",
-              endDate: "13/04/2020",
-              startHour: "16:00",
-              endHour: "20:00",
-              price: "34",
-              address: {
-                street: "Rua 123",
-                number: 71,
-                complements: "Um complemento",
-                zipCode: "94321980",
-                district: "Bairro de teste",
-                city: "Porto Alegre",
-                state: "RS"
-              }
-            }
-          ]
-        }
-      }
-    ]
-  };
+  // meuJson: EventListingObject = {
+  //   header: "Meus eventos",
+  //   subHeader: "Uma descrição para a página de meus eventos",
+  //   tabs: [
+  //     {
+  //       title: "Eu vou",
+  //       cards: {
+  //         events: [
+  //           {
+  //             actionType: ActionTypesEnum.CANCEL_SUBSCRIPTION,
+  //             buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
+  //             id: "5ccbf4b5d582532357d9e436",
+  //             title: "Seminário de UX",
+  //             startDate: "13/04/2020",
+  //             endDate: "13/04/2020",
+  //             startHour: "16:00",
+  //             endHour: "20:00",
+  //             price: "34",
+  //             address: {
+  //               street: "Rua 123",
+  //               number: 43,
+  //               complements: "Um complemento",
+  //               zipCode: "94321980",
+  //               district: "Bairro de teste",
+  //               city: "Porto Alegre",
+  //               state: "RS"
+  //             }
+  //           },
+  //           {
+  //             actionType: ActionTypesEnum.VIEW_EVENT,
+  //             buttonText: ActionButtonTextEnum.CREATED_BY_ME,
+  //             id: "5ccbf4b5d582532357d9e436",
+  //             title: "Palestra sobre Coach Quântico",
+  //             startDate: "13/04/2020",
+  //             endDate: "13/04/2020",
+  //             startHour: "16:00",
+  //             endHour: "20:00",
+  //             price: "34",
+  //             address: {
+  //               street: "Rua 123",
+  //               number: 71,
+  //               complements: "Um complemento",
+  //               zipCode: "94321980",
+  //               district: "Bairro de teste",
+  //               city: "Porto Alegre",
+  //               state: "RS"
+  //             }
+  //           }
+  //         ]
+  //       }
+  //     }
+  //   ]
+  // };
 
-  pageData: EventListingObject;
+  pageData;
 
   constructor(private eventService: EventsService, private router: Router) { }
 
-  ngOnInit() {
-    this.buildListingComponent();
+  async ngOnInit() {
+    await this.buildListingComponent();
   }
 
   async buildListingComponent(){
@@ -103,37 +104,44 @@ export class MyEventsComponent implements OnInit {
         }
       ]
     }
-    data.tabs[0].cards['events'] = await this.getConfirmedEvents();
-    data.tabs[1].cards['events'] = await this.getPastEvents();
-    data.tabs[2].cards['events'] = await this.getFavoriteEvents();
-    data.tabs[3].cards['events'] = await this.getEventsCreatedByMe();
-
+    await this.getConfirmedEvents((events: EventCard)   => {data.tabs[0].cards['events'] = events});
+    await this.getPastEvents((events: EventCard)        => {data.tabs[1].cards['events'] = events});
+    await this.getFavoriteEvents((events: EventCard)    => {data.tabs[2].cards['events'] = events});
+    await this.getEventsCreatedByMe((events: EventCard) => {data.tabs[3].cards['events'] = events});
+    this.pageData = data;
     console.log(data);
-
   }
 
-  getConfirmedEvents(){
-    return [];
+  getConfirmedEvents(callback): void {
+    this.eventService.getParticipatedEvents()
+      .then(
+        (success: HttpResponse<Object>) => {callback(success['euFui']);},
+        (rejected: HttpErrorResponse) => {'Erro: '+rejected.error}
+      );
   }
 
-  getPastEvents(){
-    return [];
+  getPastEvents(callback): void {
+    this.eventService.getParticipatedEvents()
+      .then(
+        (success: HttpResponse<Object>) => {callback(success['euVou']);},
+        (rejected: HttpErrorResponse) => {'Erro: '+rejected.error}
+      );
   }
 
-  async getFavoriteEvents(){
-    let favoriteEvents;
+  getFavoriteEvents(callback): void {
     this.eventService.getFavoriteEvents()
       .then(
-         async (success: any) => {
-           favoriteEvents = await this.formatEvent(success, ActionTypesEnum.REMOVE_FAV_EVENT, ActionButtonTextEnum.FAV_EVENTS);
-           console.log('fav: ',favoriteEvents);
-
-        },
-        (rejected: HttpErrorResponse) => {
-          console.log('Deu erro');
-        }
+        (success: any) => callback(success),
+        (rejected: HttpErrorResponse) => console.log('Erro: ',rejected.error)
       );
-    return favoriteEvents;
+  }
+
+  getEventsCreatedByMe(callback): void {
+    this.eventService.getCreatedEvents()
+      .then(
+        (success: HttpResponse<Object>) => callback(success),
+        (rejected: HttpErrorResponse) => console.log('Erro: ',rejected.error)
+      );
   }
 
   private formatEvent(events: any, actionType: ActionTypesEnum, actionButtonText: ActionButtonTextEnum) {
@@ -163,11 +171,6 @@ export class MyEventsComponent implements OnInit {
       return formattedEvents;
     });
   }
-
-  getEventsCreatedByMe(){
-    return [];
-  }
-
 
   onEventCardSelected($eventCard: EventCard){
     console.log('Card que chegou: ',$eventCard);
