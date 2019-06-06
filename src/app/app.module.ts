@@ -1,6 +1,6 @@
 import { MatDialogModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatPaginatorModule } from '@angular/material';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +16,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { CreateEventControllerComponent } from './pages/create-event/controller/create-event.controller.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { EventsService } from './shared/services/events.service';
 import { AuthService } from './shared/services/Authentication/auth.service';
@@ -25,7 +25,6 @@ import { DetailEventComponent } from './pages/detail-event/detail-event.componen
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login/login.component';
 import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
-import { TesteComponent } from './shared/teste/teste.component';
 import { EventCardComponent } from './shared/components/event-card/event-card.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
 import { registerLocaleData } from '@angular/common';
@@ -78,7 +77,6 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SingUpComponent,
     LoginComponent,
     EventListingComponent,
-    TesteComponent,
     EventCardComponent,
     AdminEventDetailComponent,
     EventAproveListComponent,
@@ -101,6 +99,9 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatTableModule,
+    FormsModule,
+    MatPaginatorModule,
     MatDialogModule,
     MatTableModule
   ],

@@ -1,4 +1,5 @@
 <app-event-listing
-  [data]="meuJson"
+  *ngIf="pageData"
+  [data]="pageData"
   (selectedEventCard)="onEventCardSelected($event)"
 ></app-event-listing>
