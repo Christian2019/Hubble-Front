@@ -69,10 +69,12 @@ getCategoriesFromUser(id: String): Observable<Category[]> {
     (environment.apiUrl + 'user/categories/interestCategories/' + id);
 }
 
-updateCategory(idCategory: string, idUser: string): any {
-  console.log(JSON.stringify({"idCategoria":idCategory}))
-  console.log(environment.apiUrl + "user/updateCategoria/" + idUser)
-  return this.httpClient.post<User>(environment.apiUrl + "user/updateCategoria/" + idUser, {"idCategoria" : idCategory});
+updateCategory(idCategory: string, idUser: string) {
+  const url = environment.apiUrl + 'user/updateCategoria/' + idUser;
+  console.log(url);
+  this.httpClient.post<string>(url , {idCategoria : idCategory}).subscribe(
+    response => console.log(response)
+  );
 }
 
   private normalizeUserPayload(rawPayload: FormGroup[]){
