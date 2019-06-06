@@ -13,6 +13,10 @@ export interface Categories {
 
 }
 
+export interface Tags {
+  title: string;
+}
+
 
 
 @Component({
@@ -35,12 +39,16 @@ export interface Categories {
 
 
 export class RegisterEventTypeComponent implements OnInit {
+  tagForm: FormGroup;
+  public all_items_tag: Tags[] = [];
+  public items_tag: Tags[];
 
   categoryForm: FormGroup;
   public all_items: Categories[] = [];
   public items: Categories[] = [];
-  public newItem: Categories[];
+  // public newItem: Categories[];
 
+  public ELEMENT_DATA_TAG: Tags[];
   public ELEMENT_DATA: Categories[];
   
   // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -58,21 +66,28 @@ export class RegisterEventTypeComponent implements OnInit {
       console.log(this.dataSource);
     }
 
+    setAllTags(items_tag){
+      this.all_items_tag = items_tag;
+      this.items_tag = this.all_items_tag;
+      this.dataSourceTag = this.all_items_tag;
+      console.log(this.dataSourceTag);
+    }
+
   columnsToDisplay: string[] = ['title'];
+
   dataSource = this.ELEMENT_DATA;
+  dataSourceTag = this.ELEMENT_DATA_TAG;
 
   pageEvent: PageEvent;
 
   ngOnInit() {
-
+    this.tagForm = this.formBuilder.group({
+      tagName: ['', Validators.required]
+    })
     this.categoryForm = this.formBuilder.group({
       catName: ['', Validators.required]
     })
-
-    // get all categgories
-    // this.eventService.get_categories()
-    // .subscribe(() => this.dataSource = this.all_items);
-
+    this.loadTagList();
     this.loadCategoryList();
   };
 
@@ -85,16 +100,22 @@ export class RegisterEventTypeComponent implements OnInit {
 
   }
 
-  loadCategoryList() {
-    // const content = this.eventService.get_categories();
-    // content.subscribe (
-    //   items => this.setAll(items),
-    //   error => console.log(error))
+  tagDelete(id: string){
+    console.log(id);
+    this.eventService.delete_tag(id).subscribe(_ => {
+      this.loadTagList();
+    });
+  }
 
-    //   this.items = this.all_items;
+  loadTagList(){
+    this.eventService.get_tags().subscribe(
+      (itens: Tags) => this.setAllTags(itens),
+    );
+  }
+
+  loadCategoryList() {
     this.eventService.get_categories().subscribe(
       (itens: Categories) => this.setAll(itens),
-
     );
   }
 
@@ -110,21 +131,26 @@ export class RegisterEventTypeComponent implements OnInit {
       return;
     }
 
-    // if (this.checkAlreadyExist() == -1) {
-    //   console.log('funcionou')
-    // } else { 
-    //   console.log('n funcionou')
-    // }
-
-
-    // const categoryName = this.categoryForm.get('catName').value;
-    // this.newItem = [{title: categoryName}];
-    // const newCategories = this.dataSource.concat(this.newItem);
-    // this.dataSource = newCategories;
-
     this.eventService.createCategory(this.categoryForm).subscribe(obj => {
-      this.snackBar.open("Cadastrado com sucesso", "Ok", { duration: 5000 });
+      this.snackBar.open("Categoria cadastrada com sucesso", "Ok", { duration: 5000 });
       this.loadCategoryList()
+    })
+  }
+
+  onSubmitTag(){
+    if (this.tagForm.invalid) {
+      return;
+    }
+    const tagName = this.tagForm.get('tagName').value;
+   
+    if (this.all_items_tag.some(e => e.title.toLowerCase() == tagName.toLowerCase())) {
+      this.snackBar.open("Tag já cadastrada.", "Ok", { duration: 5000 });
+      return;
+    }
+
+    this.eventService.createTag(this.tagForm).subscribe(obj => {
+      this.snackBar.open("Tag cadastrada com sucesso", "Ok", { duration: 5000 });
+      this.loadTagList();
     })
   }
 

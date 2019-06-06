@@ -44,6 +44,29 @@ export class EventsService {
     return this.httpClient.post('http://localhost:4200/api/category', payload)
   }
 
+  get_tags() {
+    return this.httpClient.get(environment.apiUrl + 'tag');
+  }
+
+  delete_tag(id: string){
+    return this.httpClient.delete(environment.apiUrl + 'tag/' + id);
+  }
+
+  createTag(Payload: FormGroup){
+    const payload = this.normPayloadTag(Payload);
+    return this.httpClient.post('http://localhost:4200/api/tag', payload)
+  }
+
+  private normPayloadTag(Payload: FormGroup){
+    const genForm = Payload;
+
+    const normzPayloadTag = {
+      title: genForm.get('tagName').value
+    };
+    console.log('Tag Normalized: ' + normzPayloadTag);
+    return normzPayloadTag;
+  }
+
   private normPayload(Payload: FormGroup){
     const genForm = Payload;
 
