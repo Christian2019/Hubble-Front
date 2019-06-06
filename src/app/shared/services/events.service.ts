@@ -39,7 +39,7 @@ export class EventsService {
     return this.httpClient.get<EventCard[]>(environment.apiUrl + 'Event/status/Pendente');
   }
 
-  
+
   get_categories() {
     return this.httpClient.get(environment.apiUrl + 'category');
   }
@@ -53,7 +53,30 @@ export class EventsService {
     return this.httpClient.post('http://localhost:4200/api/category', payload)
   }
 
-  private normPayload(Payload: FormGroup) {
+  get_tags() {
+    return this.httpClient.get(environment.apiUrl + 'tag');
+  }
+
+  delete_tag(id: string){
+    return this.httpClient.delete(environment.apiUrl + 'tag/' + id);
+  }
+
+  createTag(Payload: FormGroup){
+    const payload = this.normPayloadTag(Payload);
+    return this.httpClient.post('http://localhost:4200/api/tag', payload)
+  }
+
+  private normPayloadTag(Payload: FormGroup){
+    const genForm = Payload;
+
+    const normzPayloadTag = {
+      title: genForm.get('tagName').value
+    };
+    console.log('Tag Normalized: ' + normzPayloadTag);
+    return normzPayloadTag;
+  }
+
+  private normPayload(Payload: FormGroup){
     const genForm = Payload;
 
     const normzPayload = {
@@ -114,32 +137,36 @@ export class EventsService {
   }
 
   removeFromFavorites(eventId: string) {
-
+    // if (!this.currentUser) return null;
+    return this.favoriteEvent('5cf595e7ab53922755043874', eventId);
   }
 
-  getConfirmedEvents() {
-
+  getParticipatedEvents() {
+    // if (!this.currentUser) return null;
+    const endpoint = 'http://localhost:3000/user/events/participatedEvents/5cf595e7ab53922755043874';
+    return this.httpClient.get(endpoint).toPromise();
   }
 
-  getPastEvents() {
-
+  /**
+   *
+   */
+  getFavoriteEvents(): Promise<Object> {
+    // if(!this.currentUser) return null;
+    const endpoint = "http://localhost:3000/user/events/favoritedEvents/5cf595e7ab53922755043874";
+    return this.httpClient.get(endpoint).toPromise();
   }
 
-  getFavoriteEvents() {
-
+  getCreatedEvents(): Promise<Object> {
+    // if (!this.currentUser) return null;
+    const endpoint = "http://localhost:3000/user/events/createdEvents/5cf595e7ab53922755043874";
+    return this.httpClient.get(endpoint).toPromise();
   }
 
-  getCreatedEvents() {
-    if (!this.currentUser) return null;
-
-    const endpoint = "http://localhost:3000/user/events/createdEvents/" + this.currentUser.id;
-    console.log(endpoint);
-    this.httpClient.get(endpoint).subscribe((success: HttpResponse<Object>) => {
-      console.log('Success: ', success);
-
-    })
-  }
-
+  /**
+   * @TODO qual a diferença deste método para getFavoriteEvents???
+   * @param idUser
+   * @param event
+   */
   getFavoriteEvent(idUser: string, event: string): Promise<any> {
     return this.httpClient.post<any>('http://localhost:4200/api/user/favoritado/' + idUser, { idEvent: event })
       .toPromise()
@@ -151,7 +178,6 @@ export class EventsService {
     return this.httpClient.put<any>('http://localhost:4200/api/user/favoritar/' + idUser, { idEvent: event })
       .toPromise()
       .then((resposta: Response) => resposta);
-
   }
 
    getConfirmedEvent(idUser: string, event: string): Promise<any> {
