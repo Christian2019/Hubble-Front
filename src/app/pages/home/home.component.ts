@@ -54,8 +54,4 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  selectEvent(id) {
-    console.log('funcionaou', id);
-  }
 }

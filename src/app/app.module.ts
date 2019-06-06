@@ -1,3 +1,4 @@
+import { MatDialogModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule, MatPaginatorModule } from '@angular/material';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -23,8 +24,16 @@ import { DatePipe } from '@angular/common';
 import { DetailEventComponent } from './pages/detail-event/detail-event.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login/login.component';
+import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
+import { TesteComponent } from './shared/teste/teste.component';
+import { EventCardComponent } from './shared/components/event-card/event-card.component';
+import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { EventAproveListComponent } from './pages/event-aprove-list/event-aprove-list.component';
 import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
-
+import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
+registerLocaleData(localePt);
 
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -68,7 +77,13 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     LoginComponent,
     SingUpComponent,
     LoginComponent,
-    RegisterEventTypeComponent
+    EventListingComponent,
+    TesteComponent,
+    EventCardComponent,
+    AdminEventDetailComponent,
+    EventAproveListComponent,
+    RegisterEventTypeComponent,
+    MyEventsComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +103,9 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatSnackBarModule,
     MatTableModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [
     EventsService,
