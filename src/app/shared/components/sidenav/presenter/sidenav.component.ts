@@ -52,7 +52,9 @@ export class SidenavComponent {
 
   public get authenticated(): boolean {
     return this.currentUser !== null;
-}
+  }
 
-
+  public get adminAuthenticated(): boolean {
+    return this.currentUser !== null && this.currentUser.role == "Admin";
+  }
 }

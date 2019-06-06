@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { EventCard } from '../interfaces/EventCard';
 import { AuthenticationService } from './authentication.service';
 import { User } from 'src/app/pages/_models/user';
 
@@ -33,6 +34,12 @@ export class EventsService {
     return this.httpClient.get(environment.apiUrl + 'event');
   }
 
+
+  fetch_pending() : Observable<EventCard[]> {
+    return this.httpClient.get<EventCard[]>(environment.apiUrl + 'Event/status/Pendente');
+  }
+
+  
   get_categories() {
     return this.httpClient.get(environment.apiUrl + 'category');
   }
@@ -67,7 +74,12 @@ export class EventsService {
       description: generalForm.get('description').value,
       price: generalForm.get('price').value,
       hours: parseInt(generalForm.get('additionalHours').value),
+      startDate: dateAndLocationForm.get('startDate').value,
+      endDate: dateAndLocationForm.get('endDate').value,
+      endHour: dateAndLocationForm.get('endHour').value,
+      startHour: dateAndLocationForm.get('startHour').value,
       address: {
+        number: dateAndLocationForm.get('number').value,
         state: dateAndLocationForm.get('state').value,
         city: dateAndLocationForm.get('city').value,
         district: dateAndLocationForm.get('district').value,
@@ -145,10 +157,24 @@ export class EventsService {
       .then((resposta: Response) => resposta);
   }
 
-  // delete(id: string): Promise<any> {
-  //   return this.httpClient.delete('http://localhost:4200/api/event/' + id)
-  //   .toPromise()
-  //   .then(() => null )
-  //   .catch();
-  // }
+   getConfirmedEvent(idUser: string, event: string): Promise<any> {
+    return this.httpClient.post<any>('http://localhost:4200/api/user/confirmado/' + idUser, {idEvent: event})
+    .toPromise()
+    .then((resposta: any) => resposta);
+  }
+
+
+   confirmEvent(idUser: string, event: string): Promise<any> {
+       return this.httpClient.post<any>('http://localhost:4200/api/user/confirmar/' + idUser, {idEvent: event})
+      .toPromise()
+       .then((resposta: Response) => resposta);
+
+   }
+
+// delete(id: string): Promise<any> {
+//   return this.httpClient.delete('http://localhost:4200/api/event/' + id)
+//   .toPromise()
+//   .then(() => null )
+//   .catch();
+// }
 }
