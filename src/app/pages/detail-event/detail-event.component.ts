@@ -42,10 +42,16 @@ export class DetailEventComponent implements OnInit {
  favoritar() {
   if (this.favorito === false) {
     this.favorito = true;
+    this.snackbar.open('Evento favoritado.' , 'ok',
+   {duration: 5000});
   } else {
     this.favorito = false;
+    this.snackbar.open('Evento excluido da lista de favoritos.' , 'ok',
+   {duration: 5000});
   }
    this.eventService.favoriteEvent(this.serviceUser.idUser, this.event.id);
+
+
  }
 
  confirmar() {
