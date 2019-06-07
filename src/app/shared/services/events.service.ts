@@ -28,15 +28,15 @@ export class EventsService {
 
   create_user(rawPayload: FormGroup[]) {
     const payload = this.normalizeUserPayload(rawPayload);
-    return this.httpClient.post('http://localhost:4200/api/user', payload);
+    return this.httpClient.post(environment.apiUrl + 'user', payload);
   }
   fetch() {
-    return this.httpClient.get(environment.apiUrl + 'event/status/Aprovado');
+    return this.httpClient.get(environment.apiUrl + 'event/status/aprovado');
   }
 
 
-  fetch_pending() : Observable<EventCard[]> {
-    return this.httpClient.get<EventCard[]>(environment.apiUrl + 'Event/status/Pendente');
+  fetch_pending(): Observable<EventCard[]> {
+    return this.httpClient.get<EventCard[]>(environment.apiUrl + 'event/status/pendente');
   }
 
 
@@ -45,28 +45,28 @@ export class EventsService {
   }
 
   delete_category(id: string) {
-    return this.httpClient.delete(environment.apiUrl + 'category/' + id);
+    return this.httpClient.delete(environment.apiUrl + 'category' + id);
   }
 
   createCategory(Payload: FormGroup) {
     const payload = this.normPayload(Payload);
-    return this.httpClient.post('http://localhost:4200/api/category', payload)
+    return this.httpClient.post(environment.apiUrl + 'category', payload);
   }
 
   get_tags() {
     return this.httpClient.get(environment.apiUrl + 'tag');
   }
 
-  delete_tag(id: string){
-    return this.httpClient.delete(environment.apiUrl + 'tag/' + id);
+  delete_tag(id: string) {
+    return this.httpClient.delete(environment.apiUrl + 'tag' + id);
   }
 
-  createTag(Payload: FormGroup){
+  createTag(Payload: FormGroup) {
     const payload = this.normPayloadTag(Payload);
-    return this.httpClient.post('http://localhost:4200/api/tag', payload)
+    return this.httpClient.post(environment.apiUrl + 'tag', payload)
   }
 
-  private normPayloadTag(Payload: FormGroup){
+  private normPayloadTag(Payload: FormGroup) {
     const genForm = Payload;
 
     const normzPayloadTag = {
@@ -76,7 +76,7 @@ export class EventsService {
     return normzPayloadTag;
   }
 
-  private normPayload(Payload: FormGroup){
+  private normPayload(Payload: FormGroup) {
     const genForm = Payload;
 
     const normzPayload = {
@@ -117,7 +117,7 @@ export class EventsService {
 
 
   getById(id: string): Observable<Event> {
-    return this.httpClient.get<Event>('http://localhost:4200/api/event/' + id);
+    return this.httpClient.get<Event>(environment.apiUrl + 'event' + id);
   }
   private normalizeUserPayload(rawPayload: FormGroup[]) {
     const generalForm = rawPayload[0];
@@ -143,7 +143,7 @@ export class EventsService {
 
   getParticipatedEvents() {
     // if (!this.currentUser) return null;
-    const endpoint = 'http://localhost:3000/user/events/participatedEvents/5cf595e7ab53922755043874';
+    const endpoint = environment.apiUrl + 'user/events/participatedEvents/' + '5cf595e7ab53922755043874';
     return this.httpClient.get(endpoint).toPromise();
   }
 
@@ -151,14 +151,14 @@ export class EventsService {
    *
    */
   getFavoriteEvents(): Promise<Object> {
-    // if(!this.currentUser) return null;
-    const endpoint = "http://localhost:3000/user/events/favoritedEvents/5cf595e7ab53922755043874";
+    // if (!this.currentUser) return null;
+    const endpoint = `${environment.apiUrl}user/events/favoritedEvents/5cf595e7ab53922755043874`;
     return this.httpClient.get(endpoint).toPromise();
   }
 
   getCreatedEvents(): Promise<Object> {
     // if (!this.currentUser) return null;
-    const endpoint = "http://localhost:3000/user/events/createdEvents/5cf595e7ab53922755043874";
+    const endpoint = `${environment.apiUrl}user/events/createdEvents/5cf595e7ab53922755043874`;
     return this.httpClient.get(endpoint).toPromise();
   }
 
@@ -168,36 +168,36 @@ export class EventsService {
    * @param event
    */
   getFavoriteEvent(idUser: string, event: string): Promise<any> {
-    return this.httpClient.post<any>('http://localhost:4200/api/user/favoritado/' + idUser, { idEvent: event })
+    return this.httpClient.post<any>(environment.apiUrl + 'user/favoritado/' + idUser, { idEvent: event })
       .toPromise()
       .then((resposta: any) => resposta);
   }
 
 
   favoriteEvent(idUser: string, event: string): Promise<any> {
-    return this.httpClient.put<any>('http://localhost:4200/api/user/favoritar/' + idUser, { idEvent: event })
+    return this.httpClient.put<any>(environment.apiUrl + 'user/favoritar/' + idUser, { idEvent: event })
       .toPromise()
       .then((resposta: Response) => resposta);
   }
 
-   getConfirmedEvent(idUser: string, event: string): Promise<any> {
-    return this.httpClient.post<any>('http://localhost:4200/api/user/confirmado/' + idUser, {idEvent: event})
-    .toPromise()
-    .then((resposta: any) => resposta);
+  getConfirmedEvent(idUser: string, event: string): Promise<any> {
+    return this.httpClient.post<any>(environment.apiUrl + 'user/confirmado/' + idUser, { idEvent: event })
+      .toPromise()
+      .then((resposta: any) => resposta);
   }
 
 
-   confirmEvent(idUser: string, event: string): Promise<any> {
-       return this.httpClient.post<any>('http://localhost:4200/api/user/confirmar/' + idUser, {idEvent: event})
+  confirmEvent(idUser: string, event: string): Promise<any> {
+    return this.httpClient.post<any>(environment.apiUrl + 'user/confirmar/' + idUser, { idEvent: event })
       .toPromise()
-       .then((resposta: Response) => resposta);
+      .then((resposta: Response) => resposta);
 
-   }
+  }
 
-// delete(id: string): Promise<any> {
-//   return this.httpClient.delete('http://localhost:4200/api/event/' + id)
-//   .toPromise()
-//   .then(() => null )
-//   .catch();
-// }
+  // delete(id: string): Promise<any> {
+  //   return this.httpClient.delete(environment.apiUrl+'api/event/' + id)
+  //   .toPromise()
+  //   .then(() => null )
+  //   .catch();
+  // }
 }
