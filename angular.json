@@ -150,9 +150,6 @@
           "configurations": {
             "production": {
               "devServerTarget": "Hubble:serve:production"
-            },
-            "hml": {
-              "devServerTarget": "Hubble:serve:hml"
             }
           }
         },

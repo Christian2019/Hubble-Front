@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { Category } from '../components/category';
 import { EventCard } from '../interfaces/EventCard';
 import { AuthenticationService } from './authentication.service';
 import { User } from 'src/app/pages/_models/user';
@@ -115,17 +116,34 @@ export class EventsService {
     return normalizedPayload;
   }
 
+getById(id: string): Observable<Event> {
+  return this.httpClient.get<Event>(environment.apiUrl + 'event/' + id);
+}
 
-  getById(id: string): Observable<Event> {
-    return this.httpClient.get<Event>(environment.apiUrl + 'event/' + id);
-  }
-  private normalizeUserPayload(rawPayload: FormGroup[]) {
-    const generalForm = rawPayload[0];
-    const normalizedPayload = {
-      firstName: generalForm.get('firstName').value,
-      lastName: generalForm.get('lastName').value,
-      email: generalForm.get('email').value,
-      password: generalForm.get('password').value
+getCategories(): Observable<Category[]> {
+  return this.httpClient.get<Category[]>(environment.apiUrl + 'category');
+}
+
+getCategoriesFromUser(id: String): Observable<Category[]> {
+  return this.httpClient.get<Category[]>
+    (environment.apiUrl + 'user/categories/interestCategories/' + id);
+}
+
+updateCategory(idCategory: string, idUser: string) {
+  const url = environment.apiUrl + 'user/updateCategoria/' + idUser;
+  console.log(url);
+  this.httpClient.post<string>(url , {idCategoria : idCategory}).subscribe(
+    response => console.log(response)
+  );
+}
+
+  private normalizeUserPayload(rawPayload: FormGroup[]){
+    const generalForm         = rawPayload[0];
+    const normalizedPayload   = {
+      firstName         : generalForm.get('firstName').value,
+      lastName          : generalForm.get('lastName').value,
+      email             : generalForm.get('email').value,
+      password          : generalForm.get('password').value
     };
 
     console.log(normalizedPayload);

@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
+import { ProfileViewComponent } from './pages/profile/profile.component';
 import { EventAproveListComponent } from './pages/event-aprove-list/event-aprove-list.component';
 import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
 import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'admin/lista-eventos', component: EventAproveListComponent},
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent},
+  { path: 'profile', component: ProfileViewComponent},
   { path: 'categorias-evento', component: RegisterEventTypeComponent},
   { path: 'meus-eventos', component: MyEventsComponent},
   { path: 'edit-event/:id', component: EditEventComponent}

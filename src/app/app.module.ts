@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './material-import';
 import { SidenavComponent } from './shared/components/sidenav/presenter/sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSnackBarModule, MatTableModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSnackBarModule, MatChipsModule, MatTableModule } from '@angular/material';
 import { CreateEventComponent } from './pages/create-event/presenter/create-event.component';
 import { SidenavControllerComponent } from './shared/components/sidenav/controller/sidenav.controller.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -23,6 +23,7 @@ import { DatePipe } from '@angular/common';
 import { DetailEventComponent } from './pages/detail-event/detail-event.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProfileViewComponent } from './pages/profile/profile.component';
 import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
 import { EventCardComponent } from './shared/components/event-card/event-card.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
@@ -76,6 +77,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     LoginComponent,
     SingUpComponent,
     LoginComponent,
+    AdminEventDetailComponent,
+    ProfileViewComponent,
     EventListingComponent,
     EventCardComponent,
     AdminEventDetailComponent,
@@ -100,11 +103,13 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatChipsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatTableModule,
     FormsModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatTableModule
   ],
   providers: [
     EventsService,
