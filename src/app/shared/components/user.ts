@@ -5,7 +5,7 @@ export class User {
   lastName: string;
   phoneNumber: string;
   email: string;
-  _id: string;
+  id: string;
   password: string;
   role: string;
   favoritedEvents: Event[];

@@ -198,6 +198,11 @@ updateCategory(idCategory: string, idUser: string) {
       .toPromise()
       .then((resposta: Response) => resposta);
   }
+  AprovarEvent(event: string): Promise<any> {
+    return this.httpClient.put<any>(environment.apiUrl + 'evento/status/aprovado' + event, {})
+      .toPromise()
+      .then((resposta: Response) => resposta);
+  }
 
   getConfirmedEvent(idUser: string, event: string): Promise<any> {
     return this.httpClient.post<any>(environment.apiUrl + 'user/confirmado/' + idUser, { idEvent: event })

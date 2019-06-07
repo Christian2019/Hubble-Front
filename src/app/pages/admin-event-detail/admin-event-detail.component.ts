@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Event } from 'src/app/shared/components/event';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { User } from 'src/app/shared/components/user';
+import { EventsService } from 'src/app/shared/services/events.service';
 
 
 @Component({
@@ -11,8 +14,11 @@ import { Event } from 'src/app/shared/components/event';
 })
 export class AdminEventDetailComponent implements OnInit {
   event: Event;
+  currentUser: User;
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute,
+    private authenticationService: AuthenticationService,
+    private eventService: EventsService,) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
@@ -27,4 +33,7 @@ export class AdminEventDetailComponent implements OnInit {
     return aux;
   }
 
+  confirmar() {
+     this.eventService.AprovarEvent(this.event.id);
+   }
 }
