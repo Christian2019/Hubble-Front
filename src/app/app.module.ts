@@ -19,7 +19,6 @@ import { CreateEventControllerComponent } from './pages/create-event/controller/
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { EventsService } from './shared/services/events.service';
-import { AuthService } from './shared/services/Authentication/auth.service';
 import { DatePipe } from '@angular/common';
 import { DetailEventComponent } from './pages/detail-event/detail-event.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
@@ -111,7 +110,6 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
     },
-    AuthService,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
