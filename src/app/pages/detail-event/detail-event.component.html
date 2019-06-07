@@ -8,7 +8,22 @@
     <div>
       <div class="event_title">
         <span>{{ event?.title }} </span>
-        <a href=""><i style="vertical-align: -4.5px;" class="material-icons favorite_class"> star_border </i></a>
+        <!-- <div > -->
+            <small (click)="favoritar();" *ngIf="favorito === false  && logado === true">
+                <i style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons favorite_class" >star_border</i>
+            </small>
+            <small (click)="favoritar();" *ngIf="favorito === true  && logado === true">
+                <i style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons favorite_class" >star</i>
+
+            </small>
+            <!-- <p *ngIf="favorito === false" style="font-size: 15px;">Deseja adicionar a ista de favoritos ?</p>
+            <p *ngIf="favorito === true" style="font-size: 15px;">Adicionado a lista de favoritos</p> -->
+        <!-- </div> -->
+        <div class="acoes" style="position: absolute; right: 40px; bottom: 150px;">
+          <button style="margin-right: 10px; "id="add" mat-raised-button color="danger" routerLink="/" (click)="deletar(event?.id)">Deletar</button>
+          <button  id="add" class="btn-edit" mat-raised-button color="primary"  [routerLink]="['/edit-event', event?.id]">Editar</button>
+        </div>
+
       </div>
       <div class="created_by">
         <span class="created_by_default">Criado por </span> <span class="created_by_name">John Doe</span>
@@ -19,7 +34,8 @@
 
   <div class="block2">
     <div>
-      <button class="confirm_event_button">Confirmar presença</button>
+      <button (click)="confirmar();" class="confirm_event_button" *ngIf="presenca === false && logado === true">Confirmar presença</button>
+      <button (click)="confirmar();" class="confirm_event_button" *ngIf="presenca === true && logado === true" style="background-color: #af031d;">Cancelar presença</button>
     </div>
   </div>
 
@@ -37,13 +53,17 @@
         <i style="vertical-align: -5px;" class="material-icons"> location_on </i>
         <span> {{ event?.address.street}}, {{event?.address.complements}}, {{event?.address.district}} - {{event?.address.city}} - {{event?.address.state}} </span>
       </div>
+      <div style="margin-top: 8px;">
+          <i class="material-icons" style="vertical-align: -5px;">attach_money</i>
+          <span>{{event?.price}}</span>
+        </div>
     </div>
   </div>
-
+  <div>
+  </div>
   <div class="block3">
     <div class="padding_text">
       <p> {{event?.description}} </p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet tortor sed ex varius facilisis. Fusce elementum pellentesque ligula sed aliquam. Phasellus nec nibh in magna maximus facilisis et quis augue. Maecenas auctor ultricies massa, eget euismod risus posuere sed. Nulla dui massa, tristique ac dictum vel, volutpat at mauris.</p>
     </div>
     <nav>
       <ul>
@@ -62,9 +82,9 @@
       </ul>
     </nav>
   </div>
-
+  <div  class="example-button-row">
+    <!-- <button id="add" mat-raised-button color="danger" routerLink="/" (click)="deletar(event?.id)">Deletar</button>
+    <button  id="add" class="btn-edit" mat-raised-button color="primary"  [routerLink]="['/edit-event', event?.id]">Editar</button> -->
+  </div>
 </div>
-
-
-  
 <div style="margin-bottom: 8rem;"></div>

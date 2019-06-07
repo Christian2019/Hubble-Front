@@ -1,5 +1,6 @@
+import { MatDialogModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatPaginatorModule } from '@angular/material';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './material-import';
 import { SidenavComponent } from './shared/components/sidenav/presenter/sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSnackBarModule, MatChipsModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatSnackBarModule, MatChipsModule, MatTableModule } from '@angular/material';
 import { CreateEventComponent } from './pages/create-event/presenter/create-event.component';
 import { SidenavControllerComponent } from './shared/components/sidenav/controller/sidenav.controller.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -18,18 +19,21 @@ import { CreateEventControllerComponent } from './pages/create-event/controller/
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { EventsService } from './shared/services/events.service';
-import { AuthService } from './shared/services/Authentication/auth.service';
 import { DatePipe } from '@angular/common';
 import { DetailEventComponent } from './pages/detail-event/detail-event.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileViewComponent } from './pages/profile/profile.component';
+import { EventListingComponent } from './shared/components/event-listing/presenter/event-listing.component';
+import { EventCardComponent } from './shared/components/event-card/event-card.component';
 import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-event-detail.component';
-
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { EventAproveListComponent } from './pages/event-aprove-list/event-aprove-list.component';
+import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
+import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
+import { EditEventComponent } from './pages/edit-event/edit-event.component';
 registerLocaleData(localePt);
-
 
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -74,7 +78,14 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SingUpComponent,
     LoginComponent,
     AdminEventDetailComponent,
-    ProfileViewComponent
+    ProfileViewComponent,
+    EventListingComponent,
+    EventCardComponent,
+    AdminEventDetailComponent,
+    EventAproveListComponent,
+    RegisterEventTypeComponent,
+    MyEventsComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,
@@ -94,8 +105,11 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatSnackBarModule,
     MatChipsModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatTableModule,
+    FormsModule,
+    MatPaginatorModule,
+    MatDialogModule,
   ],
   providers: [
     EventsService,
@@ -103,7 +117,6 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
     },
-    AuthService,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

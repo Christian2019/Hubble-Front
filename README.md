@@ -1,6 +1,6 @@
 # Primeiros passos
 
-Para começar a contribuir com o Projeto Hubble, basta seguir os seguintes passos:
+Para começar a contribuir com o Projeto Lunne, basta seguir os seguintes passos:
 
 ## 1 - Instale o NodeJS e o npm
 
