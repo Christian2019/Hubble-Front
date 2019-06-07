@@ -59,7 +59,7 @@
         <span class="content_title content_title_plus_padding">Preço</span>
       </div>
       <div style="margin-top: 8px">
-        <p class="bordered-box centralize_text">120 reais</p>
+        <p class="bordered-box centralize_text">{{event?.price}}</p>
       </div>
     </div>
   
@@ -68,7 +68,7 @@
         <span class="content_title content_title_plus_padding">Horas totais</span>
       </div>
       <div style="margin-top: 8px">
-        <p class="bordered-box centralize_text">12h</p>
+        <p class="bordered-box centralize_text">{{event?.startDate - event?.endDate | date:'hh'}}h {{event?.startDate - event?.endDate | date:'mm'}}min</p>
       </div>
     </div>
   </div>
@@ -132,7 +132,9 @@
     </div>
     <div style="margin-top: 8px">
       <div class="bordered-box">
-        <p>Lorem; ipsum; dolor; sit amet; consectetur; adipiscing; elit; sed do eiusmod; tempor; incididunt; ut labore; et dolore; magna; aliqua;</p>
+
+        {{allTags()}}
+        <!-- <p>Lorem; ipsum; dolor; sit amet; consectetur; adipiscing; elit; sed do eiusmod; tempor; incididunt; ut labore; et dolore; magna; aliqua;</p> -->
       </div>
     </div>
   </div>

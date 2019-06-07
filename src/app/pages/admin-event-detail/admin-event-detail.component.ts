@@ -22,4 +22,9 @@ export class AdminEventDetailComponent implements OnInit {
     // http://localhost:3000/Event/status/Aprovado
   }
 
+  allTags () {
+    let aux = this.event.tag.map(n => "<a href=\"#\">"+n+"</a>");
+    return aux;
+  }
+
 }
