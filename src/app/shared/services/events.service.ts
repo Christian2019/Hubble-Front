@@ -137,13 +137,13 @@ export class EventsService {
   }
 
   removeFromFavorites(eventId: string) {
-    // if (!this.currentUser) return null;
-    return this.favoriteEvent('5cf595e7ab53922755043874', eventId);
+    if (!this.currentUser) return null;
+    return this.favoriteEvent(this.currentUser.id, eventId);
   }
 
   getParticipatedEvents() {
-    // if (!this.currentUser) return null;
-    const endpoint = environment.apiUrl + 'user/events/participatedEvents/' + '5cf595e7ab53922755043874';
+    if (!this.currentUser) return null;
+    const endpoint = environment.apiUrl + 'user/events/participatedEvents/' + this.currentUser.id;
     return this.httpClient.get(endpoint).toPromise();
   }
 
@@ -151,14 +151,14 @@ export class EventsService {
    *
    */
   getFavoriteEvents(): Promise<Object> {
-    // if (!this.currentUser) return null;
-    const endpoint = `${environment.apiUrl}user/events/favoritedEvents/5cf595e7ab53922755043874`;
+    if (!this.currentUser) return null;
+    const endpoint = `${environment.apiUrl}user/events/favoritedEvents/${this.currentUser.id}`;
     return this.httpClient.get(endpoint).toPromise();
   }
 
   getCreatedEvents(): Promise<Object> {
-    // if (!this.currentUser) return null;
-    const endpoint = `${environment.apiUrl}user/events/createdEvents/5cf595e7ab53922755043874`;
+    if (!this.currentUser) return null;
+    const endpoint = `${environment.apiUrl}user/events/createdEvents/${this.currentUser.id}`;
     return this.httpClient.get(endpoint).toPromise();
   }
 
