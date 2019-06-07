@@ -30,19 +30,12 @@
   <p>Criado dia dd/mm/aaaa</p>
 </div>
 
-
-<!-- <div class="event_span">
-  <p style="text-align: center" class="">&nbsp; &nbsp;{{event?.createdAt | date: 'dd/MM/yyyy'}} {{event?.createdAt | date:'shortTime'}} </p>
-</div> -->
-
 <div class="wrapper">
-
-  <div style="padding-top: 24px" class="box1">
+  <div class="box1 image_div">
     <img class="event_image" src="http://placehold.it/400x300" alt="Imagem do Evento" title="Imagem do Evento">
   </div>
   
   <div class="content_box box2">
-    
     <div>
       <div>
         <span class="content_title">Título</span>
@@ -51,7 +44,7 @@
         <p class="bordered-box">{{event?.title}}</p>
       </div>
     </div>
-
+  
     <div>
       <div>
         <span class="content_title content_title_plus_padding">Criado por</span>
@@ -60,16 +53,7 @@
         <p class="bordered-box">John Snow e Mary Poppins</p>
       </div>
     </div>
-
-    <div>
-      <div>
-        <span class="content_title content_title_plus_padding">Horas totais</span>
-      </div>
-      <div style="margin-top: 8px">
-        <p class="bordered-box centralize_text">12h</p>
-      </div>
-    </div>
-
+  
     <div>
       <div>
         <span class="content_title content_title_plus_padding">Preço</span>
@@ -79,48 +63,50 @@
       </div>
     </div>
   
-    <!-- <div>
-      <div>
-        <span class="content_title content_title_plus_padding">Data que foi criado o evento</span>
-      </div>
-      <div style="margin-top: 8px">
-        <p style="text-align: center" class="bordered-box">{{event?.createdAt | date: 'dd/MM/yyyy'}} &nbsp; &nbsp; {{event?.createdAt | date:'shortTime'}} </p>
-      </div>
-    </div> -->
-  
     <div>
       <div>
-        <span class="content_title content_title_plus_padding">Data de início</span>
+        <span class="content_title content_title_plus_padding">Horas totais</span>
       </div>
       <div style="margin-top: 8px">
-        <p style="text-align: center" class="bordered-box"> {{event?.startDate | date: 'dd/MM/yyyy'}} &nbsp; &nbsp; {{event?.startDate | date:'shortTime'}} </p>
+        <p class="bordered-box centralize_text">12h</p>
       </div>
     </div>
-  
-    <div>
-      <div>
-        <span class="content_title content_title_plus_padding">Data de término</span>
-      </div>
-      <div style="margin-top: 8px">
-        <p style="text-align: center" class="bordered-box"> {{event?.endDate | date: 'dd/MM/yyyy'}} &nbsp; &nbsp; {{event?.endDate | date:'shortTime'}} </p>
-      </div>
-    </div>
-  
-    <div>
-      <div>
-        <span class="content_title content_title_plus_padding">Endereço</span>
-      </div>
-      <div style="margin-top: 8px">
-        <div class="bordered-box">
-          <p >{{ event?.address.street}}, {{event?.address.complements}} - {{event?.address.district}}, {{event?.address.city}} - {{event?.address.state}}</p>
-          <p>CEP: {{event?.address.zipCode}}</p>
-        </div>
-      </div>
-    </div>
-  
   </div>
-  
-  <div class="description_box box3">
+</div>
+
+<div class="content_box">
+
+  <div>
+    <div>
+      <span class="content_title content_title_plus_padding">Data de início</span>
+    </div>
+    <div style="margin-top: 8px">
+      <p class="bordered-box centralize_text"> {{event?.startDate | date: 'dd/MM/yyyy'}} &nbsp; &nbsp; {{event?.startDate | date:'shortTime'}} </p>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <span class="content_title content_title_plus_padding">Data de término</span>
+    </div>
+    <div style="margin-top: 8px">
+      <p class="bordered-box centralize_text"> {{event?.endDate | date: 'dd/MM/yyyy'}} &nbsp; &nbsp; {{event?.endDate | date:'shortTime'}} </p>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <span class="content_title content_title_plus_padding">Endereço</span>
+    </div>
+    <div style="margin-top: 8px">
+      <div class="bordered-box">
+        <p >{{ event?.address.street}}, {{event?.address.complements}} - {{event?.address.district}}, {{event?.address.city}} - {{event?.address.state}}</p>
+        <p>CEP: {{event?.address.zipCode}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div>
     <div>
       <div>
         <span class="content_title content_title_plus_padding">Descrição</span>
@@ -131,27 +117,27 @@
     </div>
   </div>
 
-  <div class="content_box">
-      <div>
-        <span class="content_title content_title_plus_padding">Categoria</span>
-      </div>
-      <div style="margin-top: 8px">
-        <p style="text-align: center" class="bordered-box"> Lorem ipsum dolor sit. </p>
-      </div>
+  <div>
+    <div>
+      <span class="content_title content_title_plus_padding">Categoria</span>
     </div>
+    <div style="margin-top: 8px">
+      <p class="bordered-box centralize_text"> Lorem ipsum dolor sit. </p>
+    </div>
+  </div>
 
-    <div class="content_box">
-      <div>
-        <span class="content_title content_title_plus_padding">Tags</span>
-      </div>
-      <div style="margin-top: 8px">
-        <div class="bordered-box">
-          <p>Lorem; ipsum; dolor; sit amet; consectetur; adipiscing; elit; sed do eiusmod; tempor; incididunt; ut labore; et dolore; magna; aliqua;</p>
-        </div>
+  <div>
+    <div>
+      <span class="content_title content_title_plus_padding">Tags</span>
+    </div>
+    <div style="margin-top: 8px">
+      <div class="bordered-box">
+        <p>Lorem; ipsum; dolor; sit amet; consectetur; adipiscing; elit; sed do eiusmod; tempor; incididunt; ut labore; et dolore; magna; aliqua;</p>
       </div>
     </div>
-  
-  <div class="content_box">
+  </div>
+
+  <div>
     <div class="button_wrapper">
       <div class="b1">
         <button class="second_aprove_button">Aprovar</button>
@@ -162,7 +148,7 @@
       </div>
     </div>
   </div>
-
 </div>
+
 
 <div style="margin-bottom: 24px;"></div>
