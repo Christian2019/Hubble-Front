@@ -19,6 +19,11 @@
             <!-- <p *ngIf="favorito === false" style="font-size: 15px;">Deseja adicionar a ista de favoritos ?</p>
             <p *ngIf="favorito === true" style="font-size: 15px;">Adicionado a lista de favoritos</p> -->
         <!-- </div> -->
+        <div class="acoes" style="position: absolute; right: 40px; bottom: 150px;">
+          <button style="margin-right: 10px; "id="add" mat-raised-button color="danger" routerLink="/" (click)="deletar(event?.id)">Deletar</button>
+          <button  id="add" class="btn-edit" mat-raised-button color="primary"  [routerLink]="['/edit-event', event?.id]">Editar</button>
+        </div>
+
       </div>
       <div class="created_by">
         <span class="created_by_default">Criado por </span> <span class="created_by_name">John Doe</span>
@@ -79,8 +84,8 @@
     </nav>
   </div>
   <div  class="example-button-row">
-    <button id="add" mat-raised-button color="danger" (click)="deletar(event?.id)" >Deletar</button>
-    <button  id="add" class="btn-edit" mat-raised-button color="primary"  [routerLink]="['/edit-event', event?.id]">Editar</button>
+    <!-- <button id="add" mat-raised-button color="danger" routerLink="/" (click)="deletar(event?.id)">Deletar</button>
+    <button  id="add" class="btn-edit" mat-raised-button color="primary"  [routerLink]="['/edit-event', event?.id]">Editar</button> -->
   </div>
 </div>
 <div style="margin-bottom: 8rem;"></div>

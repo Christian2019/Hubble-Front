@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { EventsService } from './../../shared/services/events.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-detail-event',
@@ -20,6 +21,7 @@ export class DetailEventComponent implements OnInit {
     private eventService: EventsService,
     private route: ActivatedRoute,
     private serviceUser: AuthenticationService,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -57,5 +59,8 @@ export class DetailEventComponent implements OnInit {
  deletar(id: string) {
    this.eventService.delete(this.event.id)
    .then(msg => console.log(msg));
+
+   this.snackbar.open('Evento deletado com sucesso.' , 'ok',
+  {duration: 5000});
  }
 }
