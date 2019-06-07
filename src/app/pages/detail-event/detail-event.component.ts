@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { EventsService } from './../../shared/services/events.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import { User } from '../_models/user';
 
 @Component({
@@ -21,6 +22,7 @@ export class DetailEventComponent implements OnInit {
  constructor(
     private eventService: EventsService,
     private route: ActivatedRoute,
+    private snackbar: MatSnackBar,
     private authenticationService: AuthenticationService,
   ) { }
 
@@ -46,8 +48,12 @@ export class DetailEventComponent implements OnInit {
  favoritar() {
   if (this.favorito === false) {
     this.favorito = true;
+    this.snackbar.open('Evento favoritado.' , 'ok',
+   {duration: 5000});
   } else {
     this.favorito = false;
+    this.snackbar.open('Evento excluido da lista de favoritos.' , 'ok',
+   {duration: 5000});
   }
    this.eventService.favoriteEvent(""+this.currentUser.id, this.event.id);
  }
@@ -60,6 +66,11 @@ export class DetailEventComponent implements OnInit {
   }
    this.eventService.confirmEvent(""+this.currentUser.id, this.event.id);
  }
+ deletar(id: string) {
+   this.eventService.delete(this.event.id)
+   .then(msg => console.log(msg));
 
-
+   this.snackbar.open('Evento deletado com sucesso.' , 'ok',
+  {duration: 5000});
+ }
 }

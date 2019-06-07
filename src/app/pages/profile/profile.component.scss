@@ -4,12 +4,12 @@
   text-decoration: none;
   color:#212121;
 }
-#add {
-  background: #212121;
-  color: white;
-  border: 1.5px solid #212121;
-  border-radius: 10px;
+
+mat-form-field {
+  margin-top: 3%;
+  width: 25% !important;
 }
+
 .cel_image {
   margin: 0;
   width: 100%;
@@ -24,22 +24,22 @@
   font-size: 20px;
 }
 
-.created_by {
-  margin-left: 32px;
-  margin-top: 8px;
+.email {
+  margin-top: 14px;
   font-size: 14px;
 }
 
-.created_by_default{
+.email{
   color: #757575;
 }
 
-.created_by_name {
+.email_value {
   color: #212121;
 }
 
 .padding_info {
-  padding: 32px 32px 0px 32px;
+  margin-left: 32px;
+  margin-right: 32px;
   font-size: 12px;
 }
 
@@ -50,7 +50,7 @@
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, 0%);
-  background-color: #5c3993;
+  background-color: #272727;
   color: #ffffff;
   height: 47px;
   width: 193px;
@@ -58,7 +58,6 @@
   display: inline-block;
   font-size: 16px;
   border-radius: 23.5px;
-  border:  none;
 }
 
 .padding_text {
@@ -84,25 +83,32 @@ nav ul li a {
   font-size: 16px;
 }
 
+mat-card {
+  margin-top: 32px;
+  margin-left: 32px;
+  margin-right: 32px;
+}
+
 @media only screen and (min-width:769px) {
 
   .wrapper {
     min-height: 133px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 133px auto;
     justify-content: center;
   }
-  #add {
-    background: #212121;
-    color: white;
-    border: 1.5px solid #212121;
-    border-radius: 10px;
-  }
-  .event_title{
+
+  .user_name{
     font-size: 36px;
   }
 
-  .created_by {
+  .categorias{
+    font-size: 36px;
+    margin-bottom: 32px;
+  }
+
+  .email {
     font-size: 18px;
   }
 
@@ -146,7 +152,7 @@ nav ul li a {
   }
 
   .padding_text {
-    margin-top: 18px;
+    margin-top: 0px;
     font-size: 18px;
   }
 
@@ -155,8 +161,5 @@ nav ul li a {
     margin-right: 32px;
     font-size: 18px;
   }
-  .example-button-row button,
-  .example-button-row a {
-    margin-right: 8px;
-  }
+
 }
