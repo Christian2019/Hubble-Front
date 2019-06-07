@@ -117,7 +117,7 @@ export class EventsService {
 
 
   getById(id: string): Observable<Event> {
-    return this.httpClient.get<Event>(environment.apiUrl + 'event' + id);
+    return this.httpClient.get<Event>(environment.apiUrl + 'event/' + id);
   }
   private normalizeUserPayload(rawPayload: FormGroup[]) {
     const generalForm = rawPayload[0];
