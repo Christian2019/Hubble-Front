@@ -54,8 +54,8 @@ export class DetailEventComponent implements OnInit {
   }
    this.eventService.confirmEvent(this.serviceUser.idUser, this.event.id);
  }
-//  deletar(id: string) {
-//    this.eventService.delete(this.event.id)
-//    .then(msg => console.log(msg));
-//  }
+ deletar(id: string) {
+   this.eventService.delete(this.event.id)
+   .then(msg => console.log(msg));
+ }
 }

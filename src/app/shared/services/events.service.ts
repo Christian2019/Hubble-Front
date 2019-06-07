@@ -39,7 +39,7 @@ export class EventsService {
     return this.httpClient.get<EventCard[]>(environment.apiUrl + 'Event/status/Pendente');
   }
 
-  
+
   get_categories() {
     return this.httpClient.get(environment.apiUrl + 'category');
   }
@@ -163,10 +163,15 @@ export class EventsService {
 
    }
 
-// delete(id: string): Promise<any> {
-//   return this.httpClient.delete('http://localhost:4200/api/event/' + id)
-//   .toPromise()
-//   .then(() => null )
-//   .catch();
-// }
+delete(id: string): Promise<any> {
+  return this.httpClient.delete('http://localhost:4200/api/event/' + id)
+  .toPromise()
+  .then(() => null )
+  .catch();
+}
+   updateEvent(idEvent: string, event: Event): Promise<any> {
+    return this.httpClient.put<any>('http://localhost:4200/api/event/' + idEvent, event)
+    .toPromise()
+    .then((resposta: Response) => resposta);
+   }
 }

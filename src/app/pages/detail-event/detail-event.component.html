@@ -48,9 +48,14 @@
         <i style="vertical-align: -5px;" class="material-icons"> location_on </i>
         <span> {{ event?.address.street}}, {{event?.address.complements}}, {{event?.address.district}} - {{event?.address.city}} - {{event?.address.state}} </span>
       </div>
+      <div style="margin-top: 8px;">
+          <i class="material-icons" style="vertical-align: -5px;">attach_money</i>
+          <span>{{event?.price}}</span>
+        </div>
     </div>
   </div>
-
+  <div>
+  </div>
   <div class="block3">
     <div class="padding_text">
       <p> {{event?.description}} </p>
@@ -73,9 +78,9 @@
       </ul>
     </nav>
   </div>
-  <div class="example-button-row">
-    <!-- <button mat-raised-button color="primary" (click)="deletar(event?.id)">Primary</button> -->
-
+  <div  class="example-button-row">
+    <button id="add" mat-raised-button color="danger" (click)="deletar(event?.id)" >Deletar</button>
+    <button  id="add" class="btn-edit" mat-raised-button color="primary"  [routerLink]="['/edit-event', event?.id]">Editar</button>
   </div>
 </div>
 <div style="margin-bottom: 8rem;"></div>

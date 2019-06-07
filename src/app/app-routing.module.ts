@@ -11,6 +11,7 @@ import { AdminEventDetailComponent } from './pages/admin-event-detail/admin-even
 import { EventAproveListComponent } from './pages/event-aprove-list/event-aprove-list.component';
 import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
 import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
+import { EditEventComponent } from './pages/edit-event/edit-event.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent},
   { path: 'categorias-evento', component: RegisterEventTypeComponent},
   { path: 'meus-eventos', component: MyEventsComponent},
+  { path: 'edit-event/:id', component: EditEventComponent}
 ];
 
 @NgModule({

@@ -33,6 +33,7 @@ import localePt from '@angular/common/locales/pt';
 import { EventAproveListComponent } from './pages/event-aprove-list/event-aprove-list.component';
 import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
 import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
+import { EditEventComponent } from './pages/edit-event/edit-event.component';
 registerLocaleData(localePt);
 
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -83,7 +84,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AdminEventDetailComponent,
     EventAproveListComponent,
     RegisterEventTypeComponent,
-    MyEventsComponent
+    MyEventsComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,
