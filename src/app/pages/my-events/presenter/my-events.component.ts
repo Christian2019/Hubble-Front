@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { EventListingObject } from 'src/app/shared/interfaces/EventListingSchema';
 import { ActionTypesEnum } from 'src/app/shared/enums/ActionTypesEnum';
 import { ActionButtonTextEnum } from 'src/app/shared/enums/ActionButtonTextEnum';
@@ -14,61 +14,7 @@ import { CreateEventComponent } from '../../create-event/presenter/create-event.
   templateUrl: './my-events.component.html',
   styleUrls: ['./my-events.component.scss']
 })
-export class MyEventsComponent implements OnInit {
-
-  // meuJson: EventListingObject = {
-  //   header: "Meus eventos",
-  //   subHeader: "Uma descrição para a página de meus eventos",
-  //   tabs: [
-  //     {
-  //       title: "Eu vou",
-  //       cards: {
-  //         events: [
-  //           {
-  //             actionType: ActionTypesEnum.CANCEL_SUBSCRIPTION,
-  //             buttonText: ActionButtonTextEnum.CONFIRMED_EVENTS,
-  //             id: "5ccbf4b5d582532357d9e436",
-  //             title: "Seminário de UX",
-  //             startDate: "13/04/2020",
-  //             endDate: "13/04/2020",
-  //             startHour: "16:00",
-  //             endHour: "20:00",
-  //             price: "34",
-  //             address: {
-  //               street: "Rua 123",
-  //               number: 43,
-  //               complements: "Um complemento",
-  //               zipCode: "94321980",
-  //               district: "Bairro de teste",
-  //               city: "Porto Alegre",
-  //               state: "RS"
-  //             }
-  //           },
-  //           {
-  //             actionType: ActionTypesEnum.VIEW_EVENT,
-  //             buttonText: ActionButtonTextEnum.CREATED_BY_ME,
-  //             id: "5ccbf4b5d582532357d9e436",
-  //             title: "Palestra sobre Coach Quântico",
-  //             startDate: "13/04/2020",
-  //             endDate: "13/04/2020",
-  //             startHour: "16:00",
-  //             endHour: "20:00",
-  //             price: "34",
-  //             address: {
-  //               street: "Rua 123",
-  //               number: 71,
-  //               complements: "Um complemento",
-  //               zipCode: "94321980",
-  //               district: "Bairro de teste",
-  //               city: "Porto Alegre",
-  //               state: "RS"
-  //             }
-  //           }
-  //         ]
-  //       }
-  //     }
-  //   ]
-  // };
+export class MyEventsComponent implements OnInit, OnChanges {
 
   pageData;
 
@@ -76,6 +22,12 @@ export class MyEventsComponent implements OnInit {
 
   async ngOnInit() {
     await this.buildListingComponent();
+  }
+
+  async ngOnChanges(changes: SimpleChanges) {
+    if (!changes.pageData.firstChange) {
+      await this.buildListingComponent();
+    }
   }
 
   async buildListingComponent() {
@@ -201,17 +153,17 @@ export class MyEventsComponent implements OnInit {
   }
 
   private cancelSubscription(eventId: string) {
-    // this.eventService.cancelSubscription(eventId)
-    //   .then(
-    //     (success: HttpResponse<Object>)=> {
-
-    //     });
+    this.eventService.cancelSubscription(eventId)
+      .then(
+        async (success: HttpResponse<Object>)=> {await this.buildListingComponent()}
+      );
   }
 
   private removeFromFavorites(eventId: string) {
-    // this.eventService.removeFromFavorites(eventId)
-    //   .then((success: HttpResponse<Object>) => {}
-    //
+    this.eventService.removeFromFavorites(eventId)
+      .then(
+        async (success: HttpResponse<Object>) => {await this.buildListingComponent()}
+      );
   }
 
   private viewEvent(eventId: string) {

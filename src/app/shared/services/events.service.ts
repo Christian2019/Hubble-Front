@@ -132,11 +132,12 @@ export class EventsService {
     return normalizedPayload;
   }
 
-  cancelSubscription(eventId: string) {
-
+  cancelSubscription(eventId: string): Promise<Object> {
+    if (!this.currentUser) return null;
+    return this.confirmEvent(this.currentUser.id, eventId);
   }
 
-  removeFromFavorites(eventId: string) {
+  removeFromFavorites(eventId: string): Promise<Object> {
     if (!this.currentUser) return null;
     return this.favoriteEvent(this.currentUser.id, eventId);
   }
@@ -191,7 +192,6 @@ export class EventsService {
     return this.httpClient.post<any>(environment.apiUrl + 'user/confirmar/' + idUser, { idEvent: event })
       .toPromise()
       .then((resposta: Response) => resposta);
-
   }
 
   // delete(id: string): Promise<any> {
