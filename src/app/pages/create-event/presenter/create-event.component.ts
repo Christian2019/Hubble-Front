@@ -280,7 +280,7 @@ export class CreateEventComponent implements OnInit {
         controlValue  : this.dateAndLocationForm.get(control).value
       });
     });
-
+    
     this.emitFormData.emit([this.generalForm, this.dateAndLocationForm]);
   }
 

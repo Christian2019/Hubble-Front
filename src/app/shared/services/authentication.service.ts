@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/pages/_models/user';
+import { environment } from 'src/environments/environment';
+
 
 
 @Injectable({ providedIn: 'root' })
@@ -22,7 +24,7 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string) {
-        return this.http.post<any>(`http://localhost:4200/api/auth/validate`, { email:email, pass:password })
+        return this.http.post<any>(`${environment.apiUrl}auth/validate`, { email:email, pass:password })
             .pipe(map(user => {
                 console.log(user);
                 // login successful if there's a jwt token in the response

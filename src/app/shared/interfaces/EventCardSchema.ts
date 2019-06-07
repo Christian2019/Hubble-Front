@@ -3,6 +3,6 @@ import { ActionButtonTextEnum } from "../enums/ActionButtonTextEnum";
 import { EventCard } from './EventCard';
 
 interface EventCardObject {
-  events: EventCard[]
+  events?: EventCard[]
 }
 export {EventCardObject}

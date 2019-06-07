@@ -28,15 +28,15 @@ export class EventsService {
 
   create_user(rawPayload: FormGroup[]) {
     const payload = this.normalizeUserPayload(rawPayload);
-    return this.httpClient.post('http://localhost:4200/api/user', payload);
+    return this.httpClient.post(environment.apiUrl + 'user', payload);
   }
   fetch() {
-    return this.httpClient.get(environment.apiUrl + 'event');
+    return this.httpClient.get(environment.apiUrl + 'event/status/aprovado');
   }
 
 
-  fetch_pending() : Observable<EventCard[]> {
-    return this.httpClient.get<EventCard[]>(environment.apiUrl + 'Event/status/Pendente');
+  fetch_pending(): Observable<EventCard[]> {
+    return this.httpClient.get<EventCard[]>(environment.apiUrl + 'event/status/pendente');
   }
 
 
@@ -45,12 +45,35 @@ export class EventsService {
   }
 
   delete_category(id: string) {
-    return this.httpClient.delete(environment.apiUrl + 'category/' + id);
+    return this.httpClient.delete(environment.apiUrl + 'category' + id);
   }
 
   createCategory(Payload: FormGroup) {
     const payload = this.normPayload(Payload);
-    return this.httpClient.post('http://localhost:4200/api/category', payload)
+    return this.httpClient.post(environment.apiUrl + 'category', payload);
+  }
+
+  get_tags() {
+    return this.httpClient.get(environment.apiUrl + 'tag');
+  }
+
+  delete_tag(id: string) {
+    return this.httpClient.delete(environment.apiUrl + 'tag' + id);
+  }
+
+  createTag(Payload: FormGroup) {
+    const payload = this.normPayloadTag(Payload);
+    return this.httpClient.post(environment.apiUrl + 'tag', payload)
+  }
+
+  private normPayloadTag(Payload: FormGroup) {
+    const genForm = Payload;
+
+    const normzPayloadTag = {
+      title: genForm.get('tagName').value
+    };
+    console.log('Tag Normalized: ' + normzPayloadTag);
+    return normzPayloadTag;
   }
 
   private normPayload(Payload: FormGroup) {
@@ -74,7 +97,12 @@ export class EventsService {
       description: generalForm.get('description').value,
       price: generalForm.get('price').value,
       hours: parseInt(generalForm.get('additionalHours').value),
+      startDate: dateAndLocationForm.get('startDate').value,
+      endDate: dateAndLocationForm.get('endDate').value,
+      endHour: dateAndLocationForm.get('endHour').value,
+      startHour: dateAndLocationForm.get('startHour').value,
       address: {
+        number: dateAndLocationForm.get('number').value,
         state: dateAndLocationForm.get('state').value,
         city: dateAndLocationForm.get('city').value,
         district: dateAndLocationForm.get('district').value,
@@ -89,7 +117,7 @@ export class EventsService {
 
 
   getById(id: string): Observable<Event> {
-    return this.httpClient.get<Event>('http://localhost:4200/api/event/' + id);
+    return this.httpClient.get<Event>(environment.apiUrl + 'event/' + id);
   }
   private normalizeUserPayload(rawPayload: FormGroup[]) {
     const generalForm = rawPayload[0];
@@ -104,64 +132,67 @@ export class EventsService {
     return normalizedPayload;
   }
 
-  cancelSubscription(eventId: string) {
-
-  }
-
-  removeFromFavorites(eventId: string) {
-
-  }
-
-  getConfirmedEvents() {
-
-  }
-
-  getPastEvents() {
-
-  }
-
-  getFavoriteEvents() {
-
-  }
-
-  getCreatedEvents() {
+  cancelSubscription(eventId: string): Promise<Object> {
     if (!this.currentUser) return null;
-
-    const endpoint = "http://localhost:3000/user/events/createdEvents/" + this.currentUser.id;
-    console.log(endpoint);
-    this.httpClient.get(endpoint).subscribe((success: HttpResponse<Object>) => {
-      console.log('Success: ', success);
-
-    })
+    return this.confirmEvent(""+this.currentUser.id, eventId);
   }
 
+  removeFromFavorites(eventId: string): Promise<Object> {
+    if (!this.currentUser) return null;
+    return this.favoriteEvent(""+this.currentUser.id, eventId);
+  }
+
+  getParticipatedEvents() {
+    if (!this.currentUser) return null;
+    const endpoint = environment.apiUrl + 'user/events/participatedEvents/' + this.currentUser.id;
+    return this.httpClient.get(endpoint).toPromise();
+  }
+
+  /**
+   *
+   */
+  getFavoriteEvents(): Promise<Object> {
+    if (!this.currentUser) return null;
+    const endpoint = `${environment.apiUrl}user/events/favoritedEvents/${this.currentUser.id}`;
+    return this.httpClient.get(endpoint).toPromise();
+  }
+
+  getCreatedEvents(): Promise<Object> {
+    if (!this.currentUser) return null;
+    const endpoint = `${environment.apiUrl}user/events/createdEvents/${this.currentUser.id}`;
+    return this.httpClient.get(endpoint).toPromise();
+  }
+
+  /**
+   * @TODO qual a diferença deste método para getFavoriteEvents???
+   * @param idUser
+   * @param event
+   */
   getFavoriteEvent(idUser: string, event: string): Promise<any> {
-    return this.httpClient.post<any>('http://localhost:4200/api/user/favoritado/' + idUser, { idEvent: event })
+    return this.httpClient.post<any>(environment.apiUrl + 'user/favoritado/' + idUser, { idEvent: event })
       .toPromise()
       .then((resposta: any) => resposta);
   }
 
 
   favoriteEvent(idUser: string, event: string): Promise<any> {
-    return this.httpClient.put<any>('http://localhost:4200/api/user/favoritar/' + idUser, { idEvent: event })
+    return this.httpClient.put<any>(environment.apiUrl + 'user/favoritar/' + idUser, { idEvent: event })
       .toPromise()
       .then((resposta: Response) => resposta);
-
   }
 
-   getConfirmedEvent(idUser: string, event: string): Promise<any> {
-    return this.httpClient.post<any>('http://localhost:4200/api/user/confirmado/' + idUser, {idEvent: event})
-    .toPromise()
-    .then((resposta: any) => resposta);
-  }
-
-
-   confirmEvent(idUser: string, event: string): Promise<any> {
-       return this.httpClient.post<any>('http://localhost:4200/api/user/confirmar/' + idUser, {idEvent: event})
+  getConfirmedEvent(idUser: string, event: string): Promise<any> {
+    return this.httpClient.post<any>(environment.apiUrl + 'user/confirmado/' + idUser, { idEvent: event })
       .toPromise()
-       .then((resposta: Response) => resposta);
+      .then((resposta: any) => resposta);
+  }
 
-   }
+
+  confirmEvent(idUser: string, event: string): Promise<any> {
+    return this.httpClient.post<any>(environment.apiUrl + 'user/confirmar/' + idUser, { idEvent: event })
+      .toPromise()
+      .then((resposta: Response) => resposta);
+  }
 
 delete(id: string): Promise<any> {
   return this.httpClient.delete('http://localhost:4200/api/event/' + id)

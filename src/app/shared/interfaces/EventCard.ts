@@ -6,16 +6,11 @@ interface EventCard {
   buttonText: ActionButtonTextEnum,
   id: string,
   title: string,
-  description: string,
-  tag: string,
-  category: string,
-  status: string,
-  confirmedUsers: string,
-  picture: string,
   startDate: string,
   endDate: string,
+  startHour: string,
+  endHour: string,
   price: string,
-  hours: string,
   address: {
     street: string,
     number: number,
@@ -24,10 +19,6 @@ interface EventCard {
     district: string,
     city: string,
     state: string
-  },
-  createdBy: string,
-  approvedBy: string,
-  createdAt: string,
-  updatedAt: string
+  }
 }
 export {EventCard};
