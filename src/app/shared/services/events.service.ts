@@ -134,12 +134,12 @@ export class EventsService {
 
   cancelSubscription(eventId: string): Promise<Object> {
     if (!this.currentUser) return null;
-    return this.confirmEvent(this.currentUser.id, eventId);
+    return this.confirmEvent(""+this.currentUser.id, eventId);
   }
 
   removeFromFavorites(eventId: string): Promise<Object> {
     if (!this.currentUser) return null;
-    return this.favoriteEvent(this.currentUser.id, eventId);
+    return this.favoriteEvent(""+this.currentUser.id, eventId);
   }
 
   getParticipatedEvents() {
@@ -194,10 +194,15 @@ export class EventsService {
       .then((resposta: Response) => resposta);
   }
 
-  // delete(id: string): Promise<any> {
-  //   return this.httpClient.delete(environment.apiUrl+'api/event/' + id)
-  //   .toPromise()
-  //   .then(() => null )
-  //   .catch();
-  // }
+delete(id: string): Promise<any> {
+  return this.httpClient.delete('http://localhost:4200/api/event/' + id)
+  .toPromise()
+  .then(() => null )
+  .catch();
+}
+   updateEvent(idEvent: string, event: Event): Promise<any> {
+    return this.httpClient.put<any>('http://localhost:4200/api/event/' + idEvent, event)
+    .toPromise()
+    .then((resposta: Response) => resposta);
+   }
 }

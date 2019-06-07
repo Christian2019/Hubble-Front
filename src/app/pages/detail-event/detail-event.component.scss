@@ -4,7 +4,12 @@
   text-decoration: none;
   color:#212121;
 }
-
+#add {
+  background: #212121;
+  color: white;
+  border: 1.5px solid #212121;
+  border-radius: 10px;
+}
 .cel_image {
   margin: 0;
   width: 100%;
@@ -89,7 +94,12 @@ nav ul li a {
     grid-auto-rows: 133px auto;
     justify-content: center;
   }
-
+  #add {
+    background: #212121;
+    color: white;
+    border: 1.5px solid #212121;
+    border-radius: 10px;
+  }
   .event_title{
     font-size: 36px;
   }
@@ -148,7 +158,7 @@ nav ul li a {
     font-size: 18px;
   }
   .example-button-row button,
-.example-button-row a {
-  margin-right: 8px;
-}
+  .example-button-row a {
+    margin-right: 8px;
+  }
 }
