@@ -46,7 +46,7 @@ export class EventsService {
   }
 
   delete_category(id: string) {
-    return this.httpClient.delete(environment.apiUrl + 'category' + id);
+    return this.httpClient.delete(environment.apiUrl + 'category/' + id);
   }
 
   createCategory(Payload: FormGroup) {
@@ -59,7 +59,7 @@ export class EventsService {
   }
 
   delete_tag(id: string) {
-    return this.httpClient.delete(environment.apiUrl + 'tag' + id);
+    return this.httpClient.delete(environment.apiUrl + 'tag/' + id);
   }
 
   createTag(Payload: FormGroup) {
@@ -218,13 +218,13 @@ updateCategory(idCategory: string, idUser: string) {
   }
 
 delete(id: string): Promise<any> {
-  return this.httpClient.delete('http://localhost:4200/api/event/' + id)
+  return this.httpClient.delete(environment.apiUrl + 'event/' + id)
   .toPromise()
   .then(() => null )
   .catch();
 }
    updateEvent(idEvent: string, event: Event): Promise<any> {
-    return this.httpClient.put<any>('http://localhost:4200/api/event/' + idEvent, event)
+    return this.httpClient.put<any>(environment.apiUrl + 'event/' + idEvent, event)
     .toPromise()
     .then((resposta: Response) => resposta);
    }
