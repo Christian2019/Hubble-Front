@@ -234,6 +234,8 @@ export class CreateEventComponent implements OnInit {
       console.log('true')
       this.generalForm.get('additionalHours').disable()
       this.generalForm.get('additionalHours').setValue(0)
+      
     }
+    this.disabled = !this.disabled;
   }
 }
