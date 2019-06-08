@@ -63,12 +63,13 @@
     </section>
 
     <section>
-      <mat-form-field >
-        <input matInput placeholder="Horas complementares" formControlName="additionalHours" type="text" value="01:00" />
-        <mat-error *ngIf="generalForm.get('additionalHours').invalid">{{ getErrorMessage() }}
-        </mat-error>
+      
+      <mat-form-field class="additionalHours-form-field">
+          <input matInput placeholder="Horas complementares" formControlName="additionalHours" type="text" value="01:00" />
+          <mat-checkbox (click)="disableadditionalHours()" >Sem horas complementares</mat-checkbox>
+          <mat-error *ngIf="generalForm.get('additionalHours').invalid">{{ getErrorMessage() }}
+          </mat-error>
       </mat-form-field>
-      <mat-checkbox  (click)="disableadditionalHours()" >Pau no cu das horas complementares vai por que quer</mat-checkbox>
 
       <mat-form-field>
         <input matInput placeholder="Link para inscrições" formControlName="subscriptionLink" required />

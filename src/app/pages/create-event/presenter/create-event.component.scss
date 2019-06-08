@@ -2,10 +2,23 @@ form {
   margin: 0 5%;
   text-align: center;
 }
-.title-success{
-   text-align: center;
-   margin-top: 60px;
+
+.additionalHours-form-field {
+  .mat-checkbox {
+    width: 50%;
+    float: right;
+  }
+  .mat-input-element {
+    width: 50%;
+    float: left
+  }
 }
+
+.title-success {
+  text-align: center;
+  margin-top: 60px;
+}
+
 .date-and-time {
   mat-form-field:first-child {
     margin-right: 24px !important;
@@ -25,11 +38,13 @@ form {
   .additional-info {
     justify-content: center;
     width: 100%;
+
     mat-form-field {
       width: 90%;
     }
   }
 }
+
 .three-columns {
   display: block;
   width: 100%;
@@ -37,6 +52,7 @@ form {
   mat-form-field {
     width: 30%;
   }
+
   mat-form-field:nth-child(even) {
     padding: 0 12px 0 12px !important;
   }
@@ -94,6 +110,7 @@ form {
 
   mat-checkbox {
     float: left;
-    
+
   }
+  
 }
