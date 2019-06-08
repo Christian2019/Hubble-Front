@@ -34,9 +34,10 @@
       <mat-form-field>
         <mat-select required placeholder="Categoria" formControlName="category">
           <mat-option
+            
             *ngFor="let category of categories"
-            value="{{ category.name }}"
-            >{{ category.name }}</mat-option
+            value="{{ category.id }}"
+            >{{ category.title }}</mat-option
           >
         </mat-select>
         <mat-error *ngIf="generalForm.get('category').invalid">{{ getErrorMessage() }}
@@ -52,8 +53,8 @@
         >
           <mat-option
             *ngFor="let subject of subjects"
-            value="{{ subject.name }}"
-            >{{ subject.name }}</mat-option
+            value="{{ subject._id }}"
+            >{{ subject.title }}</mat-option
           >
         </mat-select>
         <mat-error *ngIf="generalForm.get('subjects').invalid">{{ getErrorMessage() }}
@@ -62,11 +63,12 @@
     </section>
 
     <section>
-      <mat-form-field>
-        <input matInput placeholder="Horas complementares" formControlName="additionalHours" required type="time" value="00:00" />
+      <mat-form-field >
+        <input matInput placeholder="Horas complementares" formControlName="additionalHours" [disabled]="disabled" type="time" value="01:00" />
         <mat-error *ngIf="generalForm.get('additionalHours').invalid">{{ getErrorMessage() }}
         </mat-error>
       </mat-form-field>
+      <mat-checkbox  [ngModelOptions]="{standalone: true}" [(ngModel)]="disabled">Pau no cu das horas complementares vai por que quer</mat-checkbox>
 
       <mat-form-field>
         <input matInput placeholder="Link para inscrições" formControlName="subscriptionLink" required />

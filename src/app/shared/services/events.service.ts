@@ -97,22 +97,29 @@ export class EventsService {
       title: generalForm.get('title').value,
       description: generalForm.get('description').value,
       price: generalForm.get('price').value,
+      vacancies: generalForm.get('maxNumberOfSeats').value,
+      category: generalForm.get('category').value,
+      tag: generalForm.get('subjects').value,
       hours: parseInt(generalForm.get('additionalHours').value),
+      state: dateAndLocationForm.get('state').value,
+      city: dateAndLocationForm.get('city').value,
+      picture: generalForm.get('headerImage').value,
+      link: generalForm.get('subscriptionLink').value,
       startDate: dateAndLocationForm.get('startDate').value,
       endDate: dateAndLocationForm.get('endDate').value,
       endHour: dateAndLocationForm.get('endHour').value,
       startHour: dateAndLocationForm.get('startHour').value,
       address: {
-        number: dateAndLocationForm.get('number').value,
-        state: dateAndLocationForm.get('state').value,
-        city: dateAndLocationForm.get('city').value,
-        district: dateAndLocationForm.get('district').value,
-        zipCode: dateAndLocationForm.get('cep').value,
-        complements: dateAndLocationForm.get('additionalInfo').value,
         street: dateAndLocationForm.get('street').value,
+        complements: dateAndLocationForm.get('additionalInfo').value,
+        zipCode: dateAndLocationForm.get('cep').value,
+        district: dateAndLocationForm.get('district').value,
+        city: dateAndLocationForm.get('city').value,
+        state: dateAndLocationForm.get('state').value,
+        number: dateAndLocationForm.get('number').value
       },
     };
-    console.log('Normalized: ' + normalizedPayload);
+    console.log(normalizedPayload);
     return normalizedPayload;
   }
 

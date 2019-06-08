@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'admin/lista-eventos', component: EventAproveListComponent},
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent},
   { path: 'profile', component: ProfileViewComponent},
-  { path: 'categorias-evento', component: RegisterEventTypeComponent},
+  { path: 'admin/tag-categoria', component: RegisterEventTypeComponent},
   { path: 'meus-eventos', component: MyEventsComponent},
   { path: 'edit-event/:id', component: EditEventComponent}
 ];
