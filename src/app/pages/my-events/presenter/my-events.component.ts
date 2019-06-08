@@ -39,11 +39,11 @@ export class MyEventsComponent implements OnInit, OnChanges {
         'aqueles criados por você.',
       tabs: [
         {
-          title: 'Eu vou',
+          title: 'Eu fui',
           cards: {}
         },
         {
-          title: 'Eu fui',
+          title: 'Eu vou',
           cards: {}
         },
         {

@@ -199,7 +199,7 @@ updateCategory(idCategory: string, idUser: string) {
       .then((resposta: Response) => resposta);
   }
   AprovarEvent(event: string): Promise<any> {
-    return this.httpClient.put<any>(environment.apiUrl + 'evento/status/aprovado' + event, {})
+    return this.httpClient.put<any>(environment.apiUrl + 'event/status/aprovado/' + event, {})
       .toPromise()
       .then((resposta: Response) => resposta);
   }
