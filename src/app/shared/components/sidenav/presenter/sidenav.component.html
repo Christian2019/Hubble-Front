@@ -14,9 +14,9 @@
         </a>
       </div>
       <div>
-        <a class="menu-item" mat-list-item routerLink="/novo-evento">
-          <mat-icon>search</mat-icon>
-          Pesquisar eventos
+        <a class="menu-item" mat-list-item routerLink="/novo-evento" *ngIf="authenticated" href="/login">
+          <mat-icon>add_circle_outline</mat-icon>
+          Cadastrar eventos
         </a>
       </div>
       <div *ngIf="authenticated">
@@ -25,12 +25,16 @@
           Meus eventos
         </a>
       </div>
+<<<<<<< HEAD
       <div>
         <a class="menu-item" mat-list-item routerLink="#">
           <mat-icon>notifications</mat-icon>
           Notificações
         </a>
       </div>
+=======
+      
+>>>>>>> origin/develop
       <div *ngIf="authenticated">
         <a class="menu-item" mat-list-item routerLink="/profile">
           <mat-icon>person_outline</mat-icon>
