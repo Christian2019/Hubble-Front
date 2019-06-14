@@ -20,14 +20,14 @@
         </a>
       </div>
       <div *ngIf="authenticated">
-        <a class="menu-item" mat-list-item href="/meus-eventos">
+        <a class="menu-item" mat-list-item routerLink="/meus-eventos">
           <mat-icon>calendar_today</mat-icon>
           Meus eventos
         </a>
       </div>
       
       <div *ngIf="authenticated">
-        <a class="menu-item" mat-list-item href="/profile">
+        <a class="menu-item" mat-list-item routerLink="/profile">
           <mat-icon>person_outline</mat-icon>
           Perfil
         </a>
@@ -39,11 +39,17 @@
           </a>
         </div>
         <div *ngIf="adminAuthenticated">
-          <a class="menu-item" mat-list-item href="/admin/lista-eventos">
+          <a class="menu-item" mat-list-item routerLink="/admin/lista-eventos">
             <mat-icon>calendar_today</mat-icon>
             Eventos para validar
           </a>
         </div>
+        <div *ngIf="adminAuthenticated">
+            <a class="menu-item" mat-list-item routerLink="/admin/tag-categoria">
+              <mat-icon>calendar_today</mat-icon>
+              Tags e Categorias
+            </a>
+          </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -56,7 +62,7 @@
       <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
           <li>
-            <a class="md-form my-0" *ngIf="!authenticated" href="/login"> Login </a>
+            <a class="md-form my-0" *ngIf="!authenticated" routerLink="/login"> Login </a>
             <a class="md-form my-0" *ngIf="authenticated" (click)="logout()"> Logout </a>
           </li>
         </ul>

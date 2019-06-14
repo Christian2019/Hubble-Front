@@ -46,7 +46,7 @@ export class EventsService {
   }
 
   delete_category(id: string) {
-    return this.httpClient.delete(environment.apiUrl + 'category' + id);
+    return this.httpClient.delete(environment.apiUrl + 'category/' + id);
   }
 
   createCategory(Payload: FormGroup) {
@@ -59,7 +59,7 @@ export class EventsService {
   }
 
   delete_tag(id: string) {
-    return this.httpClient.delete(environment.apiUrl + 'tag' + id);
+    return this.httpClient.delete(environment.apiUrl + 'tag/' + id);
   }
 
   createTag(Payload: FormGroup) {
@@ -97,22 +97,29 @@ export class EventsService {
       title: generalForm.get('title').value,
       description: generalForm.get('description').value,
       price: generalForm.get('price').value,
+      vacancies: generalForm.get('maxNumberOfSeats').value,
+      category: generalForm.get('category').value,
+      tag: generalForm.get('subjects').value,
       hours: parseInt(generalForm.get('additionalHours').value),
+      state: dateAndLocationForm.get('state').value,
+      city: dateAndLocationForm.get('city').value,
+      picture: generalForm.get('headerImage').value,
+      link: generalForm.get('subscriptionLink').value,
       startDate: dateAndLocationForm.get('startDate').value,
       endDate: dateAndLocationForm.get('endDate').value,
       endHour: dateAndLocationForm.get('endHour').value,
       startHour: dateAndLocationForm.get('startHour').value,
       address: {
-        number: dateAndLocationForm.get('number').value,
-        state: dateAndLocationForm.get('state').value,
-        city: dateAndLocationForm.get('city').value,
-        district: dateAndLocationForm.get('district').value,
-        zipCode: dateAndLocationForm.get('cep').value,
-        complements: dateAndLocationForm.get('additionalInfo').value,
         street: dateAndLocationForm.get('street').value,
+        complements: dateAndLocationForm.get('additionalInfo').value,
+        zipCode: dateAndLocationForm.get('cep').value,
+        district: dateAndLocationForm.get('district').value,
+        city: dateAndLocationForm.get('city').value,
+        state: dateAndLocationForm.get('state').value,
+        number: dateAndLocationForm.get('number').value
       },
     };
-    console.log('Normalized: ' + normalizedPayload);
+    console.log(normalizedPayload);
     return normalizedPayload;
   }
 
@@ -218,13 +225,13 @@ updateCategory(idCategory: string, idUser: string) {
   }
 
 delete(id: string): Promise<any> {
-  return this.httpClient.delete('http://localhost:4200/api/event/' + id)
+  return this.httpClient.delete(environment.apiUrl + 'event/' + id)
   .toPromise()
   .then(() => null )
   .catch();
 }
    updateEvent(idEvent: string, event: Event): Promise<any> {
-    return this.httpClient.put<any>('http://localhost:4200/api/event/' + idEvent, event)
+    return this.httpClient.put<any>(environment.apiUrl + 'event/' + idEvent, event)
     .toPromise()
     .then((resposta: Response) => resposta);
    }
