@@ -1,0 +1,90 @@
+<div>
+  <img class="cel_image" src="http://placehold.it/400x300" alt="">
+</div>
+
+<div class="wrapper">
+
+  <div class="block1">
+    <div>
+      <div class="event_title">
+        <span>{{ event?.title }} </span>
+        <!-- <div > -->
+            <small (click)="favoritar();" *ngIf="favorito === false  && logado === true">
+                <i style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons favorite_class" >star_border</i>
+            </small>
+            <small (click)="favoritar();" *ngIf="favorito === true  && logado === true">
+                <i style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons favorite_class" >star</i>
+
+            </small>
+            <!-- <p *ngIf="favorito === false" style="font-size: 15px;">Deseja adicionar a ista de favoritos ?</p>
+            <p *ngIf="favorito === true" style="font-size: 15px;">Adicionado a lista de favoritos</p> -->
+        <!-- </div> -->
+        <div class="acoes" style="position: absolute; right: 40px; bottom: 150px;">
+          <button style="margin-right: 10px; "id="add" mat-raised-button color="danger" routerLink="/" (click)="deletar(event?.id)">Deletar</button>
+          <button  id="add" class="btn-edit" mat-raised-button color="primary"  [routerLink]="['/edit-event', event?.id]">Editar</button>
+        </div>
+
+      </div>
+      <div class="created_by">
+        <span class="created_by_default">Criado por </span> <span class="created_by_name">John Doe</span>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="block4">
+    <div>
+      <button (click)="confirmar();" class="confirm_event_button" *ngIf="presenca === false && logado === true">Confirmar presença</button>
+      <button (click)="confirmar();" class="confirm_event_button" *ngIf="presenca === true && logado === true" style="background-color: #af031d;">Cancelar presença</button>
+    </div>
+  </div>
+
+  <div class="block2">
+    <div class="padding_info">
+      <div>
+        <i style="vertical-align: -5px;" class="material-icons"> calendar_today </i>
+        <span> {{ event?.startDate }} </span>
+      </div>
+      <div style="margin-top: 8px;">
+        <i style="vertical-align: -5px;" class="material-icons"> access_time </i>
+        <span> 12h30 - 16h50 </span>
+      </div>
+      <div style="margin-top: 8px;">
+        <i style="vertical-align: -5px;" class="material-icons"> location_on </i>
+        <span> {{ event?.address.street}}, {{event?.address.complements}}, {{event?.address.district}} - {{event?.address.city}} - {{event?.address.state}} </span>
+      </div>
+      <div style="margin-top: 8px;">
+          <i class="material-icons" style="vertical-align: -5px;">attach_money</i>
+          <span>{{event?.price}}</span>
+        </div>
+    </div>
+  </div>
+  <div>
+  </div>
+  <div class="block3">
+    <div class="padding_text">
+      <p> {{event?.description}} </p>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="">
+              <i style="vertical-align: -4.5px;" class="material-icons"> share </i>
+              <span> Compartilhar evento </span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i style="vertical-align: -4.5px; margin-left: 16px;" class="material-icons"> picture_as_pdf </i>
+            <span> Gerar folder </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div  class="example-button-row">
+    <!-- <button id="add" mat-raised-button color="danger" routerLink="/" (click)="deletar(event?.id)">Deletar</button>
+    <button  id="add" class="btn-edit" mat-raised-button color="primary"  [routerLink]="['/edit-event', event?.id]">Editar</button> -->
+  </div>
+</div>
+<div style="margin-bottom: 8rem;"></div>

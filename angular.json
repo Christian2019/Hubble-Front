@@ -57,6 +57,30 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "hml": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hml.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -68,6 +92,9 @@
           "configurations": {
             "production": {
               "browserTarget": "Hubble:build:production"
+            },
+            "hml": {
+              "browserTarget": "Hubble:build:hml"
             }
           }
         },
@@ -123,6 +150,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "Hubble:serve:production"
+            },
+            "hml": {
+              "devServerTarget": "Hubble:serve:hml"
             }
           }
         },
