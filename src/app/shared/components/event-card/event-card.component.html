@@ -18,5 +18,8 @@
     <button (click)="onActionClicked()" mat-raised-button>
       {{cardData.buttonText}}
     </button>
+    <button routerLink="/event/{{cardData.id}}" *ngIf="cardData.buttonText != 'Ver evento'" mat-raised-button>
+      Ver evento
+    </button>
   </div>
 </div>
