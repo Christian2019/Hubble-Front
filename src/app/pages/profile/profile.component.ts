@@ -40,7 +40,6 @@ export class ProfileViewComponent implements OnInit {
       var aux = true;
       userCategories.forEach(elementToCompare => {
         if(element.title == elementToCompare.title){
-          console.log(element.title +","+elementToCompare.title)
           aux = false;
         }
       })
