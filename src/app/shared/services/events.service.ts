@@ -182,6 +182,12 @@ updateCategory(idCategory: string, idUser: string) {
     return this.httpClient.get(endpoint).toPromise();
   }
 
+  getFavoriteEventsObs(): Observable<Object> {
+    if (!this.currentUser) return null;
+    const endpoint = `${environment.apiUrl}user/events/favoritedEvents/${this.currentUser.id}`;
+    return this.httpClient.get(endpoint);
+  }
+
   getCreatedEvents(): Promise<Object> {
     if (!this.currentUser) return null;
     const endpoint = `${environment.apiUrl}user/events/createdEvents/${this.currentUser.id}`;

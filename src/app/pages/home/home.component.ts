@@ -3,6 +3,8 @@ import { EventsService } from 'src/app/shared/services/events.service';
 import { AppComponent } from 'src/app/app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { SwiperModule } from 'ngx-swiper-wrapper';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-home',
@@ -27,16 +29,34 @@ export class HomeComponent implements OnInit {
   public searchTerm: string = "";
   public all_items: any = [];
   public items: any = [];
+  public favorited_items: any = [];
+  currentUser: User;
+  
 
-  constructor(private eventService: EventsService) {
+  constructor(private eventService: EventsService,
+    private authService: AuthenticationService) {
+      // pega usuário cadastrado
+      this.authService.currentUser.subscribe(user => {
+        this.currentUser = user;
+    });
+    //lista todos os eventos disponiveis
     const response = this.eventService.fetch();
     response.subscribe(
       items => this.setAllFilters(items),
       error => console.log(error)
     )
-    console.log(this.all_items);
     this.items = this.all_items;
+
+    if (this.currentUser !== null) {
+      const response_favorite = this.eventService.fetch();
+      response_favorite.subscribe(
+        itens => this.favorited_items = itens,
+        error => console.log(error)
+      )
+    }
    }
+
+
    setAllFilters(items) {
     this.all_items = items;
     this.items = this.all_items;
@@ -53,5 +73,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public get authenticated(): boolean {
+    return this.currentUser !== null;
   }
 }
