@@ -27,7 +27,7 @@ export class DetailEventComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.eventService.getById(this.route.snapshot.params['_id'])
+    this.eventService.getById(this.route.snapshot.params['id'])
    .subscribe(teste => this.event = teste);
    console.log(this.event)
    this.authenticationService.currentUser.subscribe(user => {
@@ -38,10 +38,10 @@ export class DetailEventComponent implements OnInit {
     if(this.currentUser !== null){
       this.logado = true;
 
-      this.eventService.getFavoriteEvent(""+this.currentUser.id, this.route.snapshot.params['_id'])
+      this.eventService.getFavoriteEvent(""+this.currentUser.id, this.route.snapshot.params['id'])
     .then(teste => this.favorito = teste);
 
-      this.eventService.getConfirmedEvent(""+this.currentUser.id, this.route.snapshot.params['_id'])
+      this.eventService.getConfirmedEvent(""+this.currentUser.id, this.route.snapshot.params['id'])
     .then(teste => this.presenca = teste);
     }
 }
@@ -56,7 +56,7 @@ export class DetailEventComponent implements OnInit {
     this.snackbar.open('Evento excluido da lista de favoritos.' , 'ok',
    {duration: 5000});
   }
-   this.eventService.favoriteEvent(""+this.currentUser.id, this.event._id);
+   this.eventService.favoriteEvent(""+this.currentUser.id, this.event.id);
  }
 
  confirmar() {
@@ -65,10 +65,10 @@ export class DetailEventComponent implements OnInit {
   } else {
     this.presenca = false;
   }
-   this.eventService.confirmEvent(""+this.currentUser.id, this.event._id);
+   this.eventService.confirmEvent(""+this.currentUser.id, this.event.id);
  }
  deletar(id: string) {
-   this.eventService.delete(this.event._id)
+   this.eventService.delete(this.event.id)
    .then(msg => console.log(msg));
 
    this.snackbar.open('Evento deletado com sucesso.' , 'ok',
