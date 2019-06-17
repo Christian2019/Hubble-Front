@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
 
   public searchTerm: string = "";
   public all_items: any = [];
+  public all_items_fav: any = [];
   public items: any = [];
   public favorited_items: any = [];
   currentUser: User;
@@ -48,11 +49,12 @@ export class HomeComponent implements OnInit {
     this.items = this.all_items;
 
     if (this.currentUser !== null) {
-      const response_favorite = this.eventService.fetch();
+      const response_favorite = this.eventService.getEventsByFavoriteCategories();
       response_favorite.subscribe(
-        itens => this.favorited_items = itens,
+        itens => this.setAllFiltersFav(itens),
         error => console.log(error)
       )
+      this.favorited_items = this.all_items_fav;
     }
    }
 
@@ -62,12 +64,24 @@ export class HomeComponent implements OnInit {
     this.items = this.all_items;
    }
 
+   setAllFiltersFav(itens) {
+    this.all_items_fav = itens;
+    this.favorited_items = this.all_items_fav;
+   }
+
    setFilteredItems(searchTerm) {
     this.items = this.doFilter(searchTerm);
+    this.favorited_items = this.doFilterFav(searchTerm);
   }
 
   doFilter(searchTerm) {
     return this.all_items.filter(item => {
+      return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
+  }
+
+  doFilterFav(searchTerm) {
+    return this.all_items_fav.filter(item => {
       return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     });
   }

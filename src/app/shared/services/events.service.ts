@@ -241,4 +241,10 @@ delete(id: string): Promise<any> {
     .toPromise()
     .then((resposta: Response) => resposta);
    }
+
+   getEventsByFavoriteCategories(): Observable<Event[]> {
+    if (!this.currentUser) return null;
+    const endpoint = `${environment.apiUrl}user/category/${this.currentUser.id}`;
+    return this.httpClient.get<Event[]>(endpoint);
+   }
 }
