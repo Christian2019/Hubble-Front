@@ -73,14 +73,14 @@ export class CreateEventComponent implements OnInit {
 
   ngOnInit() {
     this.generalForm = this.formBuilder.group({
-      title: ['null', Validators.required],
-      description: ['null', Validators.required],
-      price: ['0.00', Validators.required],
+      title: [null, Validators.required],
+      description: [null, Validators.required],
+      price: [0.00, Validators.required],
       maxNumberOfSeats: [12, Validators.required],
       category: [null, Validators.required],
       subjects: [null, Validators.required],
-      additionalHours: ['01:00'], disabled: this.disabled,
-      subscriptionLink: ['null.com', Validators.required],
+      additionalHours: [null], disabled: this.disabled,
+      subscriptionLink: [null, Validators.required],
       headerImage: [null, Validators.required],
     });
 
@@ -234,7 +234,7 @@ export class CreateEventComponent implements OnInit {
       console.log('true')
       this.generalForm.get('additionalHours').disable()
       this.generalForm.get('additionalHours').setValue(0)
-      
+
     }
     this.disabled = !this.disabled;
   }

@@ -33,6 +33,7 @@ import { EventAproveListComponent } from './pages/event-aprove-list/event-aprove
 import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
 import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
 import { EditEventComponent } from './pages/edit-event/edit-event.component';
+import { DialogDeleteComponent } from './pages/dialog-delete/dialog-delete.component';
 registerLocaleData(localePt);
 
 export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -85,7 +86,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EventAproveListComponent,
     RegisterEventTypeComponent,
     MyEventsComponent,
-    EditEventComponent
+    EditEventComponent,
+    DialogDeleteComponent
   ],
   imports: [
     BrowserModule,

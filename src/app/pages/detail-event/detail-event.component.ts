@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { User } from '../_models/user';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detail-event',
@@ -29,9 +30,9 @@ export class DetailEventComponent implements OnInit {
   ngOnInit() {
     this.eventService.getById(this.route.snapshot.params['id'])
    .subscribe(teste => this.event = teste);
-   this.authenticationService.currentUser.subscribe(user => {
-    this.currentUser = user;
-});
+
+   this.authenticationService.currentUser
+   .subscribe(user => this.currentUser = user);
 
 
     if(this.currentUser !== null){
@@ -55,7 +56,7 @@ export class DetailEventComponent implements OnInit {
     this.snackbar.open('Evento excluido da lista de favoritos.' , 'ok',
    {duration: 5000});
   }
-   this.eventService.favoriteEvent(""+this.currentUser.id, this.event.id);
+   this.eventService.favoriteEvent(this.currentUser.id, this.event._id);
  }
 
  confirmar() {
@@ -64,13 +65,13 @@ export class DetailEventComponent implements OnInit {
   } else {
     this.presenca = false;
   }
-   this.eventService.confirmEvent(""+this.currentUser.id, this.event.id);
+   this.eventService.confirmEvent(""+this.currentUser.id, this.event._id);
  }
  deletar(id: string) {
-   this.eventService.delete(this.event.id)
-   .then(msg => console.log(msg));
+  this.eventService.delete(id)
+  .then(msg => null);
 
-   this.snackbar.open('Evento deletado com sucesso.' , 'ok',
-  {duration: 5000});
- }
+  this.snackbar.open('Evento deletado com sucesso.' , 'ok',
+ {duration: 5000});
+}
 }
