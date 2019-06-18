@@ -1,7 +1,11 @@
+import { User } from 'src/app/pages/_models/user';
+import { Category } from './category';
 import { Address } from './address';
 
 export class Event {
   address: Address;
+  // Category: Category;
+  //creatUser: User;
   status: string;
   tag: any[];
   confirmedUsers: any[];
@@ -16,4 +20,5 @@ export class Event {
   createdAt: Date;
   updatedAt: Date;
   id: string;
+  vacancies: number;
 }
