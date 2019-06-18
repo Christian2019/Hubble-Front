@@ -182,6 +182,12 @@ updateCategory(idCategory: string, idUser: string) {
     return this.httpClient.get(endpoint).toPromise();
   }
 
+  getFavoriteEventsObs(): Observable<Object> {
+    if (!this.currentUser) return null;
+    const endpoint = `${environment.apiUrl}user/events/favoritedEvents/${this.currentUser.id}`;
+    return this.httpClient.get(endpoint);
+  }
+
   getCreatedEvents(): Promise<Object> {
     if (!this.currentUser) return null;
     const endpoint = `${environment.apiUrl}user/events/createdEvents/${this.currentUser.id}`;
@@ -234,5 +240,11 @@ delete(id: string): Promise<any> {
     return this.httpClient.put<any>(environment.apiUrl + 'event/' + idEvent, event)
     .toPromise()
     .then((resposta: Response) => resposta);
+   }
+
+   getEventsByFavoriteCategories(): Observable<Event[]> {
+    if (!this.currentUser) return null;
+    const endpoint = `${environment.apiUrl}user/category/${this.currentUser.id}`;
+    return this.httpClient.get<Event[]>(endpoint);
    }
 }
