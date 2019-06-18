@@ -29,7 +29,6 @@ export class DetailEventComponent implements OnInit {
   ngOnInit() {
     this.eventService.getById(this.route.snapshot.params['id'])
    .subscribe(teste => this.event = teste);
-
    this.authenticationService.currentUser.subscribe(user => {
     this.currentUser = user;
 });
