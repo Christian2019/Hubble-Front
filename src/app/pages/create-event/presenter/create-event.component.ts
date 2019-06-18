@@ -86,9 +86,9 @@ export class CreateEventComponent implements OnInit {
 
 
     this.dateAndLocationForm = this.formBuilder.group({
-      street: ['null', Validators.required],
-      number: [12, Validators.required],
-      additionalInfo: ['null', Validators.required],
+      street: ['', Validators.required],
+      number: [, Validators.required],
+      additionalInfo: ['', Validators.required],
       district: [null, Validators.required],
       cep: [null, [Validators.required, Validators.maxLength(8)]],
       city: { value: 'Porto Alegre', disabled: true },
