@@ -73,22 +73,22 @@ export class CreateEventComponent implements OnInit {
 
   ngOnInit() {
     this.generalForm = this.formBuilder.group({
-      title: ['null', Validators.required],
-      description: ['null', Validators.required],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
       price: ['0.00', Validators.required],
-      maxNumberOfSeats: [12, Validators.required],
+      maxNumberOfSeats: [, Validators.required],
       category: [null, Validators.required],
       subjects: [null, Validators.required],
       additionalHours: ['01:00'], disabled: this.disabled,
-      subscriptionLink: ['null.com', Validators.required],
+      subscriptionLink: ['', Validators.required],
       headerImage: [null, Validators.required],
     });
 
 
     this.dateAndLocationForm = this.formBuilder.group({
-      street: ['null', Validators.required],
-      number: [12, Validators.required],
-      additionalInfo: ['null', Validators.required],
+      street: ['', Validators.required],
+      number: [, Validators.required],
+      additionalInfo: ['', Validators.required],
       district: [null, Validators.required],
       cep: [null, [Validators.required, Validators.maxLength(8)]],
       city: { value: 'Porto Alegre', disabled: true },
