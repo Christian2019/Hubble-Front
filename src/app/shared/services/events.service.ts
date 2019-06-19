@@ -218,6 +218,14 @@ updateCategory(idCategory: string, idUser: string) {
       .then((resposta: Response) => resposta);
   }
 
+  ReproveEvent(event: string): Promise<any> {
+    return this.httpClient.put<any>(environment.apiUrl + 'event/status/rejeitado/' + event, {})
+      .toPromise()
+      .then((resposta: Response) => resposta);
+  }
+
+
+
   getConfirmedEvent(idUser: string, event: string): Promise<any> {
     return this.httpClient.post<any>(environment.apiUrl + 'user/confirmado/' + idUser, { idEvent: event })
       .toPromise()

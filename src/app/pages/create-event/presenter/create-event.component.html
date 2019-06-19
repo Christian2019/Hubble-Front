@@ -34,7 +34,7 @@
       <mat-form-field>
         <mat-select required placeholder="Categoria" formControlName="category">
           <mat-option
-            
+
             *ngFor="let category of categories"
             value="{{ category.id }}"
             >{{ category.title }}</mat-option
@@ -63,7 +63,7 @@
     </section>
 
     <section>
-      
+
       <mat-form-field class="additionalHours-form-field">
           <input matInput placeholder="Horas complementares" formControlName="additionalHours" type="text" value="01:00" />
           <mat-checkbox (click)="disableadditionalHours()" >Sem horas complementares</mat-checkbox>
@@ -370,7 +370,7 @@
       <ng-template matStepLabel>Pronto</ng-template>
       <ng-container *ngTemplateOutlet="success"></ng-container>
       <div class="title-success">
-          <button id="prev" mat-raised-button routerLink="/">Meus eventos</button>
+          <button id="prev" mat-raised-button routerLink="/meus-eventos">Meus eventos</button>
           <button id="next" mat-raised-button (click)="stepper.reset()">Cadastrar novo evento</button>
         </div>
     </mat-step>

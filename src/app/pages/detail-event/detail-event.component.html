@@ -11,6 +11,7 @@
                     <span>Evento favoritado</span>
                 </small>
             </a>
+            <div *ngIf="event?.createdBy._id === currentUser?.id">
             <a class="throw_right" >
                 <!-- editar -->
                 <i [routerLink]="['/edit-event', event?._id]" style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons" >border_color</i>
@@ -19,6 +20,7 @@
                 <!-- deletar -->
                 <i style="vertical-align: -4.5px; font-size: 1.3em;" class="material-icons">delete</i>
             </a>
+            </div>
         </div>
 
         <div class="wrapper spacing">
@@ -28,7 +30,7 @@
 
             <div class="box3">
                 <h2>{{event?.title}}</h2>
-                <h5>Religião</h5>
+                <h5>{{event?.category.title}}</h5>
                 <!-- <div style="padding-top: 32px; justify-content: space-around; margin-left: 15px;">
                   <a  href="">Tag 1</a>
                   <a  href="">Tag 2</a>
@@ -40,11 +42,11 @@
             <div class="content_box box2">
                 <div>
                     <i style="vertical-align: -5px;" class="material-icons"> calendar_today </i>
-                    <span style="display: block"> 14/03/2019 até 16/03/2019 </span>
+                    <span style="display: block"> {{event?.startDate | date: 'dd-MM-yyyy'}} até {{event?.endDate | date: 'dd-MM-yyyy'}} </span>
                 </div>
                 <div>
                     <i style="vertical-align: -5px;" class="material-icons">  access_time  </i>
-                    <span style="display: block"> 12h30 até 16h30 </span>
+                    <span style="display: block"> {{event?.startHour}} até {{event?.endHour}} </span>
                 </div>
                 <div>
                     <i style="vertical-align: -5px;" class="material-icons"> tag_faces </i>
