@@ -4,8 +4,8 @@ import { Address } from './address';
 
 export class Event {
   address: Address;
-  // Category: Category;
-  //creatUser: User;
+  createdBy: any;
+  category: Category;
   status: string;
   tag: any[];
   confirmedUsers: any[];
@@ -17,6 +17,8 @@ export class Event {
   hours: string;
   startDate: string;
   endDate: string;
+  startHour: string;
+  endHour: string;
   createdAt: Date;
   updatedAt: Date;
   id: string;

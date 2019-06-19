@@ -1,3 +1,4 @@
+import { DescricaoReduzida } from './shared/utils/description.pipe';
 import { MatDialogModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule, MatPaginatorModule } from '@angular/material';
@@ -87,7 +88,8 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     RegisterEventTypeComponent,
     MyEventsComponent,
     EditEventComponent,
-    DialogDeleteComponent
+    DialogDeleteComponent,
+    DescricaoReduzida
   ],
   imports: [
     BrowserModule,

@@ -35,7 +35,7 @@ export class AdminEventDetailComponent implements OnInit {
   }
 
   confirmar() {
-     this.eventService.AprovarEvent(this.event.id);
+     this.eventService.AprovarEvent(this.event._id);
      this.router.navigate(['/'])
    }
 }
