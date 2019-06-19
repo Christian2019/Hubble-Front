@@ -97,7 +97,8 @@
               </mat-form-field>
           </div>
           <mat-card-actions>
-            <button id="add" (click)="onEdit(event)" mat-raised-button routerLink="/"> Salvar evento</button>
+              <button id="add-volt"  mat-raised-button [routerLink] ="['/event', event?._id]"> Voltar</button>
+              <button id="add" (click)="onEdit(event)" mat-raised-button routerLink="/"> Salvar evento</button>
           </mat-card-actions>
         </mat-card-content>
       </mat-card>
