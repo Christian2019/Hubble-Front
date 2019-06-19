@@ -26,16 +26,16 @@ export class AdminEventDetailComponent implements OnInit {
     this.httpClient.get<Event>('http://localhost:4200/api/event/' + id).subscribe(data => {
       this.event = data;
   });
-    // http://localhost:3000/Event/status/Aprovado
-  }
-
-  allTags () {
-    let aux = this.event.tag.map(n => "<a href=\"#\">"+n+"</a>");
-    return aux;
   }
 
   confirmar() {
      this.eventService.AprovarEvent(this.event._id);
-     this.router.navigate(['/'])
+     this.router.navigate(['/']);
    }
+   rejeitarEvento(id: string){
+    console.log(id);
+    this.eventService.ReproveEvent(id);
+    this.router.navigate(['/']);
+  }
+
 }
