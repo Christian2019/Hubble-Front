@@ -39,11 +39,11 @@ export class MyEventsComponent implements OnInit, OnChanges {
         'aqueles criados por você.',
       tabs: [
         {
-          title: 'Eu fui',
+          title: 'Eu vou',
           cards: {}
         },
         {
-          title: 'Eu vou',
+          title: 'Eu fui',
           cards: {}
         },
         {
@@ -81,7 +81,7 @@ export class MyEventsComponent implements OnInit, OnChanges {
   getConfirmedEvents(callback): void {
     this.eventService.getParticipatedEvents()
       .then(
-        (success: HttpResponse<Object>) => { callback(success['euFui']); },
+        (success: HttpResponse<Object>) => { callback(success['euVou']); },
         (rejected: HttpErrorResponse) => { 'Erro: ' + rejected.error }
       );
   }
@@ -89,7 +89,7 @@ export class MyEventsComponent implements OnInit, OnChanges {
   getPastEvents(callback): void {
     this.eventService.getParticipatedEvents()
       .then(
-        (success: HttpResponse<Object>) => { callback(success['euVou']); },
+        (success: HttpResponse<Object>) => { callback(success['euFui']); },
         (rejected: HttpErrorResponse) => { 'Erro: ' + rejected.error }
       );
   }
