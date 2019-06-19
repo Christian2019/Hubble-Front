@@ -40,7 +40,8 @@ export class EditEventComponent implements OnInit {
     startDate:       new FormControl(null, [Validators.required]),
     endDate:         new FormControl(null, [Validators.required]),
     startHour:       new FormControl(null, [Validators.required]),
-    endHour:         new FormControl(null, [Validators.required])
+    endHour:         new FormControl(null, [Validators.required]),
+    link:            new FormControl(null, [Validators.required])
   });
 
   ngOnInit() {
@@ -71,7 +72,8 @@ export class EditEventComponent implements OnInit {
       startDate:       event.startDate,
       endDate:         event.endDate,
       startHour:       event.startHour,
-      endHour:         event.endHour
+      endHour:         event.endHour,
+      link:            event.link
     });
   }
 
@@ -87,6 +89,7 @@ export class EditEventComponent implements OnInit {
       startHour:    this.formulario.value.startHour,
       endHour:      this.formulario.value.endHour,
       category:     this.formulario.value.category.id,
+      link:         this.formulario.value.link,
       address: {
         street:      this.formulario.value.street,
         zipCode:     this.formulario.value.cep,

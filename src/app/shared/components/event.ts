@@ -23,4 +23,5 @@ export class Event {
   updatedAt: Date;
   id: string;
   vacancies: number;
+  link: string;
 }

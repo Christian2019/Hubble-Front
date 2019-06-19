@@ -21,7 +21,7 @@
           />
           <div class="card-text">
             <mat-card-title>{{item.title}}</mat-card-title>
-            <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+            <mat-card-subtitle>{{item.description |slice:0:50}}...</mat-card-subtitle>
           </div>
       </mat-card>
       <a href="#"></a>
@@ -43,7 +43,7 @@
           />
           <div class="card-text">
             <mat-card-title>{{item.title}}</mat-card-title>
-            <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+            <mat-card-subtitle>{{item.description | slice:0:50}}...</mat-card-subtitle>
           </div>
       </mat-card>
       <a href="#"></a>
