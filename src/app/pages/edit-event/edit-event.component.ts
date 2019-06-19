@@ -73,7 +73,7 @@ export class EditEventComponent implements OnInit {
   }
 
   async onEdit(event) {
-    await this.eventService.updateEvent(event.id, {
+    await this.eventService.updateEvent(event._id, {
       title:        this.formulario.value.title,
       description:  this.formulario.value.description,
       price:        this.formulario.value.price,

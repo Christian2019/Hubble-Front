@@ -94,6 +94,7 @@ export class EventsService {
     console.log('Typo: ' + typeof (+generalForm.get('additionalHours').value));
 
     const normalizedPayload = {
+      createdBy: this.currentUser.id,
       title: generalForm.get('title').value,
       description: generalForm.get('description').value,
       price: generalForm.get('price').value,
