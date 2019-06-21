@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators  } from '@angular/forms';
 import { EventsService } from 'src/app/shared/services/events.service';
 import { MatSnackBar } from '@angular/material';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-sing-up',
@@ -29,7 +30,7 @@ export class SingUpComponent implements OnInit {
   }
 
 
-  onSubmit() {
+  async onSubmit() {
 
     if (this.profileForm.invalid) {
       return;
@@ -49,5 +50,8 @@ export class SingUpComponent implements OnInit {
     $event[0] = this.profileForm;
     const response = this.eventService.create_user($event);
     response.subscribe(obj => this.snackBar.open("Cadastrado com sucesso","Ok",{duration:5000}));
+    delay(1000).then(any =>
+      window.location.replace('/login')
+    )
   }
 }

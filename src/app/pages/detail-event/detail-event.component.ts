@@ -24,6 +24,7 @@ export class DetailEventComponent implements OnInit {
     private eventService: EventsService,
     private route: ActivatedRoute,
     private snackbar: MatSnackBar,
+    private showDialog: boolean = true,
     private authenticationService: AuthenticationService,
   ) { }
 
