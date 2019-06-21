@@ -18,6 +18,7 @@ export class DetailEventComponent implements OnInit {
  favorito: boolean = false;
  presenca: boolean = false;
  logado: boolean = false;
+ showDialog: boolean = false;
  currentUser: User;
 
  constructor(
