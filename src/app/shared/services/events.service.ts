@@ -106,8 +106,8 @@ export class EventsService {
       city: dateAndLocationForm.get('city').value,
       picture: generalForm.get('headerImage').value,
       link: generalForm.get('subscriptionLink').value,
-      startDate: dateAndLocationForm.get('startDate').value,
-      endDate: dateAndLocationForm.get('endDate').value,
+      startDate: this.formatarData(dateAndLocationForm.get('startDate').value),
+      endDate: this.formatarData(dateAndLocationForm.get('endDate').value),
       endHour: dateAndLocationForm.get('endHour').value,
       startHour: dateAndLocationForm.get('startHour').value,
       address: {
@@ -123,6 +123,9 @@ export class EventsService {
     console.log(normalizedPayload);
     return normalizedPayload;
   }
+formatarData(data: Date){
+  return data.getDate().toString() + "/" + data.getMonth().toString() + "/" + data.getFullYear().toString();
+}
 
 getById(id: string): Observable<Event> {
   return this.httpClient.get<Event>(environment.apiUrl + 'event/' + id);
