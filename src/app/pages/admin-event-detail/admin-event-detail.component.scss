@@ -1,19 +1,32 @@
 * {
     margin: 0;
     padding: 0;
-    // text-decoration: none;
+}
+
+.first_info {
+    padding: 32px 20px 0px 20px;
+    font-size: 18px;
+    // line-height: 30px;
+}
+
+.centralize_text {
+    text-align: center;
+}
+
+.content_box {
+    padding: 16px 20px 0px 20px;
 }
 
 .event_span {
     float: left;
-    margin-top: 3px;
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.button_thing {
-    // perdao cassio
+.button_place {
     float: right;
     margin-left: 8px;
+    margin-top: 8px;
 }
 
 .aprove_button {
@@ -24,8 +37,10 @@
     width: 80px;
     text-align: center;
     display: inline-block;
-    font-size: 12px;
+    font-size: 13px;
     border-radius: 15px;
+    // box-shadow: 0px 2px 5px darkgrey;
+    font-weight: bold;
 }
 
 .reprove_button {
@@ -37,61 +52,126 @@
     width: 80px;
     text-align: center;
     display: inline-block;
-    font-size: 12px;
+    font-size: 13px;
     border-radius: 15px;
+    // box-shadow: 0px 2px 5px darkgrey;
+    font-weight: bold;
 }
 
-.content_box {
-    padding: 32px 32px 0px 32px;
+.event_image {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    padding: 24px 0 0 0;
 }
 
-.detail_box {
-    padding: 18px 32px 18px 32px;
+.content_title {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.content_title_plus_padding {
+    display: block;
+    margin-top: 16px;
+}
+
+.bordered-box {
+    padding: 8px 8px 8px 8px;
     border-style: solid;
-    border-color: #E5E5E5;
-    border-width: 2px;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    border-radius: 3px;
     font-size: 18px;
     vertical-align: middle;
+    line-height: 30px;
+}
+
+.button_wrapper {
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.b1 {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    // align-content: center;
+}
+
+// .b2 {
+//     grid-column: 2/3;
+//     grid-row: 1/2;
+// }
+
+.b3 {
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+
+.second_aprove_button {
+    display: block;
+    position: relative;
+    background-color: #212121;
+    color: white;
+    height: 35px;
+    width: 100%;
     text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 17.5px;
+    // box-shadow: 0px 2px 5px darkgrey;
+    font-weight: bold;
 }
 
-.description_box {
-    padding: 18px 8px 18px 8px;
-    border-style: solid;
-    border-color: #E5E5E5;
-    border-width: 2px;
+.second_reprove_button {
+    position: relative;
+    background-color: white;
+    border-color: #212121;
+    color: #212121;
+    height: 35px;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
     font-size: 18px;
-    vertical-align: middle;
-    text-align: left;
+    border-radius: 17.5px;
+    // box-shadow: 0px 2px 5px darkgrey;
+    font-weight: bold;
 }
 
 @media only screen and (min-width:769px) {
 
-    .wrapper1 {
-        grid: 10fr 1fr 1fr;
+    .content_box {
+        padding-bottom: 16px;
     }
 
-    .w1b1 {
+    .image_div {
+        margin: 0px 20px 16px 20px;
+    }
+
+    .centralize_text {
+        text-align: left;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        // justify-content: center;
+    }
+
+    .box1 {
         grid-column: 1/2;
         grid-row: 1/2;
     }
 
-    .w1b3 {
-        grid-column: 11/12; grid-row: 1/2;
+    .box2 {
+        margin-top: 8px;
+        grid-column: 2/3;
+        grid-row: 1/2;
     }
 
-    .w1b4 {
-        grid-column: 12/13; grid-row: 1/2;
-    }
-
-    .detail_box {
-        padding-left: 16px;
-        text-align: left;
-    }
-
-    .description_box {
-        padding-left: 8px;
-        text-align: left;
+    .button_wrapper{
+        display: none;
     }
 
 }
