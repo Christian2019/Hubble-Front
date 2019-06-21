@@ -5,7 +5,7 @@ import { Event } from 'src/app/shared/components/event';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { User } from 'src/app/shared/components/user';
 import { EventsService } from 'src/app/shared/services/events.service';
-
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-admin-event-detail',
@@ -23,7 +23,7 @@ export class AdminEventDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.httpClient.get<Event>('http://localhost:4200/api/event/' + id).subscribe(data => {
+    this.httpClient.get<Event>(environment.apiUrl + id).subscribe(data => {
       this.event = data;
   });
   }
