@@ -23,7 +23,7 @@ export class AdminEventDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.httpClient.get<Event>(environment.apiUrl + id).subscribe(data => {
+    this.httpClient.get<Event>(environment.apiUrl + "event/" + id).subscribe(data => {
       this.event = data;
   });
   }
