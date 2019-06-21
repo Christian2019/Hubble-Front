@@ -18,13 +18,13 @@ export class DetailEventComponent implements OnInit {
  favorito: boolean = false;
  presenca: boolean = false;
  logado: boolean = false;
+ showDialog: boolean = false;
  currentUser: User;
 
  constructor(
     private eventService: EventsService,
     private route: ActivatedRoute,
     private snackbar: MatSnackBar,
-    private showDialog: boolean = true,
     private authenticationService: AuthenticationService,
   ) { }
 
