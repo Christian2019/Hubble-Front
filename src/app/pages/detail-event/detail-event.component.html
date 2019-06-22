@@ -54,7 +54,12 @@
                 </div>
                 <div>
                     <i style="vertical-align: -5px;" class="material-icons"> school </i>
-                    <span style="display: block"> {{event?.hours}} horas complementares </span>
+                    <div *ngIf="event?.hours == 0" >
+                        <span style="display: block" >Sem horas complementares</span>
+                    </div>
+                    <div *ngIf="event?.hours != 0">
+                            <span style="display: block" > {{event?.hours}} horas complementares </span>
+                    </div>
                 </div>
                 <div>
                     <i style="vertical-align: -5px;" class="material-icons">  location_on  </i>
