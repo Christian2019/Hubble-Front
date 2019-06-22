@@ -91,39 +91,36 @@ export class EventsService {
   private normalizePayload(rawPayload: FormGroup[]) {
     const generalForm = rawPayload[0];
     const dateAndLocationForm = rawPayload[1];
-    console.log('Typo: ' + typeof (+generalForm.get('additionalHours').value));
-
     const normalizedPayload = {
-      createdBy: this.currentUser.id,
-      title: generalForm.get('title').value,
-      description: generalForm.get('description').value,
-      price: generalForm.get('price').value,
-      vacancies: generalForm.get('maxNumberOfSeats').value,
-      category: generalForm.get('category').value,
-      tag: generalForm.get('subjects').value,
-      hours: parseInt(generalForm.get('additionalHours').value),
-      state: dateAndLocationForm.get('state').value,
-      city: dateAndLocationForm.get('city').value,
-      picture: generalForm.get('headerImage').value,
-      link: generalForm.get('subscriptionLink').value,
-      startDate: this.formatarData(dateAndLocationForm.get('startDate').value),
-      endDate: this.formatarData(dateAndLocationForm.get('endDate').value),
-      endHour: dateAndLocationForm.get('endHour').value,
-      startHour: dateAndLocationForm.get('startHour').value,
-      observation: dateAndLocationForm.get('observation').value,
+      createdBy   : this.currentUser.id,
+      title       : generalForm.get('title').value,
+      description : generalForm.get('description').value,
+      price       : generalForm.get('price').value,
+      vacancies   : generalForm.get('maxNumberOfSeats').value,
+      category    : generalForm.get('category').value,
+      tag         : generalForm.get('subjects').value,
+      hours       : parseInt(generalForm.get('additionalHours').value),
+      state       : dateAndLocationForm.get('state').value,
+      city        : dateAndLocationForm.get('city').value,
+      picture     : generalForm.get('headerImage').value,
+      link        : generalForm.get('subscriptionLink').value,
+      startDate   : this.formatarData(dateAndLocationForm.get('startDate').value),
+      endDate     : this.formatarData(dateAndLocationForm.get('endDate').value),
+      endHour     : dateAndLocationForm.get('endHour').value,
+      startHour   : dateAndLocationForm.get('startHour').value,
       address: {
-        street: dateAndLocationForm.get('street').value,
-        complements: dateAndLocationForm.get('additionalInfo').value,
-        zipCode: dateAndLocationForm.get('cep').value,
-        district: dateAndLocationForm.get('district').value,
-        city: dateAndLocationForm.get('city').value,
-        state: dateAndLocationForm.get('state').value,
-        number: dateAndLocationForm.get('number').value
+        street      : dateAndLocationForm.get('street').value,
+        complements : dateAndLocationForm.get('additionalInfo').value,
+        zipCode     : dateAndLocationForm.get('cep').value,
+        district    : dateAndLocationForm.get('district').value,
+        city        : dateAndLocationForm.get('city').value,
+        state       : dateAndLocationForm.get('state').value,
+        number      : dateAndLocationForm.get('number').value
       },
     };
-    console.log(normalizedPayload);
     return normalizedPayload;
   }
+
 formatarData(data: Date){
   return data.getDate().toString() + "/" + data.getMonth().toString() + "/" + data.getFullYear().toString();
 }
