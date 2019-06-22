@@ -83,21 +83,11 @@
         style="height: 100%;"
       >
         <input
-          placeholder="Selecione uma imagem de capa"
-          value="{{imageHeaderDefaultValue}}"
-          readonly="true"
-          (click)="fileInput.click()"
-          class="ellipsed-input"
-          matInput
-        />
-        <input
-          hidden
-          multiple
-          (change)="onFileInput($event)"
-          #fileInput
-          accept="image/*"
-          type="file"
+          placeholder="Link da imagem de capa"
           formControlName="headerImage"
+          class="ellipsed-input"
+          type="text"
+          matInput
           required
         />
       </mat-form-field>
