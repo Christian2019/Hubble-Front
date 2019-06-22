@@ -24,7 +24,7 @@ export class AdminEventDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.httpClient.get<Event>(environment.apiUrl + id).subscribe(data => {
+    this.httpClient.get<Event>('http://localhost:4200/api/event/' + id).subscribe(data => {
       this.event = data;
   });
     // http://localhost:3000/Event/status/Aprovado
