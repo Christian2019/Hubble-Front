@@ -68,7 +68,7 @@
         <div class="content_box" style="margin-bottom: 50px;">
             <div style="align-content: center;">
                 <b style="display: block;">Preço: {{event?.price}} reais.</b>
-                    <button (click)="confirmar();" class="default_button" *ngIf="presenca === false && logado === true">Confirmar presença</button>
+                    <button (click)="confirmar();" (click)="goToLink()" class="default_button" *ngIf="presenca === false && logado === true">Confirmar presença</button>
                     <button (click)="confirmar();" class="default_button" *ngIf="presenca === true && logado === true" style="background-color:#af031d;">Cancelar presença</button>
             </div>
         </div>
