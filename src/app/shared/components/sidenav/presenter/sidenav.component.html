@@ -50,6 +50,12 @@
               Tags e Categorias
             </a>
           </div>
+          <div *ngIf="adminAuthenticated">
+              <a class="menu-item" mat-list-item routerLink="/admin/administradores">
+                <mat-icon>subject</mat-icon>
+                Administradores
+              </a>
+            </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

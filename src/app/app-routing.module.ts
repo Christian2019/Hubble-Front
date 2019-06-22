@@ -13,6 +13,7 @@ import { EventAproveListComponent } from './pages/event-aprove-list/event-aprove
 import { RegisterEventTypeComponent } from './pages/register-event-type/register-event-type.component';
 import { MyEventsComponent } from './pages/my-events/presenter/my-events.component';
 import { EditEventComponent } from './pages/edit-event/edit-event.component';
+import { AdminsComponent } from './pages/admins/admins.component'
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'admin/lista-eventos', component: EventAproveListComponent},
   { path: 'admin/detalhe-evento/:id', component: AdminEventDetailComponent},
+  { path: 'admin/administradores', component: AdminsComponent },
   { path: 'profile', component: ProfileViewComponent},
   { path: 'admin/tag-categoria', component: RegisterEventTypeComponent},
   { path: 'meus-eventos', component: MyEventsComponent},

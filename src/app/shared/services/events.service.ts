@@ -8,6 +8,7 @@ import { Category } from '../components/category';
 import { EventCard } from '../interfaces/EventCard';
 import { AuthenticationService } from './authentication.service';
 import { User } from 'src/app/pages/_models/user';
+import { admins } from 'src/app/pages/admins/admins.component';
 
 @Injectable({
   providedIn: 'root'
@@ -260,4 +261,8 @@ delete(id: string): Promise<any> {
     const endpoint = `${environment.apiUrl}user/category/${this.currentUser.id}`;
     return this.httpClient.get<Event[]>(endpoint);
    }
+
+   get_users() {
+    return this.httpClient.get(environment.apiUrl + 'user');
+   } 
 }
