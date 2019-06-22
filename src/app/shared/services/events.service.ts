@@ -154,8 +154,6 @@ updateCategory(idCategory: string, idUser: string) {
       email             : generalForm.get('email').value,
       password          : generalForm.get('password').value
     };
-
-    console.log(normalizedPayload);
     return normalizedPayload;
   }
 
