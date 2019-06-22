@@ -110,6 +110,7 @@ export class EventsService {
       endDate: this.formatarData(dateAndLocationForm.get('endDate').value),
       endHour: dateAndLocationForm.get('endHour').value,
       startHour: dateAndLocationForm.get('startHour').value,
+      observation: dateAndLocationForm.get('observation').value,
       address: {
         street: dateAndLocationForm.get('street').value,
         complements: dateAndLocationForm.get('additionalInfo').value,
