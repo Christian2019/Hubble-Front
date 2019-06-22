@@ -34,7 +34,6 @@ export class CreateEventComponent implements OnInit {
   dataSource_tags: Category[] = [];
 
   isLinear = false;
-  base64HeaderImage: any;
   imageHeaderDefaultValue: string = '';
   generalForm: FormGroup;
   dateAndLocationForm: FormGroup;
@@ -73,31 +72,31 @@ export class CreateEventComponent implements OnInit {
 
   ngOnInit() {
     this.generalForm = this.formBuilder.group({
-      title: [null, Validators.required],
-      description: [null, Validators.required],
-      price: [0.00, Validators.required],
-      maxNumberOfSeats: [12, Validators.required],
-      category: [null, Validators.required],
-      subjects: [null, Validators.required],
-      additionalHours: [null], disabled: this.disabled,
-      subscriptionLink: [null, Validators.required],
-      headerImage: [null, Validators.required],
+      title             : [null, Validators.required],
+      description       : [null, Validators.required],
+      price             : [0.00, Validators.required],
+      maxNumberOfSeats  : [12, Validators.required],
+      category          : [null, Validators.required],
+      subjects          : [null, Validators.required],
+      additionalHours   : [null], disabled: this.disabled,
+      subscriptionLink  : [null, Validators.required],
+      headerImage       : ['', Validators.required],
     });
 
 
     this.dateAndLocationForm = this.formBuilder.group({
-      street: ['', Validators.required],
-      number: [, Validators.required],
-      additionalInfo: ['', Validators.required],
-      district: [null, Validators.required],
-      cep: [null, [Validators.required, Validators.maxLength(8)]],
-      city: { value: 'Porto Alegre', disabled: true },
-      state: { value: 'RS', disabled: true },
-      observation: [null, [Validators.maxLength(600)]],
-      startDate: [null, Validators.required],
-      startHour: ['00:00', Validators.required],
-      endDate: [null, Validators.required],
-      endHour: ['00:00', Validators.required]
+      street          : ['', Validators.required],
+      number          : ['', Validators.required],
+      additionalInfo  : ['', Validators.required],
+      district        : [null, Validators.required],
+      cep             : [null, [Validators.required, Validators.maxLength(8)]],
+      city            : { value: 'Porto Alegre', disabled: true },
+      state           : { value: 'RS', disabled: true },
+      observation     : [null, [Validators.maxLength(600)]],
+      startDate       : [null, Validators.required],
+      startHour       : ['00:00', Validators.required],
+      endDate         : [null, Validators.required],
+      endHour         : ['00:00', Validators.required]
     });
 
     this.getCategories();
@@ -108,60 +107,10 @@ export class CreateEventComponent implements OnInit {
 
   }
 
-  async onFileInput(event: any) {
-    const file: File = event.target.files[0];
-    const isImage = this.validateImage(file);
-
-    if (!isImage) {
-      this.snackbar.open('A imagem de capa precisa ter um formato de imagem ' +
-        'válido. Verifique a extensão do arquivo e tente novamente.', 'Ok',
-        { duration: 5000 })
-      return;
-    }
-
-    try {
-      const base64image = await this.toBase64(file);
-      this.base64HeaderImage = this.sanitizeBase64(base64image);
-    }
-    catch (error) {
-      this.snackbar.open('Não foi possível converter o arquivo escolhido para base64.' +
-        ' Verifique se o arquivo não está corrompido e tente novamente.', 'Ok',
-        { duration: 5000 });
-    }
-    this.imageHeaderDefaultValue = file.name;
-  }
-
-  private validateImage(file: File): Boolean {
-    return file.type.startsWith('image/');
-  }
-
-  private toBase64(file: File) {
-    const reader = new FileReader();
-    return new Promise((resolve, reject) => {
-      reader.onerror = (error) => {
-        reader.abort();
-        reject(new DOMException('Não foi possível fazer o parse do arquivo. Mensagem: ' + error));
-      };
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-
-  private sanitizeBase64(base64file) {
-    return base64file.substring(base64file.indexOf(',') + 1);
-  }
-
-  onFileSelected($image: Event) {
-
-
-  }
 
   onFormSubmit() {
-    // const data = new FormData();
-    const formsData = [];
-    const generalFormControls = Object.keys(this.generalForm.controls);
+    const formsData                   = [];
+    const generalFormControls         = Object.keys(this.generalForm.controls);
     const dateAndLocationFormControls = Object.keys(this.dateAndLocationForm.controls);
 
     generalFormControls.forEach(control => {
@@ -181,15 +130,9 @@ export class CreateEventComponent implements OnInit {
     this.emitFormData.emit([this.generalForm, this.dateAndLocationForm]);
   }
 
-  public meusEventos(): void {
-    // this.navegacao.navigate(['/pagina-cadastro-usuario']);
-  }
-
-
   onDateChange(date: MatDatepickerInputEvent<Date>) {
     this.minDate = date.value;
   }
-
 
   //Get categorias
   setAll(items) {
