@@ -30,8 +30,7 @@ export class DetailEventComponent implements OnInit {
 
   ngOnInit() {
     this.eventService.getById(this.route.snapshot.params['id'])
-   .subscribe(teste => this.event = teste);
-
+   .subscribe(teste => {console.log(teste);this.event = teste});
    this.authenticationService.currentUser
    .subscribe(user => this.currentUser = user);
 
@@ -44,8 +43,18 @@ export class DetailEventComponent implements OnInit {
 
       this.eventService.getConfirmedEvent(""+this.currentUser.id, this.route.snapshot.params['id'])
     .then(teste => this.presenca = teste);
-    }
+    } 
 }
+
+  goToLink(){
+    var prefix = 'https://';
+    if (this.event.link.substr(0, prefix.length) !== prefix && 
+        this.event.link.substr(0, prefix.length -1) !== "http://")
+    {
+      this.event.link = prefix + this.event.link;
+    }
+    window.open(this.event.link, "_blank");
+  }
 
  favoritar() {
   if (this.favorito === false) {
@@ -59,6 +68,8 @@ export class DetailEventComponent implements OnInit {
   }
    this.eventService.favoriteEvent(this.currentUser.id, this.event._id);
  }
+
+
 
  confirmar() {
   if (this.presenca === false) {
