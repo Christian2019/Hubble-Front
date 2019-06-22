@@ -106,10 +106,11 @@ export class EventsService {
       city: dateAndLocationForm.get('city').value,
       picture: generalForm.get('headerImage').value,
       link: generalForm.get('subscriptionLink').value,
-      startDate: dateAndLocationForm.get('startDate').value,
-      endDate: dateAndLocationForm.get('endDate').value,
+      startDate: this.formatarData(dateAndLocationForm.get('startDate').value),
+      endDate: this.formatarData(dateAndLocationForm.get('endDate').value),
       endHour: dateAndLocationForm.get('endHour').value,
       startHour: dateAndLocationForm.get('startHour').value,
+      observation: dateAndLocationForm.get('observation').value,
       address: {
         street: dateAndLocationForm.get('street').value,
         complements: dateAndLocationForm.get('additionalInfo').value,
@@ -123,6 +124,9 @@ export class EventsService {
     console.log(normalizedPayload);
     return normalizedPayload;
   }
+formatarData(data: Date){
+  return data.getDate().toString() + "/" + data.getMonth().toString() + "/" + data.getFullYear().toString();
+}
 
 getById(id: string): Observable<Event> {
   return this.httpClient.get<Event>(environment.apiUrl + 'event/' + id);
@@ -217,6 +221,14 @@ updateCategory(idCategory: string, idUser: string) {
       .toPromise()
       .then((resposta: Response) => resposta);
   }
+
+  ReproveEvent(event: string): Promise<any> {
+    return this.httpClient.put<any>(environment.apiUrl + 'event/status/rejeitado/' + event, {})
+      .toPromise()
+      .then((resposta: Response) => resposta);
+  }
+
+
 
   getConfirmedEvent(idUser: string, event: string): Promise<any> {
     return this.httpClient.post<any>(environment.apiUrl + 'user/confirmado/' + idUser, { idEvent: event })

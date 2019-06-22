@@ -1,3 +1,4 @@
+import { Category } from 'src/app/shared/components/category';
 import { Categories } from './../register-event-type/register-event-type.component';
 import { Address } from './../../shared/components/address';
 import { Event } from './../../shared/components/event';
@@ -15,18 +16,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class EditEventComponent implements OnInit {
   event: any;
-
-  // categories = [
-  //   { name: 'Palestra' },
-  //   { name: 'Seminário' },
-  //   { name: 'Oficina/Workshop' },
-  //   { name: 'Congresso' },
-  //   { name: 'Simpósio' },
-  //   { name: 'Feira' },
-  //   { name: 'Dissertação' },
-  //   { name: 'Encontro' }
-  // ];
-
+  categories: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -45,7 +35,13 @@ export class EditEventComponent implements OnInit {
     district :       new FormControl(null, [Validators.required]),
     city:            new FormControl(null, [Validators.required]),
     state:           new FormControl(null, [Validators.required]),
-    category:        new FormControl(null, [Validators.required])
+    category:        new FormControl(null, [Validators.required]),
+    vacancies:       new FormControl(null, [Validators.required]),
+    startDate:       new FormControl(null, [Validators.required]),
+    endDate:         new FormControl(null, [Validators.required]),
+    startHour:       new FormControl(null, [Validators.required]),
+    endHour:         new FormControl(null, [Validators.required]),
+    link:            new FormControl(null, [Validators.required])
   });
 
   ngOnInit() {
@@ -54,6 +50,9 @@ export class EditEventComponent implements OnInit {
         this.populaForm(result);
         this.event = result;
       });
+
+    this.eventService.get_categories()
+    .subscribe(res => this.categories = res);
   }
 
   populaForm(event) {
@@ -67,8 +66,14 @@ export class EditEventComponent implements OnInit {
       additionalInfo:  event.address.complements,
       district:        event.address.district,
       city:            event.address.city,
-      state:           event.address.state
-      // category:        event.categories
+      state:           event.address.state,
+      vacancies:       event.vacancies,
+      category:        event.category.title,
+      startDate:       event.startDate,
+      endDate:         event.endDate,
+      startHour:       event.startHour,
+      endHour:         event.endHour,
+      link:            event.link
     });
   }
 
@@ -78,9 +83,13 @@ export class EditEventComponent implements OnInit {
       description:  this.formulario.value.description,
       price:        this.formulario.value.price,
       hours:        this.formulario.value.hours,
-      // category: {
-      //       title:  this.formulario.value.title
-      // },
+      vacancies:    this.formulario.value.vacancies,
+      startDate:    this.formulario.value.startDate,
+      endDate:      this.formulario.value.endDate,
+      startHour:    this.formulario.value.startHour,
+      endHour:      this.formulario.value.endHour,
+      category:     this.formulario.value.category.id,
+      link:         this.formulario.value.link,
       address: {
         street:      this.formulario.value.street,
         zipCode:     this.formulario.value.cep,

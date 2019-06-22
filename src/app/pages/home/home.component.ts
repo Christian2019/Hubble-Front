@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   public items: any = [];
   public favorited_items: any = [];
   currentUser: User;
-  
+
 
   constructor(private eventService: EventsService,
     private authService: AuthenticationService) {
@@ -80,13 +80,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  ngOnInit() {}
   doFilterFav(searchTerm) {
     return this.all_items_fav.filter(item => {
       return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     });
-  }
-
-  ngOnInit() {
   }
 
   public get authenticated(): boolean {

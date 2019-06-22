@@ -19,12 +19,29 @@
         <mat-form-field>
           <input type="number" min="0" step="0.01" matInput placeholder="Preço" formControlName="price" required />
         </mat-form-field>
+
       </div>
       <div class="example-container">
           <mat-form-field>
               <input matInput placeholder="Horas complementares" formControlName="additionalHours" required type="number" value="00:00" />
-            </mat-form-field>
-          </div>
+          </mat-form-field>
+          <mat-form-field>
+              <input type="number" matInput placeholder="Quantidade de vagas disponiveis" formControlName="vacancies" required>
+          </mat-form-field>
+          <mat-form-field>
+              <input type="text" matInput placeholder="Link para incrição" formControlName="link" required>
+          </mat-form-field>
+      <mat-form-field>
+          <mat-select required placeholder="Categoria" formControlName="category">
+
+            <mat-option
+              *ngFor="let category of categories"
+              value="{{ category.id }}"
+              >{{ category.title }}</mat-option
+          >
+          </mat-select>
+        </mat-form-field>
+      </div>
           <mat-card-actions>
           </mat-card-actions>
     </mat-card-content>
@@ -56,12 +73,37 @@
                 <input matInput placeholder="Estado" formControlName="state" required type="text"/>
             </mat-form-field>
         </div>
-        <mat-card-actions>
+        <!-- <mat-card-actions>
           <button id="add" (click)="onEdit(event)" mat-raised-button routerLink="/"> Salvar evento</button>
-        </mat-card-actions>
+        </mat-card-actions> -->
       </mat-card-content>
     </mat-card>
 
+    <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Data e horario</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
 
+          <div class="example-container">
+              <mat-form-field>
+                  <input type="date" matInput placeholder="Data inicio" formControlName="startDate" required/>
+              </mat-form-field>
+              <mat-form-field>
+                    <input type="date" matInput placeholder="Data final" formControlName="endDate" required/>
+              </mat-form-field>
+              <mat-form-field>
+                    <textarea type="time" matInput placeholder="Horario inicial" formControlName="startHour"></textarea>
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput placeholder="Horario final" formControlName="endHour" type="time"/>
+              </mat-form-field>
+          </div>
+          <mat-card-actions>
+              <button id="add-volt"  mat-raised-button [routerLink] ="['/event', event?._id]"> Voltar</button>
+              <button id="add" (click)="onEdit(event)" mat-raised-button routerLink="/"> Salvar evento</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
 </form>
 </section>

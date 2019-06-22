@@ -7,7 +7,6 @@ import { User } from 'src/app/shared/components/user';
 import { EventsService } from 'src/app/shared/services/events.service';
 import { environment } from '../../../environments/environment';
 
-
 @Component({
   selector: 'app-admin-event-detail',
   templateUrl: './admin-event-detail.component.html',
@@ -24,19 +23,19 @@ export class AdminEventDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.httpClient.get<Event>('http://localhost:4200/api/event/' + id).subscribe(data => {
+    this.httpClient.get<Event>(environment.apiUrl + "event/" + id).subscribe(data => {
       this.event = data;
   });
-    // http://localhost:3000/Event/status/Aprovado
-  }
-
-  allTags () {
-    let aux = this.event.tag.map(n => "<a href=\"#\">"+n+"</a>");
-    return aux;
   }
 
   confirmar() {
-     this.eventService.AprovarEvent(this.event.id);
-     this.router.navigate(['/'])
+     this.eventService.AprovarEvent(this.event._id);
+     this.router.navigate(['/']);
    }
+   rejeitarEvento(id: string){
+    console.log(id);
+    this.eventService.ReproveEvent(id);
+    this.router.navigate(['/']);
+  }
+
 }
