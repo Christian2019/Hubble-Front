@@ -5,12 +5,12 @@
     <div class="users">
       
 
-      <form [formGroup]="adminForm" (ngSubmit)="submit">
+      <!-- <form [formGroup]="adminForm" (ngSubmit)="submit()">
         <mat-form-field class="adminInput">
           <input matInput type="text" placeholder="Email" formControlName="email">
         </mat-form-field>
       </form>
-    </div>
+    </div> -->
 
     <div class="users">
       <p>Lista de Usuários</p>
@@ -30,7 +30,7 @@
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef > Email </th>
           <td mat-cell *matCellDef="let element" > {{element.email}} 
-            <button type="button" class="deleteButton" mat-icon-button (click)="categoryDelete(element.id)">
+            <button type="button" class="deleteButton" mat-icon-button (click)="elevateAdmin(element.email)">
               <mat-icon style="color: #212121">trending_up</mat-icon>
             </button>
           </td>

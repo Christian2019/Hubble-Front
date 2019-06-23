@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/shared/services/events.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { delay } from 'q';
 
 export interface admins {
   firstName: string;
@@ -47,7 +48,15 @@ export class AdminsComponent implements OnInit {
 
   loadUsersList(){
     this.eventService.get_users().subscribe(
-      (data: admins) => this.setAll(data)
+      (data: admins) => this.setAll(data),
     );
   }  
+
+  elevateAdmin(email: string){
+    console.log(email);
+    this.eventService.update_toAdmin(email).subscribe(obj => {
+      this.loadUsersList();
+    });
+    
+  }
 }

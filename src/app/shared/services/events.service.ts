@@ -265,4 +265,11 @@ delete(id: string): Promise<any> {
    get_users() {
     return this.httpClient.get(environment.apiUrl + 'user');
    } 
+
+   update_toAdmin(email: string){
+    //  console.log('chegou: ' + email);
+    //  console.log(environment.apiUrl + 'user/criarAdmin/' + email);
+     return this.httpClient.post(environment.apiUrl + 'user/criarAdmin/' + email, {} )
+      
+   }
 }
